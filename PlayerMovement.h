@@ -29,12 +29,12 @@ namespace godot
 		void _ready();
 		void _physics_process(const real_t delta);
 		void _process(const real_t delta);
+		void _integrate_forces(const PhysicsDirectBodyState* state);
+		
 		//            void _input(const Ref<InputEvent> event);
 
 	private:
 		Input* input;//para obtener el input
-		float v;//movimiento adelante
-		float h;//movimiento horizontal
 
 		//esto es un copy y paste de la clase copiada del juego hecho para youtube
 		//VARIABLES

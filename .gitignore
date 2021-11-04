@@ -1,5 +1,4 @@
 #Godot engine
-*.o
 *.os
 *.obj
 .import/

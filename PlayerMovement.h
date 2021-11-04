@@ -10,6 +10,7 @@
 #include <InputEvent.hpp>
 #include <Input.hpp>
 #include <Camera.hpp>
+#include <PhysicsDirectBodyState.hpp>
 
 namespace godot
 {
@@ -31,7 +32,6 @@ namespace godot
 		void _process(const real_t delta);
 		void _integrate_forces(const PhysicsDirectBodyState* state);
 		
-		//            void _input(const Ref<InputEvent> event);
 
 	private:
 		Input* input;//para obtener el input

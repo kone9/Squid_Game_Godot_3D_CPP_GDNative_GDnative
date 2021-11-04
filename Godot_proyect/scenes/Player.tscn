@@ -13,7 +13,7 @@ material = SubResource( 2 )
 [node name="Player" type="RigidBody"]
 script = ExtResource( 1 )
 PlayerMovement = 3.0
-Sensitivity = 5.0
+Sensitivity = 20.0
 Jumpforce = 5.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

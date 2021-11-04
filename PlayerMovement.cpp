@@ -67,7 +67,8 @@ namespace godot
 		register_method("_ready", &PlayerMovement::_ready);
 		register_method("_process", &PlayerMovement::_process);
 		register_method("_physics_process", &PlayerMovement::_physics_process);
-		//		register_method("_input", &PlayerMovement::_input);
+		register_method("_integrate_forces", &PlayerMovement::_integrate_forces);
+
 		register_method("MovePlayer", &PlayerMovement::MovePlayer);
 		register_method("MovePlayerCamera", &PlayerMovement::MovePlayerCamera);
 		register_method("CheckJumping", &PlayerMovement::CheckJumping);
@@ -91,6 +92,7 @@ namespace godot
 		input->set_mouse_mode(input->MOUSE_MODE_CAPTURED);
 		input->set_mouse_mode(input->MOUSE_MODE_VISIBLE);
 		PlayerCamera = get_node<Camera>("Camera");//obtener la camara
+		
 		Godot::print("inicio el juegador con el player movement");
 		Godot::print("proyecto funcionado correctamente");
 	}
@@ -102,7 +104,8 @@ namespace godot
 		float h = input->get_action_strength("a") - input->get_action_strength("d");//movimiento 
 
 		PlayerMouseInput = get_viewport()->get_mouse_position();//posicion de mouse
-
+		Godot::print(String::num_real(PlayerMouseInput.x));
+		Godot::print(String::num_real(PlayerMouseInput.y));
 		PlayerMovementInput = Vector3(h, 0, v);//para obtener el input y luego mover
 
 		isWalking = (h != 0 || v != 0);//si es distinto de cero me estoy moviendo
@@ -120,6 +123,7 @@ namespace godot
 		CheckDeathTime();//tiene que ver con el tiempo, capas modifico por tiemr
 	}
 
+	//para cambiar posicion de objetos físicos
 	void PlayerMovement::_integrate_forces(const PhysicsDirectBodyState* state)
 	{
 		MovePlayerCamera();//muevo la camera
@@ -132,11 +136,6 @@ namespace godot
 		CheckMoving();//verifiva si se mueve
 	}
 
-	//	void PlayerMovement::_input(const Ref<InputEvent> event)
-	//	{
-	////		PlayerMouseInput = get_viewport()->get_mouse_position();
-	//	}
-
 	void PlayerMovement::MovePlayer()
 	{
 		//		Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
@@ -147,24 +146,24 @@ namespace godot
 //		PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
 		set_linear_velocity(Vector3(MoveVector.x, -1, MoveVector.z));
 
-		//		if (Input.GetKeyDown(KeyCode.Space))
+		//if (Input.GetKeyDown(KeyCode.Space))
 		if (input->is_action_just_pressed("click_izquierdo"))//para saltar
 		{
 			if (!isJumping)//sino estoy saltando
 			{
 				Godot::print("tendria que saltar");
-				add_force(Vector3::UP * Jumpforce, Vector3::ZERO);
-				//				PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
+				//PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
+				apply_impulse(get_translation(), Vector3::UP * Jumpforce);//aplico un impulso en la posición actual
 			}
 		}
 	}
 
 	void PlayerMovement::MovePlayerCamera()
 	{
-		//		xRot -= PlayerMouseInput.y * Sensitivity;
+		//xRot -= PlayerMouseInput.y * Sensitivity;
 		xRot = -PlayerMouseInput.y * Sensitivity;
 
-		//		transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
+		//transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
 		set_rotation_degrees(Vector3(0, -PlayerMouseInput.x * Sensitivity, 0));//rota sobre el eje y el personaje
 
 //		PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);

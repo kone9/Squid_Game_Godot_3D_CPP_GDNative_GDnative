@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/GDnative/CuboMovimiento.gdns" type="Script" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[node name="test" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6.4, 9.8 )
+
+[node name="CuboMovimientoGdNative" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+script = ExtResource( 2 )
+aumentarVelocidad = 10.0
+max_X = 9.0
+min_X = -9.0

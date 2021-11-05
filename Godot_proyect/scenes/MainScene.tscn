@@ -16,18 +16,28 @@ size = Vector3( 40, 0.2, 40 )
 
 [node name="Camera2" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 9.4, 6.8 )
+current = true
 
-[node name="SueloTest" type="StaticBody" parent="." groups=[
-"suelo",
+[node name="Suelo" type="StaticBody" parent="." groups=[
+"Suelo",
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5 )
 
-[node name="CollisionShape" type="CollisionShape" parent="SueloTest"]
+[node name="CollisionShape" type="CollisionShape" parent="Suelo"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="SueloTest"]
+[node name="Suelo" type="MeshInstance" parent="Suelo" groups=[
+"Suelo",
+]]
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="Area" type="Area" parent="Suelo" groups=[
+"Suelo",
+]]
+
+[node name="CollisionShape2" type="CollisionShape" parent="Suelo/Area"]
+shape = SubResource( 1 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.5, 0 )
@@ -36,6 +46,7 @@ shadow_enabled = true
 
 [node name="RigidBody" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 10, -1.4 )
+mass = 5.10204
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
 shape = SubResource( 3 )
@@ -46,6 +57,7 @@ material/0 = null
 
 [node name="RigidBody2" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2, 10, -1.4 )
+mass = 5.10204
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody2"]
 shape = SubResource( 3 )
@@ -55,6 +67,6 @@ mesh = SubResource( 4 )
 material/0 = null
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -9.8 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50715, -16.819 )
 PlayerMovement = 10.0
-Jumpforce = 40.0
+Jumpforce = 50.0

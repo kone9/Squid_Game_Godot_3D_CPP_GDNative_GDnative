@@ -32,6 +32,12 @@ namespace godot
 		void _physics_process(const real_t delta);
 		void _process(const real_t delta);
 		void _integrate_forces(const PhysicsDirectBodyState* state);
+
+	//senials
+	private:
+		void _on_AreaDetectarSuelo_area_entered(Area *area);
+		void _on_AreaDetectarSuelo_area_exited(Area *area);
+
 		
 	//las cree yo aparte
 	private:

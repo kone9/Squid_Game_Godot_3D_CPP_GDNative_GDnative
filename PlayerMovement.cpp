@@ -72,6 +72,7 @@ namespace godot
 		register_method("_physics_process", &PlayerMovement::_physics_process);
 		register_method("_integrate_forces", &PlayerMovement::_integrate_forces);
 
+		//funciones del juego
 		register_method("MovePlayer", &PlayerMovement::MovePlayer);
 		register_method("MovePlayerCamera", &PlayerMovement::MovePlayerCamera);
 		register_method("CheckJumping", &PlayerMovement::CheckJumping);
@@ -82,6 +83,10 @@ namespace godot
 		register_property<PlayerMovement, float>("PlayerMovement", &PlayerMovement::Speed, 1);
 		register_property<PlayerMovement, float>("Sensitivity", &PlayerMovement::Sensitivity, 1);
 		register_property<PlayerMovement, float>("Jumpforce", &PlayerMovement::Jumpforce, 1);
+
+		//Senials
+		register_method("_on_AreaDetectarSuelo_area_entered", &PlayerMovement::_on_AreaDetectarSuelo_area_entered);
+		register_method("_on_AreaDetectarSuelo_area_exited", &PlayerMovement::_on_AreaDetectarSuelo_area_entered);
 
 	}
 
@@ -101,6 +106,7 @@ namespace godot
 		Godot::print("inicio el juegador con el player movement");
 		Godot::print("proyecto funcionado correctamente");
 		Godot::print("proyecto funcionado correctamente");
+		
 	}
 
 	void PlayerMovement::_process(const real_t delta)
@@ -108,10 +114,8 @@ namespace godot
 		if (isDying) {return;}
 		float v = input->get_action_strength("w") - input->get_action_strength("s");//movimiento 
 		float h = input->get_action_strength("a") - input->get_action_strength("d");//movimiento 
-
+		
 		PlayerMouseInput = get_viewport()->get_mouse_position();//posicion de mouse
-		Godot::print(String::num_real(PlayerMouseInput.x));
-		Godot::print(String::num_real(PlayerMouseInput.y));
 		PlayerMovementInput = Vector3(h, 0, v);//para obtener el input y luego mover
 
 		isWalking = (h != 0 || v != 0);//si es distinto de cero me estoy moviendo
@@ -129,12 +133,6 @@ namespace godot
 		CheckDeathTime();//tiene que ver con el tiempo, capas modifico por tiemr
 	}
 
-	//para cambiar posicion de objetos físicos
-	void PlayerMovement::_integrate_forces(const PhysicsDirectBodyState* state)
-	{
-		MovePlayerCamera();//muevo la camera
-	}
-
 	void PlayerMovement::_physics_process(const real_t delta)
 	{
 		MovePlayer();//muevo el personaje
@@ -142,6 +140,32 @@ namespace godot
 		CheckMoving();//verifiva si se mueve
 	}
 
+	//para cambiar posicion de objetos físicos
+	void PlayerMovement::_integrate_forces(const PhysicsDirectBodyState* state)
+	{
+		MovePlayerCamera();//muevo la camera
+	}
+
+	void PlayerMovement::_on_AreaDetectarSuelo_area_entered(Area* area)
+	{
+		if (area->is_in_group("Suelo"))
+		{
+			isJumping = false;
+			//Godot::print("NO estoy saltando");
+		
+		}
+	}
+
+	void PlayerMovement::_on_AreaDetectarSuelo_area_exited(Area* area)
+	{
+		if (area->is_in_group("Suelo"))
+		{
+			isJumping = true;
+			Godot::print("ESTOY	 saltando");
+		}
+	}
+
+	
 	void PlayerMovement::MovePlayer()
 	{
 		//		Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
@@ -151,7 +175,7 @@ namespace godot
 
 //		PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
 		set_linear_velocity(Vector3(MoveVector.x, -3, MoveVector.z));
-
+		
 		//if (Input.GetKeyDown(KeyCode.Space))
 		if (input->is_action_just_pressed("click_izquierdo"))//para saltar
 		{
@@ -159,7 +183,8 @@ namespace godot
 			{
 				Godot::print("tendria que saltar");
 				//PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
-				apply_impulse(get_translation(), Vector3::UP * Jumpforce);//aplico un impulso en la posición actual
+				apply_central_impulse(Vector3::UP * Jumpforce);
+				//apply_impulse(get_translation(), Vector3::UP * Jumpforce);//aplico un impulso en la posición actual
 			}
 		}
 	}
@@ -168,12 +193,12 @@ namespace godot
 	{
 		//xRot -= PlayerMouseInput.y * Sensitivity;
 		xRot = -PlayerMouseInput.y * Sensitivity;
-
+		
 		//transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
 		set_rotation_degrees(Vector3(0, -PlayerMouseInput.x * Sensitivity, 0));//rota sobre el eje y el personaje
 
 //		PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-		PlayerCamera->set_rotation_degrees(Vector3(
+		PlayerCamera->set_rotation_degrees( Vector3(
 				xRot,
 				PlayerCamera->get_rotation_degrees().y,
 				PlayerCamera->get_rotation_degrees().z
@@ -184,9 +209,9 @@ namespace godot
 	void PlayerMovement::CheckJumping()
 	{
 		//isJumping = !Physics.CheckSphere(FeetTransform.position, 0.1f, FloorMask);//para detectar el suelo
-		isJumping = cast_to<StaticBody>(get_colliding_bodies()[0])->is_in_group("Suelo");
-		String mensaje = isJumping ? "true" : "false";
-		Godot::print(mensaje);
+		//isJumping = cast_to<StaticBody>(get_colliding_bodies()[0])->is_in_group("Suelo");
+		/*String mensaje = isJumping ? "true" : "false";
+		Godot::print(mensaje);*/
 		//anim.SetBool("isJumping", isJumping);
 	}
 

@@ -3,6 +3,7 @@
 #include <CanvasItem.hpp>
 #include <InputEventMouseMotion.hpp>
 #include <Viewport.hpp>
+#include <StaticBody.hpp>
 
 namespace godot
 {
@@ -54,6 +55,8 @@ namespace godot
 
 		input = nullptr;
 		PlayerCamera = nullptr;
+
+		areaDetectarSuelo = nullptr;
 	}
 
 	PlayerMovement::~PlayerMovement()
@@ -92,8 +95,11 @@ namespace godot
 		input->set_mouse_mode(input->MOUSE_MODE_CAPTURED);
 		input->set_mouse_mode(input->MOUSE_MODE_VISIBLE);
 		PlayerCamera = get_node<Camera>("Camera");//obtener la camara
+		areaDetectarSuelo = get_node<Area>("AreaDetectarSuelo");//obtener la camara
+
 		
 		Godot::print("inicio el juegador con el player movement");
+		Godot::print("proyecto funcionado correctamente");
 		Godot::print("proyecto funcionado correctamente");
 	}
 
@@ -139,12 +145,12 @@ namespace godot
 	void PlayerMovement::MovePlayer()
 	{
 		//		Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
-		Vector3 move_vector_Horizontal = get_transform().basis.x * PlayerMovementInput.x * Speed;
-		Vector3 move_vector_vertical = get_transform().basis.z * PlayerMovementInput.z * Speed;
+		Vector3 move_vector_Horizontal = get_transform().basis.x * PlayerMovementInput.normalized().x * Speed;
+		Vector3 move_vector_vertical = get_transform().basis.z * PlayerMovementInput.normalized().z * Speed;
 		Vector3 MoveVector = move_vector_vertical + move_vector_Horizontal;//tiene que ser vector forward posiblemente aca tenga un error
 
 //		PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
-		set_linear_velocity(Vector3(MoveVector.x, -1, MoveVector.z));
+		set_linear_velocity(Vector3(MoveVector.x, -3, MoveVector.z));
 
 		//if (Input.GetKeyDown(KeyCode.Space))
 		if (input->is_action_just_pressed("click_izquierdo"))//para saltar
@@ -167,12 +173,21 @@ namespace godot
 		set_rotation_degrees(Vector3(0, -PlayerMouseInput.x * Sensitivity, 0));//rota sobre el eje y el personaje
 
 //		PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-		//PlayerCamera->set_rotation_degrees(Vector3(xRot + 45, 0, 0));//para rotar sobre el eje X
+		PlayerCamera->set_rotation_degrees(Vector3(
+				xRot,
+				PlayerCamera->get_rotation_degrees().y,
+				PlayerCamera->get_rotation_degrees().z
+			)
+		);//para rotar sobre el eje X
 	}
 
 	void PlayerMovement::CheckJumping()
 	{
-
+		//isJumping = !Physics.CheckSphere(FeetTransform.position, 0.1f, FloorMask);//para detectar el suelo
+		isJumping = cast_to<StaticBody>(get_colliding_bodies()[0])->is_in_group("Suelo");
+		String mensaje = isJumping ? "true" : "false";
+		Godot::print(mensaje);
+		//anim.SetBool("isJumping", isJumping);
 	}
 
 	void PlayerMovement::CheckMoving()

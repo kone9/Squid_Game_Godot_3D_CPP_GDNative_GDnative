@@ -11,6 +11,7 @@
 #include <Input.hpp>
 #include <Camera.hpp>
 #include <PhysicsDirectBodyState.hpp>
+#include <Area.hpp>
 
 namespace godot
 {
@@ -32,9 +33,10 @@ namespace godot
 		void _process(const real_t delta);
 		void _integrate_forces(const PhysicsDirectBodyState* state);
 		
-
+	//las cree yo aparte
 	private:
 		Input* input;//para obtener el input
+		Area *areaDetectarSuelo;
 
 		//esto es un copy y paste de la clase copiada del juego hecho para youtube
 		//VARIABLES

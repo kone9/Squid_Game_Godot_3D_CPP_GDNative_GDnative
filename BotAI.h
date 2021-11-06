@@ -4,6 +4,8 @@
 #include <RigidBody.hpp>
 #include <AudioStreamPlayer.hpp>
 #include <AnimationTree.hpp>
+#include <RandomNumberGenerator.hpp>
+#include <Position3D.hpp>
 
 namespace godot
 {
@@ -21,7 +23,10 @@ namespace godot
 			void _process(real_t delta);
         
         private:
-            Transform TargetEnd;
+            RandomNumberGenerator *random;
+
+        private:
+            Position3D *TargetEnd;//posicion final
 
             //PARA VER EN EL EDITOR
             float speed;
@@ -35,7 +40,7 @@ namespace godot
             //PARA VER EN EL EDITOR
             AudioStreamPlayer *shoot;
 
-            Transform deathZone;
+            Position3D *deathZone;//posicion de muerte
 
             bool isWalking;
             bool AIChecked;
@@ -43,6 +48,18 @@ namespace godot
             bool isInDeathZone;
             bool isDying;
             float intelligence;
+
+        //Metodos
+        private:
+            void Move();
+            void Walk();
+            void Stop();
+            void CheckDeathTime();
+            void DeadthAnimation();
+            
+           /* void OnTriggerEnter(Collider other);
+            void OnTriggerExit(Collider other);*/
+
 
 	};
 }

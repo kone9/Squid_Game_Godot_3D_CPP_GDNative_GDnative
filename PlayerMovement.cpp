@@ -100,12 +100,6 @@ namespace godot
 		input->set_mouse_mode(input->MOUSE_MODE_VISIBLE);
 		PlayerCamera = get_node<Camera>("Camera");//obtener la camara
 		areaDetectarSuelo = get_node<Area>("AreaDetectarSuelo");//obtener la camara
-
-		
-		Godot::print("inicio el juegador con el player movement");
-		Godot::print("proyecto funcionado correctamente");
-		Godot::print("proyecto funcionado correctamente");
-		
 	}
 
 	void PlayerMovement::_process(const real_t delta)

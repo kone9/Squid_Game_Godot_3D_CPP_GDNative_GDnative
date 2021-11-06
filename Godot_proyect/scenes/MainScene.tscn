@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 20, 0.2, 40 )
@@ -14,59 +15,74 @@ size = Vector3( 40, 0.2, 80 )
 
 [node name="MainScene" type="Spatial"]
 
-[node name="Camera2" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 9.4, 6.8 )
-current = true
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.50715, 27.6844 )
+PlayerMovement = 5.0
+Jumpforce = 80.0
 
-[node name="Suelo" type="StaticBody" parent="." groups=[
+[node name="Map" type="Spatial" parent="."]
+
+[node name="Suelo" type="StaticBody" parent="Map" groups=[
 "Suelo",
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Suelo"]
+[node name="CollisionShape" type="CollisionShape" parent="Map/Suelo"]
 shape = SubResource( 1 )
 
-[node name="Suelo" type="MeshInstance" parent="Suelo" groups=[
+[node name="Suelo" type="MeshInstance" parent="Map/Suelo" groups=[
 "Suelo",
 ]]
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Area" type="Area" parent="Suelo" groups=[
+[node name="Area" type="Area" parent="Map/Suelo" groups=[
 "Suelo",
 ]]
 
-[node name="CollisionShape2" type="CollisionShape" parent="Suelo/Area"]
+[node name="CollisionShape2" type="CollisionShape" parent="Map/Suelo/Area"]
 shape = SubResource( 1 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.5, 0 )
-light_energy = 0.3
-shadow_enabled = true
-
-[node name="RigidBody" type="RigidBody" parent="."]
+[node name="RigidBody" type="RigidBody" parent="Map"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 10, -1.4 )
 mass = 5.10204
 
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Map/RigidBody"]
 shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+[node name="MeshInstance" type="MeshInstance" parent="Map/RigidBody"]
 mesh = SubResource( 4 )
 material/0 = null
 
-[node name="RigidBody2" type="RigidBody" parent="."]
+[node name="RigidBody2" type="RigidBody" parent="Map"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2, 10, -1.4 )
 mass = 5.10204
 
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody2"]
+[node name="CollisionShape" type="CollisionShape" parent="Map/RigidBody2"]
 shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="RigidBody2"]
+[node name="MeshInstance" type="MeshInstance" parent="Map/RigidBody2"]
 mesh = SubResource( 4 )
 material/0 = null
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.50715, 27.6844 )
-PlayerMovement = 10.0
-Jumpforce = 80.0
+[node name="TargetEnd" type="Position3D" parent="Map" groups=[
+"TargetEnd",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34.6 )
+
+[node name="DeathZone" type="Position3D" parent="Map" groups=[
+"DeathZone",
+]]
+
+[node name="Bot" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29623, 16.45 )
+
+[node name="Light_and_camera" type="Spatial" parent="."]
+
+[node name="Camera2" type="Camera" parent="Light_and_camera"]
+transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 9.4, 6.8 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.5, 0 )
+light_energy = 0.3
+shadow_enabled = true

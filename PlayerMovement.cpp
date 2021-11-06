@@ -209,6 +209,7 @@ namespace godot
 		isMoving = isJumping || isWalking;//si esta caminando o esta saltando se esta movimiendo
 	}
 
+	//verifica si se termino el tiempo y mata al jugador
 	void PlayerMovement::CheckDeathTime()
 	{
 	}

@@ -86,7 +86,6 @@ namespace godot
 
 		//Senials
 		register_method("_on_AreaDetectarSuelo_area_entered", &PlayerMovement::_on_AreaDetectarSuelo_area_entered);
-		register_method("_on_AreaDetectarSuelo_area_exited", &PlayerMovement::_on_AreaDetectarSuelo_area_entered);
 
 	}
 
@@ -152,18 +151,17 @@ namespace godot
 		{
 			isJumping = false;
 			//Godot::print("NO estoy saltando");
-		
 		}
 	}
 
-	void PlayerMovement::_on_AreaDetectarSuelo_area_exited(Area* area)
+	/*void PlayerMovement::_on_AreaDetectarSuelo_area_exited(Area* area)
 	{
 		if (area->is_in_group("Suelo"))
 		{
 			isJumping = true;
 			Godot::print("ESTOY	 saltando");
 		}
-	}
+	}*/
 
 	
 	void PlayerMovement::MovePlayer()
@@ -181,6 +179,7 @@ namespace godot
 		{
 			if (!isJumping)//sino estoy saltando
 			{
+				isJumping = true;//estoy saltando
 				Godot::print("tendria que saltar");
 				//PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
 				apply_central_impulse(Vector3::UP * Jumpforce);

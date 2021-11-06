@@ -135,8 +135,7 @@ namespace godot
 	void PlayerMovement::_physics_process(const real_t delta)
 	{
 		MovePlayer();//muevo el personaje
-		CheckJumping();//verifica si esta saltando
-		CheckMoving();//verifiva si se mueve
+		CheckMoving();//verifiva si se mueve, si salta o camina se esta moviendo
 	}
 
 	//para cambiar posicion de objetos físicos
@@ -150,18 +149,8 @@ namespace godot
 		if (area->is_in_group("Suelo"))
 		{
 			isJumping = false;
-			//Godot::print("NO estoy saltando");
 		}
 	}
-
-	/*void PlayerMovement::_on_AreaDetectarSuelo_area_exited(Area* area)
-	{
-		if (area->is_in_group("Suelo"))
-		{
-			isJumping = true;
-			Godot::print("ESTOY	 saltando");
-		}
-	}*/
 
 	
 	void PlayerMovement::MovePlayer()
@@ -179,11 +168,9 @@ namespace godot
 		{
 			if (!isJumping)//sino estoy saltando
 			{
-				isJumping = true;//estoy saltando
 				Godot::print("tendria que saltar");
 				//PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
-				apply_central_impulse(Vector3::UP * Jumpforce);
-				//apply_impulse(get_translation(), Vector3::UP * Jumpforce);//aplico un impulso en la posición actual
+				CheckJumping();
 			}
 		}
 	}
@@ -204,19 +191,22 @@ namespace godot
 			)
 		);//para rotar sobre el eje X
 	}
-
+	
+	//verifica el salto como verdadero, aplica impulso y activa animacion
 	void PlayerMovement::CheckJumping()
 	{
 		//isJumping = !Physics.CheckSphere(FeetTransform.position, 0.1f, FloorMask);//para detectar el suelo
-		//isJumping = cast_to<StaticBody>(get_colliding_bodies()[0])->is_in_group("Suelo");
-		/*String mensaje = isJumping ? "true" : "false";
-		Godot::print(mensaje);*/
+		//USO el area que esta más arriba para evitar el doble salto
+		isJumping = true;//estoy saltando
+		apply_central_impulse(Vector3::UP * Jumpforce);//impulso desde el centro
 		//anim.SetBool("isJumping", isJumping);
+		//animacion saltar
+		
 	}
 
-	void PlayerMovement::CheckMoving()
+	void PlayerMovement::CheckMoving()//verifica si se mueve
 	{
-
+		isMoving = isJumping || isWalking;//si esta caminando o esta saltando se esta movimiendo
 	}
 
 	void PlayerMovement::CheckDeathTime()

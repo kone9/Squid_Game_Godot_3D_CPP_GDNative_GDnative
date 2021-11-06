@@ -36,7 +36,6 @@ namespace godot
 	//senials
 	private:
 		void _on_AreaDetectarSuelo_area_entered(Area *area);
-		//void _on_AreaDetectarSuelo_area_exited(Area *area);
 
 		
 	//las cree yo aparte

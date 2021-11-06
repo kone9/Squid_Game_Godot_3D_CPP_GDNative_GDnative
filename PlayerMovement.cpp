@@ -156,6 +156,7 @@ namespace godot
 	void PlayerMovement::MovePlayer()
 	{
 		//		Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
+		
 		Vector3 move_vector_Horizontal = get_transform().basis.x * PlayerMovementInput.normalized().x * Speed;
 		Vector3 move_vector_vertical = get_transform().basis.z * PlayerMovementInput.normalized().z * Speed;
 		Vector3 MoveVector = move_vector_vertical + move_vector_Horizontal;//tiene que ser vector forward posiblemente aca tenga un error
@@ -201,7 +202,6 @@ namespace godot
 		apply_central_impulse(Vector3::UP * Jumpforce);//impulso desde el centro
 		//anim.SetBool("isJumping", isJumping);
 		//animacion saltar
-		
 	}
 
 	void PlayerMovement::CheckMoving()//verifica si se mueve
@@ -212,6 +212,7 @@ namespace godot
 	//verifica si se termino el tiempo y mata al jugador
 	void PlayerMovement::CheckDeathTime()
 	{
+
 	}
 
 } /* namespace godot */

@@ -163,12 +163,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BotAI.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="PlayerMovement.h" />
     <ClInclude Include="PruebaVisualStudioDebug.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BotAI.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="GodotLibrary.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />

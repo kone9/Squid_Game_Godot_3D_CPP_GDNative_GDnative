@@ -1,6 +1,7 @@
 
 #include "PruebaVisualStudioDebug.h"
 #include "PlayerMovement.h"
+#include "BotAI.h"
 
 using namespace godot;//usamos el espacio de nombres godot sino tenemos varios problemas, no podra explicar mucho esto, pero asi funciona
 
@@ -29,6 +30,7 @@ extern "C" void GDN_EXPORT godot_nativescript_init(void* handle)
 	//Registramos todas las clases que creamos aqui abajo
 	register_class<PruebaVisualStudioDebug>();//registre la clase HolaMundo
 	register_class<PlayerMovement>();//registre la clase HolaMundo
+	register_class<BotAI>();//registre la clase HolaMundo
 	//register_class<YOUCLASE>();//registra tu clase!
 
 }

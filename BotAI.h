@@ -21,6 +21,7 @@ namespace godot
 			void _init();
 			void _ready();
 			void _process(real_t delta);
+            void _physics_process(const real_t delta);
         
         private:
             RandomNumberGenerator *random;
@@ -29,6 +30,7 @@ namespace godot
             Position3D *TargetEnd;//posicion final
 
             //PARA VER EN EL EDITOR
+            float maxSpeed;
             float speed;
 
             //PARA VER EN EL EDITOR
@@ -51,8 +53,8 @@ namespace godot
 
         //Metodos
         private:
-            void Move();
-            void Walk();
+            void Move(const real_t delta);
+            void Walk(const real_t delta);
             void Stop();
             void CheckDeathTime();
             void DeadthAnimation();

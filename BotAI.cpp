@@ -9,6 +9,7 @@ namespace godot
 		TargetEnd = nullptr;//un transform medio raro, seguro lo cambio
 
 		speed = 0;//PARA VER EN EL EDITOR
+		maxSpeed = 1;
 
 		anim = nullptr;//PARA VER EN EL EDITOR
 
@@ -40,6 +41,16 @@ namespace godot
 		//metodos de Godot
 		register_method("_ready", &BotAI::_ready);
 		register_method("_process", &BotAI::_process);
+		register_method("_physics_process", &BotAI::_physics_process);
+		register_method("Move", &BotAI::Move);
+		register_method("Walk", &BotAI::Walk);
+		register_method("Stop", &BotAI::Stop);
+		register_method("Stop", &BotAI::CheckDeathTime);
+		register_method("Stop", &BotAI::DeadthAnimation);
+
+		//para ver variables en editor
+		register_property<BotAI, float>("speed", &BotAI::speed, 1);
+		register_property<BotAI, float>("maxSpeed", &BotAI::maxSpeed, 1);
 	}
 
 	//fundamental, sino esta se cierra el editor NO ES READY
@@ -72,28 +83,59 @@ namespace godot
 	{
 	}
 
-
-	void BotAI::Move()
+	void BotAI::_physics_process(const real_t delta)
 	{
+		if (isDying)
+			return;
+
+		Move(delta);
+		CheckDeathTime();
 	}
 
 
-	void BotAI::Walk()
+	void BotAI::Move(const real_t delta)
 	{
+		//aca vienen varias condiciones ahora, es para probar
+		Walk(delta);
+	}
+
+	void BotAI::Walk(const real_t delta)
+	{
+		//isWalking = true;
+		isWalking = true;
+		//isStopped = false;
+		isStopped = false;
+		//float step = speed * Time.deltaTime;
+		
+		//transform.position = Vector3.MoveTowards(transform.position, TargetEnd.position, step);
+		Vector3 move_vector_Horizontal = get_transform().basis.x * TargetEnd->get_translation().x;
+		Vector3 move_vector_vertical = get_transform().basis.z * TargetEnd->get_translation().z;
+		Vector3 MoveVector = (move_vector_vertical + move_vector_Horizontal) * speed * maxSpeed;//tiene que ser vector forward posiblemente aca tenga un error
+
+//		transform.position = Vector3.MoveTowards(transform.position, TargetEnd.position, step);
+		set_linear_velocity(Vector3(MoveVector.x, -1, MoveVector.z));
+		
+		//animaciones
+		//anim.SetBool("isWalking", true);
+		//feetSteps.loop = true;
+		//feetSteps.Play(0);
 	}
 
 
 	void BotAI::Stop()
 	{
+
 	}
 
 
 	void BotAI::CheckDeathTime()
 	{
+
 	}
 
 
 	void BotAI::DeadthAnimation()
 	{
+
 	}
 }

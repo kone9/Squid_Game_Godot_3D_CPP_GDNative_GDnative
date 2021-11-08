@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/GDnative/GameManager.gdns" type="Script" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 20, 0.2, 40 )
@@ -14,6 +15,9 @@ size = Vector3( 40, 0.2, 80 )
 [sub_resource type="CubeMesh" id=4]
 
 [node name="MainScene" type="Spatial"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource( 3 )
 
 [node name="Light_and_camera" type="Spatial" parent="."]
 
@@ -154,9 +158,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.13 )
 
 [node name="Bot" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.91071e-07, 1.29623, -33.4056 )
+speed = null
+maxSpeed = null
 
 [node name="Bot2" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.04, 1.29623, -33.4056 )
+speed = null
+maxSpeed = null
 
 [node name="Bot3" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.41, 1.29623, -33.4056 )
+speed = null
+maxSpeed = null

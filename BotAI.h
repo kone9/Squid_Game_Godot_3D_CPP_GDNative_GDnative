@@ -31,6 +31,7 @@ namespace godot
 
             //PARA VER EN EL EDITOR
             float maxSpeed;
+            float minSpeed;
             float speed;
 
             //PARA VER EN EL EDITOR

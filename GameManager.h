@@ -2,6 +2,12 @@
 
 #include <Godot.hpp>
 #include <Node.hpp>
+#include <MeshInstance.hpp>
+#include <Label.hpp>
+#include <AudioStreamPlayer.hpp>
+#include <RigidBody.hpp>
+#include <PackedScene.hpp>
+#include <Position3D.hpp>
 
 namespace godot
 {
@@ -20,34 +26,35 @@ namespace godot
 
         //variables
         private:
+            
             //para ver en el editor
             int minutes;
             float timeValue;
             float lastTimeToHead;
 
             //para ver en el editor
-            //Transform Head;
+            MeshInstance *Head;
             //para ver en el editor
-            //int headTimer;
+            int headTimer;//cabeza timer tiempo de rotacion
 
             //para ver en el editor
-            //Text timeText;
+            Label *timeText; //para el tiempo 
 
             //para ver en el editor
-            //AudioSource dollSing;
+            AudioStreamPlayer *dollSing;
             //para ver en el editor
-            //AudioSource dollHeadOff;
+            AudioStreamPlayer *dollHeadOff;
             //para ver en el editor
-            //AudioSource dollHeadOn;
+            AudioStreamPlayer *dollHeadOn;
 
             //para ver en el editor
-            //int totalBots;
+            int totalBots;
 
             //para ver en el editor
-            //GameObject Bot;
+            Ref<PackedScene> Bot;//packet de los bots
 
             //para ver en el editor
-            //Transform SpawnArea;
+            Position3D *SpawnArea;//posicion para spawnear
 
             public:
                 static bool headTime;

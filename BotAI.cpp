@@ -97,6 +97,9 @@ namespace godot
 	{
 		//aca vienen varias condiciones ahora, es para probar
 		Walk(delta);
+
+		
+
 	}
 
 	void BotAI::Walk(const real_t delta)
@@ -124,7 +127,12 @@ namespace godot
 
 	void BotAI::Stop()
 	{
-
+		isWalking = false;
+		isStopped = true;
+		
+		//animaciones
+		//anim.SetBool("isWalking", false);
+		//feetSteps.loop = false;
 	}
 
 

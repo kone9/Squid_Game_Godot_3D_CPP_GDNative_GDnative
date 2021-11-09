@@ -11,6 +11,7 @@
 #include <Spatial.hpp>
 #include <RandomNumberGenerator.hpp>
 #include <Area.hpp>
+#include <Timer.hpp>
 
 namespace godot
 {
@@ -44,6 +45,8 @@ namespace godot
 
             //para ver en el editor
             Label *timeText; //para el tiempo 
+
+            Timer* timer_Count_Down;//referenciar al timer que cuenta
 
             //para ver en el editor
             AudioStreamPlayer *dollSing;

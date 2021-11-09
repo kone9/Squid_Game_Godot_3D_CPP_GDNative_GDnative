@@ -76,6 +76,7 @@ namespace godot
 
 		//deathZone = GameObject.Find("DeathZone").transform;
 		deathZone = get_tree()->get_nodes_in_group("DeathZone")[0];
+
 	}
 
 	//funcion Process de Godot

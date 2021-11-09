@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/GDnative/GameManager.gdns" type="Script" id=3]
 [ext_resource path="res://scenes/Doll.tscn" type="PackedScene" id=4]
+[ext_resource path="res://font/Retro Arcade Terror.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 20, 0.2, 40 )
@@ -21,11 +22,16 @@ size = Vector3( 40, 0.1, 1 )
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 18, 1, 5.85 )
 
+[sub_resource type="DynamicFont" id=6]
+size = 32
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
 [node name="MainScene" type="Spatial"]
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource( 3 )
-totalBots = 50
+totalBots = 10
 Bot = ExtResource( 2 )
 
 [node name="Light_and_camera" type="Spatial" parent="."]
@@ -40,7 +46,7 @@ light_energy = 0.3
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 1.50715, -39.01 )
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 1.50715, -39.73 )
 
 [node name="Map" type="Spatial" parent="."]
 
@@ -95,3 +101,35 @@ shape = SubResource( 5 )
 [node name="bots_instance_tree" type="Spatial" parent="." groups=[
 "bots_instance_tree",
 ]]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timeText" type="Label" parent="Control" groups=[
+"timeText",
+]]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -29.5
+margin_top = 5.0
+margin_right = 29.5
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "5:00"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timer_Count_Down" type="Timer" parent="." groups=[
+"timer_Count_Down",
+]]
+wait_time = 300.0
+one_shot = true
+autostart = true

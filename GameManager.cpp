@@ -38,7 +38,7 @@ namespace godot
 
 		bots_instance_tree = nullptr;
 		random = nullptr;
-
+		timer_Count_Down = nullptr;
 	}
 
 	GameManager::~GameManager()
@@ -81,17 +81,20 @@ namespace godot
 		Head = (MeshInstance*)get_tree()->get_nodes_in_group("doll_head")[0];//obtengo la cabeza de la muñeca
 		SpawnArea = (Area*)get_tree()->get_nodes_in_group("TargetSpawn")[0];//obtengo el nodo 3D
 		bots_instance_tree = (Spatial*)get_tree()->get_nodes_in_group("bots_instance_tree")[0];//obtengo el nodo padre donde instancio los bots
+		timeText = (Label*)get_tree()->get_nodes_in_group("timeText")[0];
+		timer_Count_Down = (Timer*)get_tree()->get_nodes_in_group("timer_Count_Down")[0];
 
 		SpawnBots();
 		headTime = false;
 		timeValue = (float)minutes * 60;
+
 
 	}
 
 
 	void GameManager::_process(real_t delta)
 	{
-
+		DisplayTime( timer_Count_Down->get_time_left() );
 	}
 	
 	//para instanciar los bots
@@ -138,8 +141,20 @@ namespace godot
 		return randomCoordinate;
 	}
 
+	//muestra el tiempo que queda en el nodo label usando el timer de la escena
 	void GameManager::DisplayTime(float timeToDisplay)
 	{
+		/*if (timeToDisplay < 0)
+			timeToDisplay = 0;*/
+
+		//float mins = Mathf.FloorToInt(timeToDisplay / 60);
+		int min = godot::Math::floor(timeToDisplay / 60);//redondea a entero
+
+		//float secs = Mathf.FloorToInt(timeToDisplay % 60);
+		float secs = timeToDisplay; //guardo lo segundos
+
+		//timeText.text = string.Format("{0:00}:{1:00}", mins, secs);
+		timeText->set_text( String::num_int64(min) + " : " + String::num_real(secs) );
 	}
 
 	void GameManager::HeadTime(float secs)

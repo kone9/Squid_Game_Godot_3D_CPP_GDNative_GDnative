@@ -8,6 +8,9 @@
 #include <RigidBody.hpp>
 #include <PackedScene.hpp>
 #include <Position3D.hpp>
+#include <Spatial.hpp>
+#include <RandomNumberGenerator.hpp>
+#include <Area.hpp>
 
 namespace godot
 {
@@ -27,6 +30,8 @@ namespace godot
         //variables
         private:
             
+            RandomNumberGenerator* random;
+
             //para ver en el editor
             int minutes;
             float timeValue;
@@ -53,12 +58,16 @@ namespace godot
             //para ver en el editor
             Ref<PackedScene> Bot;//packet de los bots
 
+            Spatial *bots_instance_tree;//donde se van a instanciar los bots nuevos
+
             //para ver en el editor
-            Position3D *SpawnArea;//posicion para spawnear
+            Area* SpawnArea;//posicion para spawnear
 
             public:
-                static bool headTime;
-                static bool headTimeFinish;
+                //static bool headTime;
+                //static bool headTimeFinish;
+                bool headTime;
+                bool headTimeFinish;
             
             //metodos
             private:

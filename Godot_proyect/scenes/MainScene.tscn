@@ -11,20 +11,20 @@
 [ext_resource path="res://sound/dollSingX2.mp3" type="AudioStream" id=9]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 20, 0.2, 40 )
+extents = Vector3( 80, 0.2, 80 )
 
 [sub_resource type="CubeMesh" id=2]
-size = Vector3( 40, 0.2, 80 )
+size = Vector3( 160, 0.2, 160 )
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="CubeMesh" id=4]
 material = SubResource( 3 )
-size = Vector3( 40, 0.1, 1 )
+size = Vector3( 160, 0.1, 1 )
 
 [sub_resource type="BoxShape" id=5]
-extents = Vector3( 18, 1, 5.85 )
+extents = Vector3( 70, 1, 5.85 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 32
@@ -37,14 +37,15 @@ font_data = ExtResource( 5 )
 "GameManager",
 ]]
 script = ExtResource( 3 )
-totalBots = 10
+totalBots = 20
 Bot = ExtResource( 2 )
 
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( 0.724178, -0.344807, 0.597221, 0, 0.866025, 0.5, -0.689613, -0.36209, 0.627157, 13.7991, 15.8398, 31.5443 )
+transform = Transform( 0.995228, -0.016944, 0.0960938, 0, 0.984807, 0.173649, -0.0975762, -0.17282, 0.980108, 6.69962, 12.1067, 64.8328 )
 current = true
+far = 200.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.5, 0 )
@@ -52,13 +53,13 @@ light_energy = 0.3
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 1.50715, -39.73 )
-PlayerMovement = 8.0
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 1.50715, -79.24 )
+PlayerMovement = 4.0
 
 [node name="Map" type="Spatial" parent="."]
 
 [node name="Doll" parent="Map" instance=ExtResource( 4 )]
-transform = Transform( -3.25841e-07, 0, 2, 0, 2, 0, -2, 0, -3.25841e-07, 0, 4.24, 25.36 )
+transform = Transform( -3.25841e-07, 0, 2, 0, 2, 0, -2, 0, -3.25841e-07, 0, 4.24, 55.58 )
 
 [node name="TargetEnd" type="Position3D" parent="Map" groups=[
 "TargetEnd",
@@ -92,14 +93,14 @@ material/0 = null
 shape = SubResource( 1 )
 
 [node name="linea2" type="MeshInstance" parent="Map"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 21.98 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 52.2 )
 mesh = SubResource( 4 )
 material/0 = null
 
 [node name="TargetSpawn" type="Area" parent="Map" groups=[
 "TargetSpawn",
 ]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34.53 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -66.4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/TargetSpawn"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3 )

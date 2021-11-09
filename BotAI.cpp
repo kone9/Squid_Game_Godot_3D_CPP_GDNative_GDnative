@@ -1,5 +1,6 @@
 #include "BotAI.h"
 #include <SceneTree.hpp>
+#include "GameManager.h"
 
 namespace godot
 {
@@ -28,6 +29,7 @@ namespace godot
 		intelligence = false;
 		
 		random = nullptr;
+		gameManager = nullptr;
 	}
 
 	//metodo destructor
@@ -65,7 +67,7 @@ namespace godot
 		random = RandomNumberGenerator::_new();
 		random->randomize();
 
-		Godot::print("hola mundo soy un BOT");
+		//Godot::print("hola mundo soy un BOT");
 		//speed -= Random.Range(0f, 1f);
 		speed = random->randf_range((real_t)minSpeed, (real_t)maxSpeed);//velocidad del bot
 		//intelligence = Random.Range(0f, 100f);
@@ -76,6 +78,7 @@ namespace godot
 
 		//deathZone = GameObject.Find("DeathZone").transform;
 		deathZone = get_tree()->get_nodes_in_group("DeathZone")[0];
+		gameManager = get_tree()->get_nodes_in_group("GameManager")[0];
 
 	}
 
@@ -98,7 +101,15 @@ namespace godot
 	void BotAI::Move(const real_t delta)
 	{
 		//aca vienen varias condiciones ahora, es para probar
-		Walk(delta);
+		bool headTimeFinish = cast_to<GameManager>(gameManager)->headTimeFinish;
+		if (!headTimeFinish)
+		{
+			Walk(delta);
+		}
+		else
+		{
+			Stop();
+		}
 	}
 
 	void BotAI::Walk(const real_t delta)
@@ -129,7 +140,7 @@ namespace godot
 	{
 		isWalking = false;
 		isStopped = true;
-		
+		set_linear_velocity(Vector3( 0 , 0, 0));
 		//animaciones
 		//anim.SetBool("isWalking", false);
 		//feetSteps.loop = false;

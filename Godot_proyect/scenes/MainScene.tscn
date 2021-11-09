@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/GDnative/GameManager.gdns" type="Script" id=3]
 [ext_resource path="res://scenes/Doll.tscn" type="PackedScene" id=4]
 [ext_resource path="res://font/Retro Arcade Terror.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://sound/dollSing.mp3" type="AudioStream" id=6]
+[ext_resource path="res://sound/dollHeadOn.mp3" type="AudioStream" id=7]
+[ext_resource path="res://sound/dollHeadOff.mp3" type="AudioStream" id=8]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 20, 0.2, 40 )
@@ -29,7 +32,9 @@ font_data = ExtResource( 5 )
 
 [node name="MainScene" type="Spatial"]
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." groups=[
+"GameManager",
+]]
 script = ExtResource( 3 )
 totalBots = 10
 Bot = ExtResource( 2 )
@@ -37,8 +42,7 @@ Bot = ExtResource( 2 )
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( -0.817142, -0.325667, 0.475625, 0, 0.825114, 0.564967, -0.576436, 0.461658, -0.674235, 19.7287, 13.3355, -49.1625 )
-current = true
+transform = Transform( -0.855363, -0.0935143, 0.509518, 0, 0.983571, 0.18052, -0.518028, 0.15441, -0.841311, 22.2914, 12.5523, -57.9996 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.5, 0 )
@@ -52,7 +56,7 @@ PlayerMovement = 8.0
 [node name="Map" type="Spatial" parent="."]
 
 [node name="Doll" parent="Map" instance=ExtResource( 4 )]
-transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0, 2.19, 25.36 )
+transform = Transform( -3.25841e-07, 0, 2, 0, 2, 0, -2, 0, -3.25841e-07, 0, 4.24, 25.36 )
 
 [node name="TargetEnd" type="Position3D" parent="Map" groups=[
 "TargetEnd",
@@ -128,9 +132,37 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="timer_Count_Down" type="Timer" parent="." groups=[
+[node name="Timers" type="Node" parent="."]
+
+[node name="timer_Count_Down" type="Timer" parent="Timers" groups=[
 "timer_Count_Down",
 ]]
 wait_time = 300.0
 one_shot = true
 autostart = true
+
+[node name="Timer_Rotate_head" type="Timer" parent="Timers" groups=[
+"Timer_Rotate_head",
+]]
+wait_time = 10.0
+
+[node name="audio" type="Node" parent="."]
+
+[node name="dollSing" type="AudioStreamPlayer" parent="audio" groups=[
+"dollSing",
+]]
+stream = ExtResource( 6 )
+
+[node name="dollHeadOff" type="AudioStreamPlayer" parent="audio" groups=[
+"dollHeadOff",
+]]
+stream = ExtResource( 8 )
+
+[node name="dollHeadOn" type="AudioStreamPlayer" parent="audio" groups=[
+"dollHeadOn",
+]]
+stream = ExtResource( 7 )
+
+[connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]
+[connection signal="timeout" from="Timers/Timer_Rotate_head" to="GameManager" method="_on_Timer_Rotate_head_timeout"]
+[connection signal="finished" from="audio/dollSing" to="GameManager" method="_on_dollSing_finished"]

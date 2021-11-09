@@ -12,6 +12,8 @@
 #include <RandomNumberGenerator.hpp>
 #include <Area.hpp>
 #include <Timer.hpp>
+#include <MeshInstance.hpp>
+#include <Tween.hpp>
 
 namespace godot
 {
@@ -49,11 +51,11 @@ namespace godot
             Timer* timer_Count_Down;//referenciar al timer que cuenta
 
             //para ver en el editor
-            AudioStreamPlayer *dollSing;
+            AudioStreamPlayer *dollSing;//voz del juego para poder moverse
             //para ver en el editor
-            AudioStreamPlayer *dollHeadOff;
+            AudioStreamPlayer *dollHeadOff;//sonido cuando vuelve la cabeza
             //para ver en el editor
-            AudioStreamPlayer *dollHeadOn;
+            AudioStreamPlayer *dollHeadOn;//sonido cuando rota la cabeza
 
             //para ver en el editor
             int totalBots;
@@ -66,11 +68,15 @@ namespace godot
             //para ver en el editor
             Area* SpawnArea;//posicion para spawnear
 
+            MeshInstance* doll_head;//referencia a la cabeza de la muñeca
+            Tween* doll_Tween;//referencia al tween que se encuentra en la escena de doll
+            Timer* Timer_Rotate_head;
+
             public:
                 //static bool headTime;
                 //static bool headTimeFinish;
-                bool headTime;
-                bool headTimeFinish;
+                bool headTime;//si empezo el tiempo cuando roto la cabeza
+                bool headTimeFinish;//si termino el tiempo cuando rota la cabeza
             
             //metodos
             private:
@@ -80,6 +86,12 @@ namespace godot
                 void HeadTime(float secs);
                 void RotHead(int deg);
                 void CountDown();//esto podria ser un timer
+        
+                //senials
+                private:
+                    void _on_timer_Count_Down_timeout();
+                    void _on_Timer_Rotate_head_timeout();
+                    void _on_dollSing_finished();
 
 	};
 }

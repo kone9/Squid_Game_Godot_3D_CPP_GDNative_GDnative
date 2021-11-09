@@ -39,6 +39,9 @@ namespace godot
 		bots_instance_tree = nullptr;
 		random = nullptr;
 		timer_Count_Down = nullptr;
+
+		doll_head = nullptr;
+		doll_Tween = nullptr;
 	}
 
 	GameManager::~GameManager()
@@ -65,6 +68,11 @@ namespace godot
 		register_property<GameManager, int>("totalBots", &GameManager::totalBots, 1);
 		register_property<GameManager, Ref<PackedScene> >("Bot", &GameManager::Bot, nullptr);//propiedad packet scene para que se vea en el editor
 
+		//senials
+		register_method("_on_timer_Count_Down_timeout", &GameManager::_on_timer_Count_Down_timeout);
+		register_method("_on_Timer_Rotate_head_timeout", &GameManager::_on_Timer_Rotate_head_timeout);
+		register_method("_on_dollSing_finished", &GameManager::_on_dollSing_finished);
+
 	}
 
 	void GameManager::_init()
@@ -83,6 +91,14 @@ namespace godot
 		bots_instance_tree = (Spatial*)get_tree()->get_nodes_in_group("bots_instance_tree")[0];//obtengo el nodo padre donde instancio los bots
 		timeText = (Label*)get_tree()->get_nodes_in_group("timeText")[0];
 		timer_Count_Down = (Timer*)get_tree()->get_nodes_in_group("timer_Count_Down")[0];
+		doll_head = (MeshInstance*)get_tree()->get_nodes_in_group("doll_head")[0];
+		doll_Tween = (Tween*)get_tree()->get_nodes_in_group("doll_Tween")[0];
+		dollSing = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollSing")[0];
+		dollHeadOn = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollHeadOn")[0];
+		dollHeadOff = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollHeadOff")[0];
+		Timer_Rotate_head = (Timer*)get_tree()->get_nodes_in_group("Timer_Rotate_head")[0];
+		
+		dollSing->play();//inicio con sonido de voz
 
 		SpawnBots();
 		headTime = false;
@@ -110,7 +126,7 @@ namespace godot
 			bots_instance_tree->add_child(new_bot);
 			cast_to<RigidBody>(new_bot)->set_translation( RandomPosition() );//instancia en posicion aleatoria
 
-			Godot::print("instanciado bot");
+			/*Godot::print("instanciado bot");*/
 		}
 	}
 
@@ -157,12 +173,81 @@ namespace godot
 		timeText->set_text( String::num_int64(min) + " : " + String::num_int64(secs) );
 	}
 
+	//para rotar la cabeza cada cierto tiempo, aca tendria que decir cuando se puede o no puede moverse
 	void GameManager::HeadTime(float secs)
 	{
+		//if (timeValue <= 0)
+		//{
+		//	headTimeFinish = true;
+		//	RotHead(180);
+		//	return;
+		//}
+
+		//if (secs % headTimer == 0 && secs != lastTimeToHead)
+		//{
+		//	lastTimeToHead = secs;
+		//	headTime = !headTime;
+
+		//	if (headTime)
+		//	{
+		//		dollHeadOn.Play(0);//sonido
+		//	}
+		//	else
+		//	{
+		//		if (!dollSing.isPlaying)
+		//			dollHeadOff.Play(0);//sonido
+
+		//		if (!dollSing.isPlaying)
+		//			dollSing.PlayDelayed(1);//sonido
+		//	}
+		//}
+
+		
 	}
 
 	void GameManager::RotHead(int deg)
 	{
+		Vector3 new_rotation = doll_head->get_rotation_degrees();
+		new_rotation.y += deg;
+		
+		doll_Tween->interpolate_property(
+			doll_head,
+			"rotation_degrees",
+			doll_head->get_rotation_degrees(),
+			new_rotation,
+			1,
+			Tween::TransitionType::TRANS_LINEAR,
+			Tween::EaseType::EASE_OUT
+		);
+
+		if (!doll_Tween->is_active())//lo voy a ejecutar solo cuando no este activo
+		{
+			doll_Tween->start();//ejecuto el tween
+		}
+	}
+
+	void GameManager::_on_timer_Count_Down_timeout()
+	{
+		Godot::print("termino el tiempo");
+	}
+
+	//si este timer no termino muere
+	void GameManager::_on_Timer_Rotate_head_timeout()
+	{
+		Godot::print("tendria que VOLVER la cabeza");
+		headTimeFinish = false;//cuando termina el tiempo puede moverse, sino no pueden moverse
+		RotHead(-180);
+		dollHeadOn->play();//sonido cabeza
+		dollSing->play();//activo sonido, cuando termina da vuelta la cabeza
+	}
+
+	void GameManager::_on_dollSing_finished()
+	{
+		Godot::print("tendria que ROTAR la cabeza");
+		RotHead(180);
+		headTimeFinish = true;
+		Timer_Rotate_head->start();//activo timer que si se mueven mueren
+		dollHeadOff->play();//sonido cabeza
 	}
 
 

@@ -6,6 +6,7 @@
 #include <AnimationTree.hpp>
 #include <RandomNumberGenerator.hpp>
 #include <Position3D.hpp>
+#include <Node.hpp>
 
 namespace godot
 {
@@ -25,6 +26,7 @@ namespace godot
         
         private:
             RandomNumberGenerator *random;
+            Node* gameManager;
 
         private:
             Position3D *TargetEnd;//posicion final

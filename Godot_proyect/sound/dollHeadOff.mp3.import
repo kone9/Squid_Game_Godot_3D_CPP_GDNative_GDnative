@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dollHeadOff.mp3-6e71de2507b01e15c867c4227fde4812.mp3str"
+
+[deps]
+
+source_file="res://sound/dollHeadOff.mp3"
+dest_files=[ "res://.import/dollHeadOff.mp3-6e71de2507b01e15c867c4227fde4812.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

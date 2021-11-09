@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dollSing.mp3-388fe82e1bd47349eecd9fe4dabf5c0c.mp3str"
+
+[deps]
+
+source_file="res://sound/dollSing.mp3"
+dest_files=[ "res://.import/dollSing.mp3-388fe82e1bd47349eecd9fe4dabf5c0c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

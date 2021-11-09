@@ -11,13 +11,13 @@ albedo_color = Color( 0, 0.764706, 1, 1 )
 material = SubResource( 2 )
 
 [node name="Bot" type="RigidBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29623, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.29623, 0 )
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource( 1 )
-speed = null
-maxSpeed = null
+minSpeed = 0.2
+maxSpeed = 0.3
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )

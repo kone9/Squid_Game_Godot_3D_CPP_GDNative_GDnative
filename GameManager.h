@@ -30,7 +30,7 @@ namespace godot
         //variables
         private:
             
-            RandomNumberGenerator* random;
+            RandomNumberGenerator *random;
 
             //para ver en el editor
             int minutes;

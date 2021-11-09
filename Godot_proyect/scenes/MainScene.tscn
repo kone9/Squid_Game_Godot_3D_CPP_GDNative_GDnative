@@ -19,21 +19,20 @@ material = SubResource( 3 )
 size = Vector3( 40, 0.1, 1 )
 
 [sub_resource type="BoxShape" id=5]
-extents = Vector3( 18, 1, 5 )
+extents = Vector3( 18, 1, 5.85 )
 
 [node name="MainScene" type="Spatial"]
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource( 3 )
-minutes = null
-headTimer = null
-totalBots = 5
+totalBots = 10
 Bot = ExtResource( 2 )
 
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( -0.585643, -0.363547, 0.72447, 0, 0.893779, 0.448508, -0.810569, 0.262665, -0.523435, 28.0944, 21.3913, -42.5733 )
+transform = Transform( -0.809014, -0.204887, 0.550924, 0, 0.937282, 0.348572, -0.587789, 0.282, -0.758275, 36.5393, 23.2872, -60.111 )
+current = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.5, 0 )
@@ -42,8 +41,6 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 1.50715, -39.01 )
-PlayerMovement = 5.0
-Jumpforce = 80.0
 
 [node name="Map" type="Spatial" parent="."]
 
@@ -94,13 +91,12 @@ material/0 = null
 [node name="TargetSpawn" type="Area" parent="Map" groups=[
 "TargetSpawn",
 ]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.87 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34.53 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/TargetSpawn"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.68434e-14, 0, -3.49 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3 )
 shape = SubResource( 5 )
 
 [node name="bots_instance_tree" type="Spatial" parent="." groups=[
 "bots_instance_tree",
 ]]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -33.98 )

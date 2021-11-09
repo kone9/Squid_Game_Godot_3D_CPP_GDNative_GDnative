@@ -115,7 +115,7 @@ namespace godot
 		Vector3 MoveVector = -(move_vector_vertical + move_vector_Horizontal) * speed;//tiene que ser vector forward posiblemente aca tenga un error
 
 //		transform.position = Vector3.MoveTowards(transform.position, TargetEnd.position, step);
-		set_linear_velocity(Vector3(MoveVector.x, -1, MoveVector.z));
+		set_linear_velocity(Vector3(MoveVector.x, -3, MoveVector.z));
 		
 		//animaciones
 		//anim.SetBool("isWalking", true);

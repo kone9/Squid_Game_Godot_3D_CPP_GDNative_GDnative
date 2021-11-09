@@ -75,6 +75,9 @@ namespace godot
 	void GameManager::_ready()
 	{
 		Godot::print("GameManager Creado");
+		random = RandomNumberGenerator::_new();
+		random->randomize();
+		
 		Head = (MeshInstance*)get_tree()->get_nodes_in_group("doll_head")[0];//obtengo la cabeza de la muñeca
 		SpawnArea = (Area*)get_tree()->get_nodes_in_group("TargetSpawn")[0];//obtengo el nodo 3D
 		bots_instance_tree = (Spatial*)get_tree()->get_nodes_in_group("bots_instance_tree")[0];//obtengo el nodo padre donde instancio los bots
@@ -83,8 +86,6 @@ namespace godot
 		headTime = false;
 		timeValue = (float)minutes * 60;
 
-		random = RandomNumberGenerator::_new();
-		random->randomize();
 	}
 
 
@@ -104,7 +105,7 @@ namespace godot
 			//Instantiate(Bot, RandomPosition(), SpawnArea.rotation);
 			Node* new_bot = Bot->instance();
 			bots_instance_tree->add_child(new_bot);
-			cast_to<RigidBody>(new_bot)->set_translation( RandomPosition() );
+			cast_to<RigidBody>(new_bot)->set_translation( RandomPosition() );//instancia en posicion aleatoria
 
 			Godot::print("instanciado bot");
 		}
@@ -114,27 +115,26 @@ namespace godot
 	Vector3 GameManager::RandomPosition()
 	{
 		//Vector3 origin = SpawnArea.position;
-		Vector3 origin = SpawnArea->get_translation();
+		Node* childCollisionSpawnArea = cast_to<Node>(SpawnArea)->get_child(0);
+		Vector3 origin = cast_to<CollisionShape>(childCollisionSpawnArea)->get_global_transform().origin;//posicion global de este nodo
 		 
 		//Vector3 range = SpawnArea.localScale / 2.0f;
-		Node* childCollisionSpawnArea = cast_to<Node>(SpawnArea)->get_child(0);
 		Ref<Shape> SpawnAreaCollisionShape = cast_to<CollisionShape>(childCollisionSpawnArea)->get_shape();
 		Vector3 range = cast_to<BoxShape>(*SpawnAreaCollisionShape)->get_extents() / 2;//tengo que desferenciar el shape, medio raro, pero funciona
 		
-		//Vector3 randomRange = new Vector3(
-			//Random.Range(-range.x, range.x),
-			//Random.Range(-range.y, range.y),
-			//Random.Range(-range.z, range.z)
-		//);
-		
+		/*Vector3 randomRange = new Vector3(Random.Range(-range.x, range.x),
+			Random.Range(-range.y, range.y),
+			Random.Range(-range.z, range.z));*/
+
 		Vector3 randomRange = Vector3(
-			random->randf_range(-range.x, range.x),
-			random->randf_range(-range.y, range.y),
-			random->randf_range(-range.z, range.z)
+				random->randf_range(-(real_t)range.x, (real_t)range.x),
+				1.0,
+				random->randf_range(-(real_t)range.z, (real_t)range.z)
 		);
-			
-		//Vector3 randomCoordinate = origin + randomRange;
-		Vector3 randomCoordinate = origin + randomRange;
+		
+		////Vector3 randomCoordinate = origin + randomRange;
+		Vector3 randomCoordinate = origin + randomRange;//posicion de origen más posicion aleatoria en el dentro del rectangulo de instancia
+		//return randomCoordinate;
 		return randomCoordinate;
 	}
 

@@ -120,7 +120,7 @@ namespace godot
 		 
 		//Vector3 range = SpawnArea.localScale / 2.0f;
 		Ref<Shape> SpawnAreaCollisionShape = cast_to<CollisionShape>(childCollisionSpawnArea)->get_shape();
-		Vector3 range = cast_to<BoxShape>(*SpawnAreaCollisionShape)->get_extents() / 2;//tengo que desferenciar el shape, medio raro, pero funciona
+		Vector3 range = cast_to<BoxShape>(*SpawnAreaCollisionShape)->get_extents();//tengo que desferenciar el shape, medio raro, pero funciona
 		
 		/*Vector3 randomRange = new Vector3(Random.Range(-range.x, range.x),
 			Random.Range(-range.y, range.y),

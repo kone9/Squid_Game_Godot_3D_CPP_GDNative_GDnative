@@ -25,7 +25,7 @@ extents = Vector3( 18, 1, 5.85 )
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource( 3 )
-totalBots = 20
+totalBots = 50
 Bot = ExtResource( 2 )
 
 [node name="Light_and_camera" type="Spatial" parent="."]

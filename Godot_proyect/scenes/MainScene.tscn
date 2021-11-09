@@ -31,7 +31,7 @@ Bot = ExtResource( 2 )
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( -0.809014, -0.204887, 0.550924, 0, 0.937282, 0.348572, -0.587789, 0.282, -0.758275, 36.5393, 23.2872, -60.111 )
+transform = Transform( -0.817142, -0.325667, 0.475625, 0, 0.825114, 0.564967, -0.576436, 0.461658, -0.674235, 19.7287, 13.3355, -49.1625 )
 current = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
@@ -77,11 +77,6 @@ material/0 = null
 
 [node name="CollisionShape2" type="CollisionShape" parent="Map/Suelo/Area"]
 shape = SubResource( 1 )
-
-[node name="linea" type="MeshInstance" parent="Map"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -30.52 )
-mesh = SubResource( 4 )
-material/0 = null
 
 [node name="linea2" type="MeshInstance" parent="Map"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 21.98 )

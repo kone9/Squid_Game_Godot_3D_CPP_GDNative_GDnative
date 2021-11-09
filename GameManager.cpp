@@ -148,13 +148,13 @@ namespace godot
 			timeToDisplay = 0;*/
 
 		//float mins = Mathf.FloorToInt(timeToDisplay / 60);
-		int min = godot::Math::floor(timeToDisplay / 60);//redondea a entero
+		int min = timeToDisplay / 60;//redondea a entero
 
 		//float secs = Mathf.FloorToInt(timeToDisplay % 60);
-		float secs = timeToDisplay; //guardo lo segundos
+		int secs = (int)timeToDisplay % 60;//en c++ solo se permite int como modulo
 
 		//timeText.text = string.Format("{0:00}:{1:00}", mins, secs);
-		timeText->set_text( String::num_int64(min) + " : " + String::num_real(secs) );
+		timeText->set_text( String::num_int64(min) + " : " + String::num_int64(secs) );
 	}
 
 	void GameManager::HeadTime(float secs)

@@ -47,6 +47,7 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 1.50715, -39.73 )
+PlayerMovement = 8.0
 
 [node name="Map" type="Spatial" parent="."]
 

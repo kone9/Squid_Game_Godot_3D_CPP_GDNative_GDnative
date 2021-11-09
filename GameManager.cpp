@@ -42,6 +42,7 @@ namespace godot
 
 		doll_head = nullptr;
 		doll_Tween = nullptr;
+		dollSingX2 = nullptr;
 	}
 
 	GameManager::~GameManager()
@@ -96,6 +97,7 @@ namespace godot
 		dollSing = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollSing")[0];
 		dollHeadOn = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollHeadOn")[0];
 		dollHeadOff = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollHeadOff")[0];
+		dollSingX2 = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollSingX2")[0];
 		Timer_Rotate_head = (Timer*)get_tree()->get_nodes_in_group("Timer_Rotate_head")[0];
 		
 		dollSing->play();//inicio con sonido de voz
@@ -205,7 +207,7 @@ namespace godot
 		
 	}
 
-	void GameManager::RotHead(int deg)
+	void GameManager::RotHead(int deg, float timeRotate)
 	{
 		Vector3 new_rotation = doll_head->get_rotation_degrees();
 		new_rotation.y += deg;
@@ -215,7 +217,7 @@ namespace godot
 			"rotation_degrees",
 			doll_head->get_rotation_degrees(),
 			new_rotation,
-			1,
+			timeRotate,
 			Tween::TransitionType::TRANS_LINEAR,
 			Tween::EaseType::EASE_OUT
 		);
@@ -236,16 +238,27 @@ namespace godot
 	{
 		Godot::print("tendria que VOLVER la cabeza");
 		headTimeFinish = false;//cuando termina el tiempo puede moverse, sino no pueden moverse
-		RotHead(-180);
+		RotHead(-180, 0.5);
 		dollHeadOn->play();//sonido cabeza
-		dollSing->play();//activo sonido, cuando termina da vuelta la cabeza
+		int random_dollSing = random->randi_range(0, 1);
+		if (random_dollSing == 0)
+		{
+			dollSing->play();//activo sonido, cuando termina da vuelta la cabeza
+		}
+		else
+		{
+			dollSingX2->play();//activo sonido, cuando termina da vuelta la cabeza
+		}
 	}
 
 	void GameManager::_on_dollSing_finished()
 	{
 		Godot::print("tendria que ROTAR la cabeza");
-		RotHead(180);
+		RotHead(180,1);
 		headTimeFinish = true;
+		
+		int randomTime = random->randi_range(6,10);
+		Timer_Rotate_head->set_wait_time(randomTime);
 		Timer_Rotate_head->start();//activo timer que si se mueven mueren
 		dollHeadOff->play();//sonido cabeza
 	}

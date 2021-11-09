@@ -52,6 +52,7 @@ namespace godot
 
             //para ver en el editor
             AudioStreamPlayer *dollSing;//voz del juego para poder moverse
+            AudioStreamPlayer * dollSingX2;//voz del juego para poder moverse
             //para ver en el editor
             AudioStreamPlayer *dollHeadOff;//sonido cuando vuelve la cabeza
             //para ver en el editor
@@ -84,7 +85,7 @@ namespace godot
                 Vector3 RandomPosition();//posicion aleatoria
                 void DisplayTime(float timeToDisplay);//para mostrar el tiempo
                 void HeadTime(float secs);
-                void RotHead(int deg);
+                void RotHead(int deg, float timeRotate);
                 void CountDown();//esto podria ser un timer
         
                 //senials

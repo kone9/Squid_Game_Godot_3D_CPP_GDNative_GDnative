@@ -60,3 +60,7 @@ material/0 = null
 [node name="doll_Tween" type="Tween" parent="." groups=[
 "doll_Tween",
 ]]
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.1, -0.4, 0 )
+cast_to = Vector3( 0, -200, 0 )

@@ -8,6 +8,7 @@
 #include <Position3D.hpp>
 #include <Node.hpp>
 #include <Timer.hpp>
+#include <AudioStreamPlayer3D.hpp>
 
 
 namespace godot
@@ -30,6 +31,7 @@ namespace godot
             RandomNumberGenerator *random;
             Node* gameManager;
             Timer* TimerDeadthAnimation;
+            AudioStreamPlayer3D* deathSound;
 
         private:
             Position3D *TargetEnd;//posicion final
@@ -64,12 +66,14 @@ namespace godot
             void Stop();
             void CheckDeathTime();
             void DeadthAnimation();
+            void ModifySpeedScroll();
         
         //senials
         private:
             void _on_BotArea_area_entered();
             void _on_BotArea_area_exited();
             void _on_TimerDeadthAnimation_timeout();
+            void _on_deathSound_finished();
 
            /* void OnTriggerEnter(Collider other);
             void OnTriggerExit(Collider other);*/

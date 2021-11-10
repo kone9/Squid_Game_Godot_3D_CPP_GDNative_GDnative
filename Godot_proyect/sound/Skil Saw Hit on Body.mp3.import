@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Skil Saw Hit on Body.mp3-ba22d14344bbe6f382d68ebee40347e7.mp3str"
+
+[deps]
+
+source_file="res://sound/Skil Saw Hit on Body.mp3"
+dest_files=[ "res://.import/Skil Saw Hit on Body.mp3-ba22d14344bbe6f382d68ebee40347e7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

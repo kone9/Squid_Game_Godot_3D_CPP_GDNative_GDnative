@@ -31,6 +31,7 @@ namespace godot
 		random = nullptr;
 		gameManager = nullptr;
 		TimerDeadthAnimation = nullptr;
+		deathSound = nullptr;
 
 	}
 
@@ -52,6 +53,7 @@ namespace godot
 		register_method("Stop", &BotAI::Stop);
 		register_method("Stop", &BotAI::CheckDeathTime);
 		register_method("Stop", &BotAI::DeadthAnimation);
+		register_method("ModifySpeedScroll", &BotAI::ModifySpeedScroll);
 
 		//para ver variables en editor
 		register_property<BotAI, float>("minSpeed", &BotAI::minSpeed, 0.1);
@@ -61,6 +63,7 @@ namespace godot
 		register_method("_on_BotArea_area_entered", &BotAI::_on_BotArea_area_entered);
 		register_method("_on_BotArea_area_exited", &BotAI::_on_BotArea_area_exited);
 		register_method("_on_TimerDeadthAnimation_timeout", &BotAI::_on_TimerDeadthAnimation_timeout);
+		register_method("_on_deathSound_finished", &BotAI::_on_deathSound_finished);
 	}
 
 	//fundamental, sino esta se cierra el editor NO ES READY
@@ -78,7 +81,7 @@ namespace godot
 		//speed -= Random.Range(0f, 1f);
 		speed = random->randf_range((real_t)minSpeed, (real_t)maxSpeed);//velocidad del bot
 		//intelligence = Random.Range(0f, 100f);
-		intelligence = random->randf_range((real_t)0, (real_t)100);//la inteligencia es aleatoria del 1 al 100
+		intelligence = random->randf_range((real_t)0, (real_t)300);//la inteligencia es aleatoria del 1 al 100
 		
 		//TargetEnd = GameObject.Find("TargetEnd").transform;
 		TargetEnd = get_tree()->get_nodes_in_group("TargetEnd")[0];
@@ -87,7 +90,11 @@ namespace godot
 		//deathZone = get_tree()->get_nodes_in_group("DeathZone")[0];
 		gameManager = get_tree()->get_nodes_in_group("GameManager")[0];
 
+		deathSound = get_node<AudioStreamPlayer3D>("deathSound");
+
 		TimerDeadthAnimation = get_node<Timer>("TimerDeadthAnimation");
+
+		gameManager->connect("can_Walk", this, "ModifySpeedScroll");
 
 	}
 
@@ -102,7 +109,7 @@ namespace godot
 		if (!isDying)//si esta muriendo
 		{
 			Move(delta);
-			CheckDeathTime();
+			//CheckDeathTime();
 		}
 	}
 
@@ -114,26 +121,23 @@ namespace godot
 		
 		if (!headTimeFinish)//si la cabeza no se dio vuelta, osea puedo caminar
 		{
-			AIChecked = false;//la IA no esta verificada
+			//AIChecked = false;//la IA no esta verificada
 			Walk(delta);// camina
 		}
 		else//si la cabeza se dio vuelta
 		{
-			if (!AIChecked)//sino verificque la inteligencia
-			{
-				AIChecked = true;//verifique la inteligencia
-				//float probDead = Random.Range(0f, 100f);
-				float probDead = random->randf_range(0, 100);//probabilidad de morir
+			//float probDead = Random.Range(0f, 100f);
+			float probDead = random->randf_range(0, 100);//probabilidad de morir
 
-				if (probDead < intelligence)//ACA VERIFICO LA INTELIGENCIA si la probabilidad de morir es menor a la inteligencia
-				{
-					Stop();//se detiene
-				}
-				else//verifique la intelgencia y no se esta moviendo
-				{
-					Walk(delta);
-				}
+			if (probDead < intelligence)//ACA VERIFICO LA INTELIGENCIA si la probabilidad de morir es menor a la inteligencia
+			{
+				Stop();//se detiene
 			}
+			else//verifique la intelgencia y no se esta moviendo
+			{
+				Walk(delta);
+			}
+			
 			//if (!AIChecked)//sino verificque la inteligencia
 			//{
 			//	AIChecked = true;//verifique la inteligencia
@@ -154,7 +158,6 @@ namespace godot
 
 	void BotAI::Walk(const real_t delta)
 	{	
-
 		//isWalking = true;
 		isWalking = true;
 		//isStopped = false;
@@ -189,31 +192,42 @@ namespace godot
 	//verifica si el tiempo se termino y si se segui moviendo. Si se sigue moviendo es eliminado
 	void BotAI::CheckDeathTime()
 	{
-		if (cast_to<GameManager>(gameManager)->headTimeFinish)// si la cabeza se dio vuelta y esta caminado
-		{
-			if (isWalking)//si esta caminando
-			{
-				if (isInDeathZone)//sino esta en la zona de muerte
-				{
-					isDying = true;//esta mueriendo
-					//StartCoroutine(DeadthAnimation());
-					real_t randonWaitTime = random->randf_range(0.2, 2);//tiempo aleatorio timer
-					TimerDeadthAnimation->set_wait_time(randonWaitTime);//cambio el tiempo
-					TimerDeadthAnimation->start();//inicio el timer
-				}
-
-			}
-		}
+		//if (cast_to<GameManager>(gameManager)->headTimeFinish)// si la cabeza se dio vuelta y esta caminado
+		//{
+		//	if (isWalking)//si esta caminando
+		//	{
+		//		if (isInDeathZone)//sino esta en la zona de muerte
+		//		{
+		//			isDying = true;//esta mueriendo
+		//			//StartCoroutine(DeadthAnimation());
+		//			real_t randonWaitTime = random->randf_range(1, 2);//tiempo aleatorio timer
+		//			TimerDeadthAnimation->set_wait_time(randonWaitTime);//cambio el tiempo
+		//			TimerDeadthAnimation->start();//inicio el timer
+		//		}
+		//	}
+		//}
 	}
 
 	void BotAI::_on_TimerDeadthAnimation_timeout()
 	{
-		queue_free();//para probar elimino el nodo
+		//deathSound->play();
+		//queue_free();//para probar elimino el nodo
+	}
+
+	void BotAI::_on_deathSound_finished()
+	{
+		//queue_free();
 	}
 
 	void BotAI::DeadthAnimation()
 	{
 
+	}
+
+	void BotAI::ModifySpeedScroll()
+	{
+		speed = random->randf_range((real_t)minSpeed, (real_t)maxSpeed);//velocidad del bot
+		Godot::print(String::num_real(speed));
 	}
 	
 	void BotAI::_on_BotArea_area_entered()

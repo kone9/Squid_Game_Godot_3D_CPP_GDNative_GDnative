@@ -76,6 +76,8 @@ namespace godot
 		register_method("_on_Timer_Rotate_head_timeout", &GameManager::_on_Timer_Rotate_head_timeout);
 		register_method("_on_dollSing_finished", &GameManager::_on_dollSing_finished);
 
+		register_signal<GameManager>("can_Walk", godot::Dictionary());
+
 	}
 
 	void GameManager::_init()
@@ -248,6 +250,8 @@ namespace godot
 		int random_dollSing = random->randi_range(0, 1);
 		
 		headTimeFinishColorRect->set_frame_color(Color(0, 1, 0));
+		
+		emit_signal("can_Walk");//emite la señal que se puede volver a caminar
 		
 		if (random_dollSing == 0)
 		{

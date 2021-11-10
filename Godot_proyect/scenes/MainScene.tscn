@@ -26,10 +26,10 @@ size = Vector3( 160, 0.1, 1 )
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 70, 1, 5.85 )
 
-[sub_resource type="BoxShape" id=7]
+[sub_resource type="BoxShape" id=6]
 extents = Vector3( 81.91, 25.2, 68.33 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 32
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
@@ -46,8 +46,7 @@ Bot = ExtResource( 2 )
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( -0.699664, -0.276869, 0.658645, 0, 0.921863, 0.387516, -0.714472, 0.271131, -0.644994, 84.0375, 21.6987, -85.4771 )
-current = true
+transform = Transform( -0.518025, -0.200471, 0.831542, 0, 0.972148, 0.234368, -0.855365, 0.121409, -0.503597, 70.046, 8.55115, -68.4695 )
 far = 300.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
@@ -107,7 +106,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.15 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/DeathZone"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.48, -1.88 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="bots_instance_tree" type="Spatial" parent="." groups=[
 "bots_instance_tree",
@@ -133,7 +132,7 @@ margin_left = -29.5
 margin_top = 5.0
 margin_right = 29.5
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "5:00"
 align = 1
@@ -150,6 +149,9 @@ margin_top = 10.0
 margin_right = 50.0
 margin_bottom = 50.0
 color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Timers" type="Node" parent="."]
 

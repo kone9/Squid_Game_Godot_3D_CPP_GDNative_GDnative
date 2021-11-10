@@ -30,6 +30,7 @@ namespace godot
 		
 		random = nullptr;
 		gameManager = nullptr;
+		TimerDeadthAnimation = nullptr;
 
 	}
 
@@ -59,6 +60,7 @@ namespace godot
 		//senials
 		register_method("_on_BotArea_area_entered", &BotAI::_on_BotArea_area_entered);
 		register_method("_on_BotArea_area_exited", &BotAI::_on_BotArea_area_exited);
+		register_method("_on_TimerDeadthAnimation_timeout", &BotAI::_on_TimerDeadthAnimation_timeout);
 	}
 
 	//fundamental, sino esta se cierra el editor NO ES READY
@@ -85,6 +87,8 @@ namespace godot
 		//deathZone = get_tree()->get_nodes_in_group("DeathZone")[0];
 		gameManager = get_tree()->get_nodes_in_group("GameManager")[0];
 
+		TimerDeadthAnimation = get_node<Timer>("TimerDeadthAnimation");
+
 	}
 
 	//funcion Process de Godot
@@ -95,13 +99,11 @@ namespace godot
 
 	void BotAI::_physics_process(const real_t delta)
 	{
-		if (isDying)//si esta muriendo
+		if (!isDying)//si esta muriendo
 		{
-			return;
+			Move(delta);
+			CheckDeathTime();
 		}
-
-		Move(delta);
-		CheckDeathTime();
 	}
 
 	//dependiendo la inteligencia va a caminar o no
@@ -127,11 +129,26 @@ namespace godot
 				{
 					Stop();//se detiene
 				}
+				else//verifique la intelgencia y no se esta moviendo
+				{
+					Walk(delta);
+				}
 			}
-			else if (AIChecked && !isStopped)//verifique la intelgencia y no se esta moviendo
-			{
-				Walk(delta);
-			}
+			//if (!AIChecked)//sino verificque la inteligencia
+			//{
+			//	AIChecked = true;//verifique la inteligencia
+			//	//float probDead = Random.Range(0f, 100f);
+			//	float probDead = random->randf_range(0, 100);//probabilidad de morir
+
+			//	if (probDead < intelligence)//ACA VERIFICO LA INTELIGENCIA si la probabilidad de morir es menor a la inteligencia
+			//	{
+			//		Stop();//se detiene
+			//	}
+			//}
+			//else if (AIChecked && !isStopped)//verifique la intelgencia y no se esta moviendo
+			//{
+			//	Walk(delta);
+			//}
 		}
 	}
 
@@ -176,16 +193,22 @@ namespace godot
 		{
 			if (isWalking)//si esta caminando
 			{
-				if (!isInDeathZone)//sino esta en la zona de muerte
+				if (isInDeathZone)//sino esta en la zona de muerte
 				{
-					return; //salgo de esta funcion
+					isDying = true;//esta mueriendo
+					//StartCoroutine(DeadthAnimation());
+					real_t randonWaitTime = random->randf_range(0.2, 2);//tiempo aleatorio timer
+					TimerDeadthAnimation->set_wait_time(randonWaitTime);//cambio el tiempo
+					TimerDeadthAnimation->start();//inicio el timer
 				}
 
-				isDying = true;//esta mueriendo
-				//StartCoroutine(DeadthAnimation());
-				queue_free();//para probar elimino el nodo
 			}
 		}
+	}
+
+	void BotAI::_on_TimerDeadthAnimation_timeout()
+	{
+		queue_free();//para probar elimino el nodo
 	}
 
 	void BotAI::DeadthAnimation()
@@ -202,4 +225,5 @@ namespace godot
 	{
 		isInDeathZone = false;
 	}
+	
 }

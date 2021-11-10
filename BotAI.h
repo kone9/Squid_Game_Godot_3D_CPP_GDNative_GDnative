@@ -7,6 +7,7 @@
 #include <RandomNumberGenerator.hpp>
 #include <Position3D.hpp>
 #include <Node.hpp>
+#include <Timer.hpp>
 
 
 namespace godot
@@ -28,7 +29,7 @@ namespace godot
         private:
             RandomNumberGenerator *random;
             Node* gameManager;
-            
+            Timer* TimerDeadthAnimation;
 
         private:
             Position3D *TargetEnd;//posicion final
@@ -64,9 +65,11 @@ namespace godot
             void CheckDeathTime();
             void DeadthAnimation();
         
+        //senials
         private:
             void _on_BotArea_area_entered();
             void _on_BotArea_area_exited();
+            void _on_TimerDeadthAnimation_timeout();
 
            /* void OnTriggerEnter(Collider other);
             void OnTriggerExit(Collider other);*/

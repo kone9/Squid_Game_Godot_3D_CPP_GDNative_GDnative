@@ -36,5 +36,9 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 4 )
 
+[node name="TimerDeadthAnimation" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="BotArea" to="." method="_on_BotArea_area_entered"]
 [connection signal="area_exited" from="BotArea" to="." method="_on_BotArea_area_exited"]
+[connection signal="timeout" from="TimerDeadthAnimation" to="." method="_on_TimerDeadthAnimation_timeout"]

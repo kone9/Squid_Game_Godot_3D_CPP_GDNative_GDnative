@@ -24,12 +24,13 @@ namespace godot
 		isWalking = false;
 		AIChecked = false;
 		isStopped = false;
-		isInDeathZone = false;
+		isInDeathZone = true;
 		isDying = false;
 		intelligence = false;
 		
 		random = nullptr;
 		gameManager = nullptr;
+
 	}
 
 	//metodo destructor
@@ -54,6 +55,10 @@ namespace godot
 		//para ver variables en editor
 		register_property<BotAI, float>("minSpeed", &BotAI::minSpeed, 0.1);
 		register_property<BotAI, float>("maxSpeed", &BotAI::maxSpeed, 1.0);
+
+		//senials
+		register_method("_on_BotArea_area_entered", &BotAI::_on_BotArea_area_entered);
+		register_method("_on_BotArea_area_exited", &BotAI::_on_BotArea_area_exited);
 	}
 
 	//fundamental, sino esta se cierra el editor NO ES READY
@@ -71,13 +76,13 @@ namespace godot
 		//speed -= Random.Range(0f, 1f);
 		speed = random->randf_range((real_t)minSpeed, (real_t)maxSpeed);//velocidad del bot
 		//intelligence = Random.Range(0f, 100f);
-		intelligence = random->randf_range((real_t)0, (real_t)100);
+		intelligence = random->randf_range((real_t)0, (real_t)100);//la inteligencia es aleatoria del 1 al 100
 		
 		//TargetEnd = GameObject.Find("TargetEnd").transform;
 		TargetEnd = get_tree()->get_nodes_in_group("TargetEnd")[0];
 
 		//deathZone = GameObject.Find("DeathZone").transform;
-		deathZone = get_tree()->get_nodes_in_group("DeathZone")[0];
+		//deathZone = get_tree()->get_nodes_in_group("DeathZone")[0];
 		gameManager = get_tree()->get_nodes_in_group("GameManager")[0];
 
 	}
@@ -90,25 +95,43 @@ namespace godot
 
 	void BotAI::_physics_process(const real_t delta)
 	{
-		if (isDying)
+		if (isDying)//si esta muriendo
+		{
 			return;
+		}
 
 		Move(delta);
 		CheckDeathTime();
 	}
 
-
+	//dependiendo la inteligencia va a caminar o no
 	void BotAI::Move(const real_t delta)
 	{
 		//aca vienen varias condiciones ahora, es para probar
 		bool headTimeFinish = cast_to<GameManager>(gameManager)->headTimeFinish;
-		if (!headTimeFinish)
+		
+		if (!headTimeFinish)//si la cabeza no se dio vuelta, osea puedo caminar
 		{
-			Walk(delta);
+			AIChecked = false;//la IA no esta verificada
+			Walk(delta);// camina
 		}
-		else
+		else//si la cabeza se dio vuelta
 		{
-			Stop();
+			if (!AIChecked)//sino verificque la inteligencia
+			{
+				AIChecked = true;//verifique la inteligencia
+				//float probDead = Random.Range(0f, 100f);
+				float probDead = random->randf_range(0, 100);//probabilidad de morir
+
+				if (probDead < intelligence)//ACA VERIFICO LA INTELIGENCIA si la probabilidad de morir es menor a la inteligencia
+				{
+					Stop();//se detiene
+				}
+			}
+			else if (AIChecked && !isStopped)//verifique la intelgencia y no se esta moviendo
+			{
+				Walk(delta);
+			}
 		}
 	}
 
@@ -146,15 +169,37 @@ namespace godot
 		//feetSteps.loop = false;
 	}
 
-
+	//verifica si el tiempo se termino y si se segui moviendo. Si se sigue moviendo es eliminado
 	void BotAI::CheckDeathTime()
 	{
+		if (cast_to<GameManager>(gameManager)->headTimeFinish)// si la cabeza se dio vuelta y esta caminado
+		{
+			if (isWalking)//si esta caminando
+			{
+				if (!isInDeathZone)//sino esta en la zona de muerte
+				{
+					return; //salgo de esta funcion
+				}
 
+				isDying = true;//esta mueriendo
+				//StartCoroutine(DeadthAnimation());
+				queue_free();//para probar elimino el nodo
+			}
+		}
 	}
-
 
 	void BotAI::DeadthAnimation()
 	{
 
+	}
+	
+	void BotAI::_on_BotArea_area_entered()
+	{
+		isInDeathZone = true;
+	}
+
+	void BotAI::_on_BotArea_area_exited()
+	{
+		isInDeathZone = false;
 	}
 }

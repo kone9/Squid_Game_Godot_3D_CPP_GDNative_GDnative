@@ -14,6 +14,7 @@
 #include <Timer.hpp>
 #include <MeshInstance.hpp>
 #include <Tween.hpp>
+#include <ColorRect.hpp>
 
 namespace godot
 {
@@ -34,6 +35,7 @@ namespace godot
         private:
             
             RandomNumberGenerator *random;
+            ColorRect* headTimeFinishColorRect;
 
             //para ver en el editor
             int minutes;

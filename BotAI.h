@@ -8,6 +8,7 @@
 #include <Position3D.hpp>
 #include <Node.hpp>
 
+
 namespace godot
 {
 	class BotAI :public RigidBody
@@ -27,6 +28,7 @@ namespace godot
         private:
             RandomNumberGenerator *random;
             Node* gameManager;
+            
 
         private:
             Position3D *TargetEnd;//posicion final
@@ -47,12 +49,12 @@ namespace godot
 
             Position3D *deathZone;//posicion de muerte
 
-            bool isWalking;
-            bool AIChecked;
-            bool isStopped;
-            bool isInDeathZone;
-            bool isDying;
-            float intelligence;
+            bool isWalking;//si esta caminando
+            bool AIChecked;//para saber si la IA esta verificada
+            bool isStopped;//si esta detenido
+            bool isInDeathZone;//si esta en la zona de morir
+            bool isDying;//si esta mueriendo
+            float intelligence;//la inteligencia de este bot
 
         //Metodos
         private:
@@ -61,7 +63,11 @@ namespace godot
             void Stop();
             void CheckDeathTime();
             void DeadthAnimation();
-            
+        
+        private:
+            void _on_BotArea_area_entered();
+            void _on_BotArea_area_exited();
+
            /* void OnTriggerEnter(Collider other);
             void OnTriggerExit(Collider other);*/
 

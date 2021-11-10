@@ -22,7 +22,7 @@ namespace godot
 		isWalking = false;
 		isMoving = false;
 		isDying = false;
-		isInDeathZone = false;
+		isInDeathZone = true;
 
 		//variable para ver en el editor colisicon
 		FloorMask = 0;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
@@ -26,6 +26,9 @@ size = Vector3( 160, 0.1, 1 )
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 70, 1, 5.85 )
 
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 81.91, 25.2, 68.33 )
+
 [sub_resource type="DynamicFont" id=6]
 size = 32
 outline_color = Color( 0, 0, 0, 1 )
@@ -37,24 +40,20 @@ font_data = ExtResource( 5 )
 "GameManager",
 ]]
 script = ExtResource( 3 )
-totalBots = 20
+totalBots = 50
 Bot = ExtResource( 2 )
 
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( 0.995228, -0.016944, 0.0960938, 0, 0.984807, 0.173649, -0.0975762, -0.17282, 0.980108, 6.69962, 12.1067, 64.8328 )
+transform = Transform( -0.699664, -0.276869, 0.658645, 0, 0.921863, 0.387516, -0.714472, 0.271131, -0.644994, 84.0375, 21.6987, -85.4771 )
 current = true
-far = 200.0
+far = 300.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.5, 0 )
 light_energy = 0.3
 shadow_enabled = true
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 1.50715, -79.24 )
-PlayerMovement = 4.0
 
 [node name="Map" type="Spatial" parent="."]
 
@@ -65,11 +64,6 @@ transform = Transform( -3.25841e-07, 0, 2, 0, 2, 0, -2, 0, -3.25841e-07, 0, 4.24
 "TargetEnd",
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.76 )
-
-[node name="DeathZone" type="Position3D" parent="Map" groups=[
-"DeathZone",
-]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.13 )
 
 [node name="Suelo" type="StaticBody" parent="Map" groups=[
 "Suelo",
@@ -106,9 +100,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -66.4 )
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3 )
 shape = SubResource( 5 )
 
+[node name="DeathZone" type="Area" parent="Map" groups=[
+"DeathZone",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.15 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Map/DeathZone"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.48, -1.88 )
+shape = SubResource( 7 )
+
 [node name="bots_instance_tree" type="Spatial" parent="." groups=[
 "bots_instance_tree",
 ]]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 1.50715, -79.24 )
+PlayerMovement = 4.0
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -134,6 +141,15 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="headTimeFinishColorRect" type="ColorRect" parent="Control" groups=[
+"headTimeFinishColorRect",
+]]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 50.0
+margin_bottom = 50.0
+color = Color( 0, 1, 0, 1 )
 
 [node name="Timers" type="Node" parent="."]
 

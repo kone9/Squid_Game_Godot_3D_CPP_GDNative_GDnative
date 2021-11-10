@@ -43,6 +43,8 @@ namespace godot
 		doll_head = nullptr;
 		doll_Tween = nullptr;
 		dollSingX2 = nullptr;
+
+		headTimeFinishColorRect = nullptr;
 	}
 
 	GameManager::~GameManager()
@@ -99,6 +101,9 @@ namespace godot
 		dollHeadOff = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollHeadOff")[0];
 		dollSingX2 = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollSingX2")[0];
 		Timer_Rotate_head = (Timer*)get_tree()->get_nodes_in_group("Timer_Rotate_head")[0];
+
+		headTimeFinishColorRect = (ColorRect*)get_tree()->get_nodes_in_group("headTimeFinishColorRect")[0];
+
 		
 		dollSing->play();//inicio con sonido de voz
 
@@ -241,6 +246,9 @@ namespace godot
 		RotHead(-180, 0.5);
 		dollHeadOn->play();//sonido cabeza
 		int random_dollSing = random->randi_range(0, 1);
+		
+		headTimeFinishColorRect->set_frame_color(Color(0, 1, 0));
+		
 		if (random_dollSing == 0)
 		{
 			dollSing->play();//activo sonido, cuando termina da vuelta la cabeza
@@ -256,7 +264,7 @@ namespace godot
 		Godot::print("tendria que ROTAR la cabeza");
 		RotHead(180,1);
 		headTimeFinish = true;
-		
+		headTimeFinishColorRect->set_frame_color(Color(1, 0, 0));
 		int randomTime = random->randi_range(6,10);
 		Timer_Rotate_head->set_wait_time(randomTime);
 		Timer_Rotate_head->start();//activo timer que si se mueven mueren

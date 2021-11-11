@@ -32,7 +32,7 @@ mid_height = 2.0
 
 [sub_resource type="Animation" id=9]
 resource_name = "moveRaycast"
-length = 16.0
+length = 8.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Ojos_RayCast:rotation_degrees")
@@ -41,7 +41,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4, 8, 12, 16 ),
+"times": PoolRealArray( 0, 2, 4, 6, 8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 85 ), Vector3( 0, 45, 85 ), Vector3( 0, 0, 85 ), Vector3( 0, -45, 85 ), Vector3( 0, 0, 85 ) ]
@@ -82,7 +82,7 @@ material/0 = null
 ]]
 
 [node name="Ojos_RayCast" type="RayCast" parent="."]
-transform = Transform( 0.0865517, -0.989289, 0.117537, 0.996195, 0.0871558, 0, -0.0102441, 0.11709, 0.993068, 0, 4.2, -0.4 )
+transform = Transform( 0.0871558, -0.996195, 0, 0.996195, 0.0871558, 0, 0, 0, 1, 0, 4.2, -0.4 )
 enabled = true
 cast_to = Vector3( 0, -200, 0 )
 collision_mask = 2

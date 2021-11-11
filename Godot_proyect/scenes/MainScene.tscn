@@ -30,10 +30,10 @@ extents = Vector3( 70, 1, 5.85 )
 [sub_resource type="BoxShape" id=6]
 extents = Vector3( 81.91, 25.2, 68.33 )
 
-[sub_resource type="CubeMesh" id=8]
+[sub_resource type="CubeMesh" id=7]
 size = Vector3( 160, 80, 2 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=8]
 size = 32
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
@@ -50,7 +50,8 @@ Bot = ExtResource( 2 )
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( -0.518025, -0.200471, 0.831542, 0, 0.972148, 0.234368, -0.855365, 0.121409, -0.503597, 70.046, 8.55115, -68.4695 )
+transform = Transform( -0.315648, -0.61441, 0.723095, 0, 0.762054, 0.647514, -0.948876, 0.204387, -0.240541, 74.8078, 23.9279, -66.9626 )
+current = true
 far = 300.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
@@ -114,7 +115,7 @@ shape = SubResource( 6 )
 
 [node name="pared_atras" type="MeshInstance" parent="Map"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.17, 77.49 )
-mesh = SubResource( 8 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="bots_instance_tree" type="Spatial" parent="." groups=[
@@ -141,7 +142,7 @@ margin_left = -29.5
 margin_top = 5.0
 margin_right = 29.5
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "5:00"
 align = 1
@@ -202,22 +203,22 @@ stream = ExtResource( 7 )
 [node name="machines_GUNS" type="Spatial" parent="."]
 
 [node name="Machine_Gun" parent="machines_GUNS" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 59.1128, 37.17, 76.2316 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 37.17, 76.232 )
 
 [node name="Machine_Gun2" parent="machines_GUNS" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.1844, 37.17, 76.2316 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 37.17, 76.232 )
 
 [node name="Machine_Gun3" parent="machines_GUNS" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.8987, 37.17, 76.2316 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 37.17, 76.232 )
 
 [node name="Machine_Gun4" parent="machines_GUNS" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.561901, 37.17, 76.2316 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 37.17, 76.232 )
 
 [node name="Machine_Gun5" parent="machines_GUNS" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0865, 37.17, 76.2316 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 37.17, 76.232 )
 
 [node name="Machine_Gun6" parent="machines_GUNS" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -49.41, 37.17, 76.2316 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 37.17, 76.232 )
 
 [connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]
 [connection signal="timeout" from="Timers/Timer_Rotate_head" to="GameManager" method="_on_Timer_Rotate_head_timeout"]

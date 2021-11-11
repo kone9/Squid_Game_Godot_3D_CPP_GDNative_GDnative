@@ -87,7 +87,6 @@ namespace godot
 
 	void GameManager::_ready()
 	{
-		Godot::print("GameManager Creado");
 		random = RandomNumberGenerator::_new();
 		random->randomize();
 		
@@ -242,7 +241,7 @@ namespace godot
 	//si este timer no termino muere
 	void GameManager::_on_Timer_Rotate_head_timeout()
 	{
-		Godot::print("tendria que VOLVER la cabeza");
+		//Godot::print("tendria que VOLVER la cabeza");
 		headTimeFinish = false;//cuando termina el tiempo puede moverse, sino no pueden moverse
 		RotHead(-180, 0.5);
 		dollHeadOn->play();//sonido cabeza
@@ -266,7 +265,7 @@ namespace godot
 
 	void GameManager::_on_dollSing_finished()
 	{
-		Godot::print("tendria que ROTAR la cabeza");
+		//Godot::print("tendria que ROTAR la cabeza");
 		RotHead(180,1);
 		headTimeFinish = true;
 		headTimeFinishColorRect->set_frame_color(Color(1, 0, 0));

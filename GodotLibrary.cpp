@@ -3,6 +3,7 @@
 #include "PlayerMovement.h"
 #include "BotAI.h"
 #include "GameManager.h"
+#include "Doll.h"
 
 using namespace godot;//usamos el espacio de nombres godot sino tenemos varios problemas, no podra explicar mucho esto, pero asi funciona
 
@@ -33,6 +34,7 @@ extern "C" void GDN_EXPORT godot_nativescript_init(void* handle)
 	register_class<PlayerMovement>();//registre la clase HolaMundo
 	register_class<BotAI>();//registre la clase HolaMundo
 	register_class<GameManager>();//registre la clase HolaMundo
+	register_class<Doll>();//registre la clase HolaMundo
 	//register_class<YOUCLASE>();//registra tu clase!
 
 }

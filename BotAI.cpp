@@ -229,7 +229,7 @@ namespace godot
 	void BotAI::ModifySpeedScroll()
 	{
 		speed = random->randf_range((real_t)minSpeed, (real_t)maxSpeed);//velocidad del bot
-		Godot::print(String::num_real(speed));
+		//Godot::print(String::num_real(speed));
 	}
 	
 	void BotAI::_on_BotArea_area_entered()

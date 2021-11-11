@@ -124,6 +124,8 @@ namespace godot
 		//}
 
 		CheckDeathTime();//tiene que ver con el tiempo, capas modifico por tiemr
+
+		
 	}
 
 	void PlayerMovement::_physics_process(const real_t delta)

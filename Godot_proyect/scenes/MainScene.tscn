@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://sound/dollHeadOn.mp3" type="AudioStream" id=7]
 [ext_resource path="res://sound/dollHeadOff.mp3" type="AudioStream" id=8]
 [ext_resource path="res://sound/dollSingX2.mp3" type="AudioStream" id=9]
+[ext_resource path="res://scenes/Machine_Gun.tscn" type="PackedScene" id=10]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 80, 0.2, 80 )
@@ -28,6 +29,9 @@ extents = Vector3( 70, 1, 5.85 )
 
 [sub_resource type="BoxShape" id=6]
 extents = Vector3( 81.91, 25.2, 68.33 )
+
+[sub_resource type="CubeMesh" id=8]
+size = Vector3( 160, 80, 2 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 32
@@ -50,7 +54,7 @@ transform = Transform( -0.518025, -0.200471, 0.831542, 0, 0.972148, 0.234368, -0
 far = 300.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
-transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.5, 0 )
+transform = Transform( 1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 46.19, 0 )
 light_energy = 0.3
 shadow_enabled = true
 
@@ -107,6 +111,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.15 )
 [node name="CollisionShape" type="CollisionShape" parent="Map/DeathZone"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.48, -1.88 )
 shape = SubResource( 6 )
+
+[node name="pared_atras" type="MeshInstance" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.17, 77.49 )
+mesh = SubResource( 8 )
+material/0 = null
 
 [node name="bots_instance_tree" type="Spatial" parent="." groups=[
 "bots_instance_tree",
@@ -189,6 +198,26 @@ stream = ExtResource( 8 )
 "dollHeadOn",
 ]]
 stream = ExtResource( 7 )
+
+[node name="machines_GUNS" type="Spatial" parent="."]
+
+[node name="Machine_Gun" parent="machines_GUNS" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 59.1128, 37.17, 76.2316 )
+
+[node name="Machine_Gun2" parent="machines_GUNS" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.1844, 37.17, 76.2316 )
+
+[node name="Machine_Gun3" parent="machines_GUNS" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.8987, 37.17, 76.2316 )
+
+[node name="Machine_Gun4" parent="machines_GUNS" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.561901, 37.17, 76.2316 )
+
+[node name="Machine_Gun5" parent="machines_GUNS" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0865, 37.17, 76.2316 )
+
+[node name="Machine_Gun6" parent="machines_GUNS" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -49.41, 37.17, 76.2316 )
 
 [connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]
 [connection signal="timeout" from="Timers/Timer_Rotate_head" to="GameManager" method="_on_Timer_Rotate_head_timeout"]

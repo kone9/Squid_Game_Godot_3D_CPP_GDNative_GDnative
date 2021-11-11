@@ -91,10 +91,12 @@ namespace godot
 		gameManager = get_tree()->get_nodes_in_group("GameManager")[0];
 
 		deathSound = get_node<AudioStreamPlayer3D>("deathSound");
-
+		
 		TimerDeadthAnimation = get_node<Timer>("TimerDeadthAnimation");
 
 		gameManager->connect("can_Walk", this, "ModifySpeedScroll");
+
+		
 
 	}
 

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+
+[sub_resource type="SphereMesh" id=3]
+material = SubResource( 4 )
+radius = 3.0
+height = 6.0
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 2, 2, 10 )
+
+[node name="Machine_Gun" type="Spatial"]
+
+[node name="circulo" type="MeshInstance" parent="."]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="escopeta" type="MeshInstance" parent="circulo"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9 )
+mesh = SubResource( 2 )
+material/0 = null

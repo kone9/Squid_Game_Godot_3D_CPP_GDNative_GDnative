@@ -259,8 +259,6 @@ namespace godot
 		{
 			dollSingX2->play();//activo sonido, cuando termina da vuelta la cabeza
 		}
-
-		
 	}
 
 	void GameManager::_on_dollSing_finished()
@@ -274,7 +272,6 @@ namespace godot
 		Timer_Rotate_head->start();//activo timer que si se mueven mueren
 		dollHeadOff->play();//sonido cabeza
 		Vector3 hola = Vector3(0, 0, 0);
-		
 	}
 
 

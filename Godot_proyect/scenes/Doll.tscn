@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/GDnative/Doll.gdns" type="Script" id=1]
 
@@ -30,10 +30,16 @@ material = SubResource( 7 )
 radius = 0.2
 mid_height = 2.0
 
+[sub_resource type="SpatialMaterial" id=11]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="CubeMesh" id=10]
+material = SubResource( 11 )
+size = Vector3( 0.1, 5, 0.1 )
+
 [sub_resource type="Animation" id=9]
 resource_name = "moveRaycast"
-length = 8.0
-loop = true
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Ojos_RayCast:rotation_degrees")
 tracks/0/interp = 1
@@ -41,7 +47,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2, 4, 6, 8 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 85 ), Vector3( 0, 45, 85 ), Vector3( 0, 0, 85 ), Vector3( 0, -45, 85 ), Vector3( 0, 0, 85 ) ]
@@ -49,6 +55,7 @@ tracks/0/keys = {
 
 [node name="Doll" type="Spatial"]
 script = ExtResource( 1 )
+speed_rotation_eye_raycast = 5.0
 
 [node name="doll_head" type="MeshInstance" parent="." groups=[
 "doll_head",
@@ -82,11 +89,15 @@ material/0 = null
 ]]
 
 [node name="Ojos_RayCast" type="RayCast" parent="."]
-transform = Transform( 0.0871558, -0.996195, 0, 0.996195, 0.0871558, 0, 0, 0, 1, 0, 4.2, -0.4 )
+transform = Transform( 0.051331, -0.586716, 0.808165, 0.996195, 0.0871558, 0, -0.0704363, 0.80509, 0.588957, 0.969592, 3.21152, -0.0763758 )
 enabled = true
-cast_to = Vector3( 0, -200, 0 )
+cast_to = Vector3( 0, -300, 0 )
 collision_mask = 2
 
+[node name="MeshInstance" type="MeshInstance" parent="Ojos_RayCast"]
+transform = Transform( 1, 0, 0, -7.45058e-09, 1, 0, 0, 0, 1, 4.76837e-07, -2.66924, 1.78814e-07 )
+mesh = SubResource( 10 )
+material/0 = null
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "moveRaycast"
 anims/moveRaycast = SubResource( 9 )

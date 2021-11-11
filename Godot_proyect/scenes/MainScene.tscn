@@ -50,7 +50,7 @@ Bot = ExtResource( 2 )
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( -0.315648, -0.61441, 0.723095, 0, 0.762054, 0.647514, -0.948876, 0.204387, -0.240541, 74.8078, 23.9279, -66.9626 )
+transform = Transform( 0.999975, 0.00269828, -0.00643329, 0, 0.922171, 0.386782, 0.00697625, -0.386772, 0.922149, 1.05718, 17.0639, 68.0408 )
 current = true
 far = 300.0
 
@@ -80,6 +80,7 @@ shape = SubResource( 1 )
 [node name="Suelo" type="MeshInstance" parent="Map/Suelo" groups=[
 "Suelo",
 ]]
+visible = false
 mesh = SubResource( 2 )
 material/0 = null
 

@@ -1,6 +1,4 @@
-[gd_scene load_steps=13 format=2]
-
-[ext_resource path="res://scripts/GDnative/Doll.gdns" type="Script" id=1]
+[gd_scene load_steps=10 format=2]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 1, 0.647059, 0.411765, 1 )
@@ -30,32 +28,11 @@ material = SubResource( 7 )
 radius = 0.2
 mid_height = 2.0
 
-[sub_resource type="SpatialMaterial" id=11]
-albedo_color = Color( 1, 0, 0, 1 )
-
-[sub_resource type="CubeMesh" id=10]
-material = SubResource( 11 )
-size = Vector3( 0.1, 5, 0.1 )
-
 [sub_resource type="Animation" id=9]
 resource_name = "moveRaycast"
 length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("Ojos_RayCast:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 85 ), Vector3( 0, 45, 85 ), Vector3( 0, 0, 85 ), Vector3( 0, -45, 85 ), Vector3( 0, 0, 85 ) ]
-}
 
 [node name="Doll" type="Spatial"]
-script = ExtResource( 1 )
-speed_rotation_eye_raycast = 100.0
 
 [node name="doll_head" type="MeshInstance" parent="." groups=["doll_head"]]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.96046e-08, 3.14245, 0 )
@@ -83,17 +60,6 @@ mesh = SubResource( 8 )
 material/0 = null
 
 [node name="doll_Tween" type="Tween" parent="." groups=["doll_Tween"]]
-
-[node name="Ojos_RayCast" type="RayCast" parent="."]
-transform = Transform( -2.63062e-08, -0.601815, 0.798636, 1, -4.37114e-08, 0, 3.49095e-08, 0.798636, 0.601815, 0.969592, -1.44333, -0.0763758 )
-enabled = true
-cast_to = Vector3( 0, -300, 0 )
-collision_mask = 2
-
-[node name="MeshInstance" type="MeshInstance" parent="Ojos_RayCast"]
-transform = Transform( 1, 0, 0, -7.45058e-09, 1, 0, 0, 0, 1, 4.76837e-07, -2.66924, 1.78814e-07 )
-mesh = SubResource( 10 )
-material/0 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/moveRaycast = SubResource( 9 )

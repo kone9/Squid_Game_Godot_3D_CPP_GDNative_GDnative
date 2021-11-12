@@ -8,9 +8,9 @@
 
 namespace godot
 {
-	class Doll : public Spatial
+	class Doll : public RayCast
 	{
-		GODOT_CLASS(Doll,Spatial)
+		GODOT_CLASS(Doll, RayCast)
 		
 		//metodos de godot
 		public:
@@ -24,11 +24,11 @@ namespace godot
 			void _physics_process(const real_t delta);
 
 		private:
-			RayCast* Ojos_RayCast;//guarda el raycast que funciona como los ojos de la muñeca
 			GameManager* gameManager;
 			float speed_rotation_eye_raycast;
 			bool can_rotate_right;
 			bool can_rotate_backward;
+			int direction;//para usar como multiplicador de direccion
 
 		private:
 			void rotate_raycast(const real_t delta);

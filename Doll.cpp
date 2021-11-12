@@ -6,11 +6,11 @@ namespace godot
 {
 	Doll::Doll()
 	{
-		Ojos_RayCast = nullptr;
 		gameManager = nullptr;
 		speed_rotation_eye_raycast = 0.1;
 		can_rotate_right = true;
 		can_rotate_backward = true;
+		direction = 1;
 	}
 
 	Doll::~Doll()
@@ -28,6 +28,7 @@ namespace godot
 		
 		//propiedades
 		register_property<Doll, float>("speed_rotation_eye_raycast", &Doll::speed_rotation_eye_raycast, 0.1);
+		register_property<Doll, int>("direction", &Doll::direction, 1);
 	}
 
 	void Doll::_init()
@@ -36,8 +37,7 @@ namespace godot
 
 	void Doll::_ready()
 	{
-		Godot::print("creada DOLL");
-		Ojos_RayCast = get_node<RayCast>("Ojos_RayCast");
+		Godot::print("creada raycast de deteccion");
 		gameManager = (GameManager*)get_tree()->get_nodes_in_group("GameManager")[0];
 	}
 
@@ -51,9 +51,9 @@ namespace godot
 		
 		if (gameManager->headTimeFinish)//si termino el tiempo cuando se pueden mover
 		{
-			if (Ojos_RayCast->is_colliding())//si colisiona el raycast
+			if (is_colliding())//si colisiona el raycast
 			{
-				RigidBody* bot = cast_to<RigidBody>(Ojos_RayCast->get_collider());//obtengo el nodo rigibody colisionado
+				RigidBody* bot = cast_to<RigidBody>(get_collider());//obtengo el nodo rigibody colisionado
 				if (bot->get_linear_velocity().z != 0)//si su lineal velocity en el eje z es distion de cero
 				{
 					Godot::print(bot->get_name());//imprimo el nombre
@@ -67,12 +67,12 @@ namespace godot
 	//para rotar el raycast y detectar enemigos
 	void Doll::rotate_raycast(const real_t delta)
 	{
-		Vector3 rotation_raycast = Ojos_RayCast->get_rotation_degrees();
+		Vector3 rotation_raycast = get_rotation_degrees();
 		rotation_raycast.y = rotate_lateral(delta, rotation_raycast);
 
-		Ojos_RayCast->set_rotation_degrees(Vector3(
+		set_rotation_degrees(Vector3(
 			rotation_raycast.x,
-			rotation_raycast.y,
+			rotation_raycast.y * direction,
 			rotation_raycast.z)
 		);
 		

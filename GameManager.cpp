@@ -45,6 +45,7 @@ namespace godot
 		dollSingX2 = nullptr;
 
 		headTimeFinishColorRect = nullptr;
+		bots_Intellicence = 300;
 	}
 
 	GameManager::~GameManager()
@@ -70,6 +71,7 @@ namespace godot
 		register_property<GameManager, int>("headTimer", &GameManager::headTimer, 1);
 		register_property<GameManager, int>("totalBots", &GameManager::totalBots, 1);
 		register_property<GameManager, Ref<PackedScene> >("Bot", &GameManager::Bot, nullptr);//propiedad packet scene para que se vea en el editor
+		register_property<GameManager, int>("bots_Intellicence", &GameManager::bots_Intellicence, 300);
 
 		//senials
 		register_method("_on_timer_Count_Down_timeout", &GameManager::_on_timer_Count_Down_timeout);

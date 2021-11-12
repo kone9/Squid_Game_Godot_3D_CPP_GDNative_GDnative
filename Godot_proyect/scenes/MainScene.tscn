@@ -48,7 +48,7 @@ Bot = ExtResource( 2 )
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( 0.999975, 0.00269828, -0.00643329, 0, 0.922171, 0.386782, 0.00697625, -0.386772, 0.922149, 1.05718, 17.0639, 68.0408 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37114e-08, -1.50028, 110.636, -11.8082 )
 current = true
 far = 300.0
 

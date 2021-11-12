@@ -28,9 +28,12 @@ namespace godot
 			GameManager* gameManager;
 			float speed_rotation_eye_raycast;
 			bool can_rotate_right;
+			bool can_rotate_backward;
 
 		private:
 			void rotate_raycast(const real_t delta);
+			float rotate_front(const real_t delta, Vector3 rotation_raycast);
+			float rotate_lateral(const real_t delta, Vector3 rotation_raycast);
 
 	};
 }

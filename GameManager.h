@@ -32,8 +32,10 @@ namespace godot
 			void _process(real_t delta);
 
         //variables
+        public: 
+            int bots_Intellicence;
+    
         private:
-            
             RandomNumberGenerator *random;
             ColorRect* headTimeFinishColorRect;
 
@@ -41,6 +43,7 @@ namespace godot
             int minutes;
             float timeValue;
             float lastTimeToHead;
+           
 
             //para ver en el editor
             MeshInstance *Head;

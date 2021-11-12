@@ -76,19 +76,19 @@ namespace godot
 	{
 		random = RandomNumberGenerator::_new();
 		random->randomize();
+		gameManager = get_tree()->get_nodes_in_group("GameManager")[0];
 
 		//Godot::print("hola mundo soy un BOT");
 		//speed -= Random.Range(0f, 1f);
 		speed = random->randf_range((real_t)minSpeed, (real_t)maxSpeed);//velocidad del bot
 		//intelligence = Random.Range(0f, 100f);
-		intelligence = random->randf_range((real_t)0, (real_t)300);//la inteligencia es aleatoria del 1 al 100
+		intelligence = random->randf_range((real_t)0, (real_t)cast_to<GameManager>(gameManager)->bots_Intellicence);//la inteligencia es aleatoria del 1 al 100
 		
 		//TargetEnd = GameObject.Find("TargetEnd").transform;
 		TargetEnd = get_tree()->get_nodes_in_group("TargetEnd")[0];
 
 		//deathZone = GameObject.Find("DeathZone").transform;
 		//deathZone = get_tree()->get_nodes_in_group("DeathZone")[0];
-		gameManager = get_tree()->get_nodes_in_group("GameManager")[0];
 
 		deathSound = get_node<AudioStreamPlayer3D>("deathSound");
 		

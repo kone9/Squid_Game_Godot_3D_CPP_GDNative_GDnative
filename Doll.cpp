@@ -10,6 +10,7 @@ namespace godot
 		gameManager = nullptr;
 		speed_rotation_eye_raycast = 0.1;
 		can_rotate_right = true;
+		can_rotate_backward = true;
 	}
 
 	Doll::~Doll()
@@ -47,9 +48,9 @@ namespace godot
 	void Doll::_physics_process(const real_t delta)
 	{
 		rotate_raycast(delta);//roto el raycast constantemente
+		
 		if (gameManager->headTimeFinish)//si termino el tiempo cuando se pueden mover
 		{
-			
 			if (Ojos_RayCast->is_colliding())//si colisiona el raycast
 			{
 				RigidBody* bot = cast_to<RigidBody>(Ojos_RayCast->get_collider());//obtengo el nodo rigibody colisionado
@@ -62,36 +63,49 @@ namespace godot
 		}
 	}
 
+
 	//para rotar el raycast y detectar enemigos
 	void Doll::rotate_raycast(const real_t delta)
 	{
-		Ojos_RayCast->set_rotation_degrees(Vector3(
-			Ojos_RayCast->get_rotation_degrees().x,
-			Ojos_RayCast->get_rotation_degrees().y + speed_rotation_eye_raycast * delta,
-			Ojos_RayCast->get_rotation_degrees().z)
-		);
+		Vector3 rotation_raycast = Ojos_RayCast->get_rotation_degrees();
+		rotation_raycast.y = rotate_lateral(delta, rotation_raycast);
 
-		if (Ojos_RayCast->get_rotation_degrees().y > 55 && can_rotate_right)
+		Ojos_RayCast->set_rotation_degrees(Vector3(
+			rotation_raycast.x,
+			rotation_raycast.y,
+			rotation_raycast.z)
+		);
+		
+	}
+
+	float Doll::rotate_front(const real_t delta, Vector3 rotation_raycast)
+	{
+		if (rotation_raycast.z < 0 && can_rotate_backward)
+		{
+			can_rotate_backward = false;
+			rotation_raycast.z -= 1;
+		}
+		if (rotation_raycast.z > 85 && !can_rotate_backward)
+		{
+			can_rotate_backward = true;
+			rotation_raycast.z += 1;
+		}
+		return rotation_raycast.z;
+	}
+
+	float Doll::rotate_lateral(const real_t delta, Vector3 rotation_raycast)
+	{
+		rotation_raycast.y += speed_rotation_eye_raycast * delta;
+		if (rotation_raycast.y > 55 && can_rotate_right)
 		{
 			speed_rotation_eye_raycast *= -1;
 			can_rotate_right = false;
 		}
-		if (Ojos_RayCast->get_rotation_degrees().y < -55 && !can_rotate_right)
+		if (rotation_raycast.y < -55 && !can_rotate_right)
 		{
 			speed_rotation_eye_raycast *= -1;
 			can_rotate_right = true;
 		}
-		
-
-		/*if (Ojos_RayCast->get_rotation_degrees().y < -45)
-		{
-			speed_rotation_eye_raycast *= -1;
-		}*/
-		/*if (Ojos_RayCast->get_rotation_degrees().y > 45)
-		{
-			speed_rotation_eye_raycast *= 1;
-		}*/
-
-		Godot::print(String::num_real(Ojos_RayCast->get_rotation_degrees().y));
+		return rotation_raycast.y;
 	}
 }

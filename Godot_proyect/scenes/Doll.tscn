@@ -55,7 +55,7 @@ tracks/0/keys = {
 
 [node name="Doll" type="Spatial"]
 script = ExtResource( 1 )
-speed_rotation_eye_raycast = 400.0
+speed_rotation_eye_raycast = 100.0
 
 [node name="doll_head" type="MeshInstance" parent="." groups=["doll_head"]]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.96046e-08, 3.14245, 0 )
@@ -85,7 +85,7 @@ material/0 = null
 [node name="doll_Tween" type="Tween" parent="." groups=["doll_Tween"]]
 
 [node name="Ojos_RayCast" type="RayCast" parent="."]
-transform = Transform( 0.0524517, -0.599525, 0.798636, 0.996195, 0.0871559, 0, -0.0696057, 0.795597, 0.601815, 0.969592, 3.21152, -0.0763758 )
+transform = Transform( -2.63062e-08, -0.601815, 0.798636, 1, -4.37114e-08, 0, 3.49095e-08, 0.798636, 0.601815, 0.969592, -1.44333, -0.0763758 )
 enabled = true
 cast_to = Vector3( 0, -300, 0 )
 collision_mask = 2

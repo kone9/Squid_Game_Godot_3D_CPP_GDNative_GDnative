@@ -27,6 +27,7 @@ namespace godot
 			RayCast* Ojos_RayCast;//guarda el raycast que funciona como los ojos de la muñeca
 			GameManager* gameManager;
 			float speed_rotation_eye_raycast;
+			bool can_rotate_right;
 
 		private:
 			void rotate_raycast(const real_t delta);

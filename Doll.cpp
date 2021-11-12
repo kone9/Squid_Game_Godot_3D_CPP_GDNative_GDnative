@@ -9,6 +9,7 @@ namespace godot
 		Ojos_RayCast = nullptr;
 		gameManager = nullptr;
 		speed_rotation_eye_raycast = 0.1;
+		can_rotate_right = true;
 	}
 
 	Doll::~Doll()
@@ -45,10 +46,10 @@ namespace godot
 
 	void Doll::_physics_process(const real_t delta)
 	{
-		rotate_raycast(delta);//para detectar movimiento en bots o jugador
-
+		rotate_raycast(delta);//roto el raycast constantemente
 		if (gameManager->headTimeFinish)//si termino el tiempo cuando se pueden mover
 		{
+			
 			if (Ojos_RayCast->is_colliding())//si colisiona el raycast
 			{
 				RigidBody* bot = cast_to<RigidBody>(Ojos_RayCast->get_collider());//obtengo el nodo rigibody colisionado
@@ -66,24 +67,31 @@ namespace godot
 	{
 		Ojos_RayCast->set_rotation_degrees(Vector3(
 			Ojos_RayCast->get_rotation_degrees().x,
-			Ojos_RayCast->get_rotation_degrees().y - speed_rotation_eye_raycast * delta,
+			Ojos_RayCast->get_rotation_degrees().y + speed_rotation_eye_raycast * delta,
 			Ojos_RayCast->get_rotation_degrees().z)
 		);
+
+		if (Ojos_RayCast->get_rotation_degrees().y > 55 && can_rotate_right)
+		{
+			speed_rotation_eye_raycast *= -1;
+			can_rotate_right = false;
+		}
+		if (Ojos_RayCast->get_rotation_degrees().y < -55 && !can_rotate_right)
+		{
+			speed_rotation_eye_raycast *= -1;
+			can_rotate_right = true;
+		}
+		
+
+		/*if (Ojos_RayCast->get_rotation_degrees().y < -45)
+		{
+			speed_rotation_eye_raycast *= -1;
+		}*/
 		/*if (Ojos_RayCast->get_rotation_degrees().y > 45)
 		{
-			Ojos_RayCast->set_rotation_degrees(Vector3(
-				Ojos_RayCast->get_rotation_degrees().x,
-				Ojos_RayCast->get_rotation_degrees().y - speed_rotation_eye_raycast * delta,
-				Ojos_RayCast->get_rotation_degrees().z)
-			);
-		}
-		if (Ojos_RayCast->get_rotation_degrees().y < -45)
-		{
-			Ojos_RayCast->set_rotation_degrees(Vector3(
-				Ojos_RayCast->get_rotation_degrees().x,
-				Ojos_RayCast->get_rotation_degrees().y + speed_rotation_eye_raycast * delta,
-				Ojos_RayCast->get_rotation_degrees().z)
-			);
+			speed_rotation_eye_raycast *= 1;
 		}*/
+
+		Godot::print(String::num_real(Ojos_RayCast->get_rotation_degrees().y));
 	}
 }

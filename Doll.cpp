@@ -72,9 +72,8 @@ namespace godot
 	//para rotar el raycast y detectar enemigos
 	void Doll::rotate_raycast(const real_t delta)
 	{
-		Vector3 rotation_raycast = get_rotation_degrees();
-		//rotation_raycast.y = rotate_lateral(delta, rotation_raycast);
-		rotation_raycast.z = rotate_front(delta, rotation_raycast);
+		Vector3 rotation_raycast = rotate_lateral(delta, get_rotation_degrees());
+		//rotation_raycast.z = rotate_front(delta, rotation_raycast);
 
 		set_rotation_degrees(Vector3(
 			rotation_raycast.x,
@@ -102,21 +101,21 @@ namespace godot
 		return rotation_raycast.z;
 	}
 
-	float Doll::rotate_lateral(const real_t delta, Vector3 rotation_raycast)
+	Vector3 Doll::rotate_lateral(const real_t delta, Vector3 rotation_raycast)
 	{
 		rotation_raycast.y += speed_rot_raycast_lateral * delta;
 		if (rotation_raycast.y > 90 && can_rotate_right)
 		{
 			speed_rot_raycast_lateral *= -1;
 			can_rotate_right = false;
-			//rotate_front(delta, rotation_raycast);
+			rotation_raycast.z = rotate_front(delta, rotation_raycast);
 		}
 		if (rotation_raycast.y < -90 && !can_rotate_right)
 		{
 			speed_rot_raycast_lateral *= -1;
 			can_rotate_right = true;
-			//rotate_front(delta, rotation_raycast);
+			rotation_raycast.z = rotate_front(delta, rotation_raycast);
 		}
-		return rotation_raycast.y;
+		return rotation_raycast;
 	}
 }

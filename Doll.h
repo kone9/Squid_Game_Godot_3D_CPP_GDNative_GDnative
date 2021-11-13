@@ -34,7 +34,7 @@ namespace godot
 		private:
 			void rotate_raycast(const real_t delta);
 			float rotate_front(const real_t delta, Vector3 rotation_raycast);
-			float rotate_lateral(const real_t delta, Vector3 rotation_raycast);
+			Vector3 rotate_lateral(const real_t delta, Vector3 rotation_raycast);
 
 	};
 }

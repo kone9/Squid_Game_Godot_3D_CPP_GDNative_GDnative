@@ -52,7 +52,7 @@ bots_Intellicence = 150
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( 0.0845499, -0.137813, 0.986843, 0, 0.990389, 0.138308, -0.996419, -0.011694, 0.0837374, 21.727, 10.2432, 50.2834 )
+transform = Transform( 0.0984483, -0.0962441, 0.990477, 0, 0.995312, 0.0967139, -0.995142, -0.00952132, 0.0979868, 22.2394, 11.0953, 48.9249 )
 current = true
 far = 300.0
 
@@ -224,6 +224,7 @@ transform = Transform( -3.25841e-07, 0, 2, 0, 2, 0, -2, 0, -3.25841e-07, 0, 4.24
 
 [node name="Ojos_RayCast" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( 0.0871558, -0.996195, 0, 0.996195, 0.0871558, 0, 0, 0, 1, 0.969591, 3.64902, -0.0763756 )
+speed_rot_raycast_lateral = 800.0
 
 [connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]
 [connection signal="timeout" from="Timers/Timer_Rotate_head" to="GameManager" method="_on_Timer_Rotate_head_timeout"]

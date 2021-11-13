@@ -232,12 +232,12 @@ namespace godot
 		//Godot::print(String::num_real(speed));
 	}
 	
-	void BotAI::_on_BotArea_area_entered()
+	void BotAI::_on_BotArea_area_entered(Area* area)
 	{
 		isInDeathZone = true;
 	}
 
-	void BotAI::_on_BotArea_area_exited()
+	void BotAI::_on_BotArea_area_exited(Area* area)
 	{
 		isInDeathZone = false;
 	}

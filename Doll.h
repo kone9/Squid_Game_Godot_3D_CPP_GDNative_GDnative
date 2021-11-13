@@ -25,10 +25,11 @@ namespace godot
 
 		private:
 			GameManager* gameManager;
-			float speed_rotation_eye_raycast;
+			float speed_rot_raycast_lateral;
+			float speed_rot_raycast_frontal;
 			bool can_rotate_right;
 			bool can_rotate_backward;
-			int direction;//para usar como multiplicador de direccion
+			int direction_speed;//para usar como multiplicador de direccion
 
 		private:
 			void rotate_raycast(const real_t delta);

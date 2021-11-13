@@ -17,7 +17,7 @@
     <LocalDebuggerWorkingDirectory>D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\Godot_proyect</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommand>C:\Users\ariel\Documents\Programas instalados\Godot Engine\Godot_v3.3.3-stable_win64.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommand>C:\Users\ariel\Documents\Programas instalados\Godot Engine\Godot_v3.4-stable_win64</LocalDebuggerCommand>
     <LocalDebuggerDebuggerType>NativeOnly</LocalDebuggerDebuggerType>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerCommandArguments>

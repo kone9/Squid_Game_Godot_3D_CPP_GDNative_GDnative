@@ -9,6 +9,7 @@
 #include <Node.hpp>
 #include <Timer.hpp>
 #include <AudioStreamPlayer3D.hpp>
+#include <Area.hpp>
 
 
 namespace godot
@@ -70,8 +71,8 @@ namespace godot
         
         //senials
         private:
-            void _on_BotArea_area_entered();
-            void _on_BotArea_area_exited();
+            void _on_BotArea_area_entered(Area* area);
+            void _on_BotArea_area_exited(Area* area);
             void _on_TimerDeadthAnimation_timeout();
             void _on_deathSound_finished();
 

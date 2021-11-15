@@ -49,11 +49,10 @@ namespace godot
 
 	void Doll::_physics_process(const real_t delta)
 	{
-		//force_raycast_update();
-		rotate_raycast(delta);//roto el raycast constantemente
-		if (gameManager->headTimeFinish)//si termino el tiempo cuando se pueden mover
+		if (gameManager->headTimeFinish)//si se puede eliminar los jugadores
 		{
-			
+			force_raycast_update();
+			rotate_raycast(delta);//roto el raycast constantemente
 			if (is_colliding())//si colisiona el raycast
 			{
 				RigidBody* bot = cast_to<RigidBody>(get_collider());//obtengo el nodo rigibody colisionado
@@ -67,7 +66,6 @@ namespace godot
 
 		}
 	}
-
 
 	//para rotar el raycast y detectar enemigos
 	void Doll::rotate_raycast(const real_t delta)
@@ -83,6 +81,7 @@ namespace godot
 		);
 	}
 
+	//para rotar frontal, "EJE X", al final no lo uso pero lo dejo por las dudas
 	float Doll::rotate_front(const real_t delta, Vector3 rotation_raycast)
 	{
 		rotation_raycast.z += speed_rot_raycast_frontal * delta;
@@ -108,13 +107,13 @@ namespace godot
 		{
 			speed_rot_raycast_lateral *= -1;
 			can_rotate_right = false;
-			rotation_raycast.z = rotate_front(delta, rotation_raycast);
+			//rotation_raycast.z = rotate_front(delta, rotation_raycast);
 		}
 		if (rotation_raycast.y < -90 && !can_rotate_right)
 		{
 			speed_rot_raycast_lateral *= -1;
 			can_rotate_right = true;
-			rotation_raycast.z = rotate_front(delta, rotation_raycast);
+			//rotation_raycast.z = rotate_front(delta, rotation_raycast);
 		}
 		return rotation_raycast;
 	}

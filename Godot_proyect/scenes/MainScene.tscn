@@ -41,9 +41,7 @@ font_data = ExtResource( 5 )
 
 [node name="MainScene" type="Spatial"]
 
-[node name="GameManager" type="Node" parent="." groups=[
-"GameManager",
-]]
+[node name="GameManager" type="Node" parent="." groups=["GameManager"]]
 script = ExtResource( 3 )
 totalBots = 100
 Bot = ExtResource( 2 )
@@ -52,7 +50,7 @@ bots_Intellicence = 150
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( 0.0984483, -0.0962441, 0.990477, 0, 0.995312, 0.0967139, -0.995142, -0.00952132, 0.0979868, 22.2394, 11.0953, 48.9249 )
+transform = Transform( -0.540975, -0.192766, 0.818649, 0, 0.973379, 0.2292, -0.841038, 0.123992, -0.526574, 81.2484, 11.6187, -80.1615 )
 current = true
 far = 300.0
 
@@ -63,28 +61,20 @@ shadow_enabled = true
 
 [node name="Map" type="Spatial" parent="."]
 
-[node name="TargetEnd" type="Position3D" parent="Map" groups=[
-"TargetEnd",
-]]
+[node name="TargetEnd" type="Position3D" parent="Map" groups=["TargetEnd"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.76 )
 
-[node name="Suelo" type="StaticBody" parent="Map" groups=[
-"Suelo",
-]]
+[node name="Suelo" type="StaticBody" parent="Map" groups=["Suelo"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/Suelo"]
 shape = SubResource( 1 )
 
-[node name="Suelo" type="MeshInstance" parent="Map/Suelo" groups=[
-"Suelo",
-]]
+[node name="Suelo" type="MeshInstance" parent="Map/Suelo" groups=["Suelo"]]
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Area" type="Area" parent="Map/Suelo" groups=[
-"Suelo",
-]]
+[node name="Area" type="Area" parent="Map/Suelo" groups=["Suelo"]]
 
 [node name="CollisionShape2" type="CollisionShape" parent="Map/Suelo/Area"]
 shape = SubResource( 1 )
@@ -94,18 +84,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 52.2 )
 mesh = SubResource( 4 )
 material/0 = null
 
-[node name="TargetSpawn" type="Area" parent="Map" groups=[
-"TargetSpawn",
-]]
+[node name="TargetSpawn" type="Area" parent="Map" groups=["TargetSpawn"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -66.4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/TargetSpawn"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3 )
 shape = SubResource( 5 )
 
-[node name="DeathZone" type="Area" parent="Map" groups=[
-"DeathZone",
-]]
+[node name="DeathZone" type="Area" parent="Map" groups=["DeathZone"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.15 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/DeathZone"]
@@ -117,9 +103,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.17, 77.49 )
 mesh = SubResource( 7 )
 material/0 = null
 
-[node name="bots_instance_tree" type="Spatial" parent="." groups=[
-"bots_instance_tree",
-]]
+[node name="bots_instance_tree" type="Spatial" parent="." groups=["bots_instance_tree"]]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 1.50715, -79.24 )
@@ -132,17 +116,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="timeText" type="Label" parent="Control" groups=[
-"timeText",
-]]
+[node name="timeText" type="Label" parent="Control" groups=["timeText"]]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -29.5
 margin_top = 5.0
 margin_right = 29.5
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
 text = "5:00"
 align = 1
 valign = 1
@@ -150,9 +132,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="headTimeFinishColorRect" type="ColorRect" parent="Control" groups=[
-"headTimeFinishColorRect",
-]]
+[node name="headTimeFinishColorRect" type="ColorRect" parent="Control" groups=["headTimeFinishColorRect"]]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 50.0
@@ -164,39 +144,27 @@ __meta__ = {
 
 [node name="Timers" type="Node" parent="."]
 
-[node name="timer_Count_Down" type="Timer" parent="Timers" groups=[
-"timer_Count_Down",
-]]
+[node name="timer_Count_Down" type="Timer" parent="Timers" groups=["timer_Count_Down"]]
 wait_time = 300.0
 one_shot = true
 autostart = true
 
-[node name="Timer_Rotate_head" type="Timer" parent="Timers" groups=[
-"Timer_Rotate_head",
-]]
+[node name="Timer_Rotate_head" type="Timer" parent="Timers" groups=["Timer_Rotate_head"]]
 wait_time = 10.0
 
 [node name="audio" type="Node" parent="."]
 
-[node name="dollSing" type="AudioStreamPlayer" parent="audio" groups=[
-"dollSing",
-]]
+[node name="dollSing" type="AudioStreamPlayer" parent="audio" groups=["dollSing"]]
 stream = ExtResource( 6 )
 
-[node name="dollSingX2" type="AudioStreamPlayer" parent="audio" groups=[
-"dollSingX2",
-]]
+[node name="dollSingX2" type="AudioStreamPlayer" parent="audio" groups=["dollSingX2"]]
 stream = ExtResource( 9 )
 mix_target = 1
 
-[node name="dollHeadOff" type="AudioStreamPlayer" parent="audio" groups=[
-"dollHeadOff",
-]]
+[node name="dollHeadOff" type="AudioStreamPlayer" parent="audio" groups=["dollHeadOff"]]
 stream = ExtResource( 8 )
 
-[node name="dollHeadOn" type="AudioStreamPlayer" parent="audio" groups=[
-"dollHeadOn",
-]]
+[node name="dollHeadOn" type="AudioStreamPlayer" parent="audio" groups=["dollHeadOn"]]
 stream = ExtResource( 7 )
 
 [node name="machines_GUNS" type="Spatial" parent="."]
@@ -223,8 +191,27 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 37.17, 76.232 )
 transform = Transform( -3.25841e-07, 0, 2, 0, 2, 0, -2, 0, -3.25841e-07, 0, 4.24, 55.58 )
 
 [node name="Ojos_RayCast" parent="Doll" instance=ExtResource( 11 )]
-transform = Transform( 0.0871558, -0.996195, 0, 0.996195, 0.0871558, 0, 0, 0, 1, 0.969591, 3.64902, -0.0763756 )
-speed_rot_raycast_lateral = 800.0
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+speed_rot_raycast_lateral = 30.0
+
+[node name="Ojos_RayCast2" parent="Doll" instance=ExtResource( 11 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+speed_rot_raycast_lateral = 40.0
+
+[node name="Ojos_RayCast3" parent="Doll" instance=ExtResource( 11 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+speed_rot_raycast_lateral = 50.0
+
+[node name="Ojos_RayCast4" parent="Doll" instance=ExtResource( 11 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+
+[node name="Ojos_RayCast5" parent="Doll" instance=ExtResource( 11 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+speed_rot_raycast_lateral = 150.0
+
+[node name="Ojos_RayCast6" parent="Doll" instance=ExtResource( 11 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+speed_rot_raycast_lateral = 200.0
 
 [connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]
 [connection signal="timeout" from="Timers/Timer_Rotate_head" to="GameManager" method="_on_Timer_Rotate_head_timeout"]

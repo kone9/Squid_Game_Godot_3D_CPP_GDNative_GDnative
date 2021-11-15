@@ -50,7 +50,7 @@ bots_Intellicence = 150
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( -0.540975, -0.192766, 0.818649, 0, 0.973379, 0.2292, -0.841038, 0.123992, -0.526574, 81.2484, 11.6187, -80.1615 )
+transform = Transform( -0.300706, -0.40237, 0.864681, 0, 0.906644, 0.421896, -0.953717, 0.126867, -0.272634, 76.8071, 9.32008, -64.5489 )
 current = true
 far = 300.0
 

@@ -39,7 +39,7 @@ namespace godot
 
 	void Doll::_ready()
 	{
-		Godot::print("creada raycast de deteccion");
+		//Godot::print("creada raycast de deteccion");
 		gameManager = (GameManager*)get_tree()->get_nodes_in_group("GameManager")[0];
 	}
 
@@ -58,8 +58,8 @@ namespace godot
 				RigidBody* bot = cast_to<RigidBody>(get_collider());//obtengo el nodo rigibody colisionado
 				if (bot->get_linear_velocity().z != 0 || bot->get_linear_velocity().x != 0)//si su lineal velocity en el eje z es distion de cero
 				{
-					Godot::print(bot->get_name());//imprimo el nombre
-					Godot::print(String::num_real( bot->get_linear_velocity().z) );//imprimo el nombre
+					//Godot::print(bot->get_name());//imprimo el nombre
+					//Godot::print(String::num_real( bot->get_linear_velocity().z) );//imprimo el nombre
 					bot->queue_free();//lo elimino
 				}
 			}

@@ -32,6 +32,7 @@ namespace godot
 		gameManager = nullptr;
 		TimerDeadthAnimation = nullptr;
 		deathSound = nullptr;
+		is_collided_with_another_bot = false;
 
 	}
 
@@ -108,7 +109,7 @@ namespace godot
 
 	void BotAI::_physics_process(const real_t delta)
 	{
-		if (!isDying)//si esta muriendo
+		if (!isDying)//sino esta muriendo
 		{
 			Move(delta);
 			//CheckDeathTime();
@@ -137,7 +138,10 @@ namespace godot
 			}
 			else//verifique la intelgencia y no se esta moviendo
 			{
-				Walk(delta);
+				if (!is_collided_with_another_bot)//sino colisiona con otro bot
+				{
+					Walk(delta);
+				}
 			}
 			
 			//if (!AIChecked)//sino verificque la inteligencia
@@ -179,7 +183,6 @@ namespace godot
 		//feetSteps.loop = true;
 		//feetSteps.Play(0);
 	}
-
 
 	void BotAI::Stop()
 	{
@@ -235,11 +238,21 @@ namespace godot
 	void BotAI::_on_BotArea_area_entered(Area* area)
 	{
 		isInDeathZone = true;
+
+		if ( area->is_in_group("BotArea") )
+		{
+			is_collided_with_another_bot = true;
+		}
 	}
 
 	void BotAI::_on_BotArea_area_exited(Area* area)
 	{
 		isInDeathZone = false;
+
+		if (area->is_in_group("BotArea"))
+		{
+			is_collided_with_another_bot = false;
+		}
 	}
 	
 }

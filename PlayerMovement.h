@@ -32,16 +32,19 @@ namespace godot
 		void _physics_process(const real_t delta);
 		void _process(const real_t delta);
 		void _integrate_forces(const PhysicsDirectBodyState* state);
+		void _input(const Ref<InputEvent> event);
 
 	//senials
 	private:
 		void _on_AreaDetectarSuelo_area_entered(Area *area);
+		void _on_AreaDetectarSuelo_area_exited(Area *area);
 
 		
 	//las cree yo aparte
 	private:
 		Input* input;//para obtener el input
 		Area *areaDetectarSuelo;
+		bool canMove;
 
 		//esto es un copy y paste de la clase copiada del juego hecho para youtube
 		//VARIABLES

@@ -57,6 +57,8 @@ namespace godot
 		PlayerCamera = nullptr;
 
 		areaDetectarSuelo = nullptr;
+
+		canMove = true;
 	}
 
 	PlayerMovement::~PlayerMovement()
@@ -71,6 +73,7 @@ namespace godot
 		register_method("_process", &PlayerMovement::_process);
 		register_method("_physics_process", &PlayerMovement::_physics_process);
 		register_method("_integrate_forces", &PlayerMovement::_integrate_forces);
+		register_method("_input", &PlayerMovement::_input);
 
 		//funciones del juego
 		register_method("MovePlayer", &PlayerMovement::MovePlayer);
@@ -86,6 +89,7 @@ namespace godot
 
 		//Senials
 		register_method("_on_AreaDetectarSuelo_area_entered", &PlayerMovement::_on_AreaDetectarSuelo_area_entered);
+		register_method("_on_AreaDetectarSuelo_area_exited", &PlayerMovement::_on_AreaDetectarSuelo_area_exited);
 
 	}
 
@@ -97,7 +101,7 @@ namespace godot
 	{
 		input = Input::get_singleton();//obtener el input
 		input->set_mouse_mode(input->MOUSE_MODE_CAPTURED);
-		input->set_mouse_mode(input->MOUSE_MODE_VISIBLE);
+		//input->set_mouse_mode(input->MOUSE_MODE_VISIBLE);
 		PlayerCamera = get_node<Camera>("Camera");//obtener la camara
 		areaDetectarSuelo = get_node<Area>("AreaDetectarSuelo");//obtener la camara
 	}
@@ -105,13 +109,14 @@ namespace godot
 	void PlayerMovement::_process(const real_t delta)
 	{
 		if (isDying) {return;}
-		float v = input->get_action_strength("w") - input->get_action_strength("s");//movimiento 
-		float h = input->get_action_strength("a") - input->get_action_strength("d");//movimiento 
+		float v = input->get_action_strength("w") - input->get_action_strength("s");
+		float h = input->get_action_strength("a") - input->get_action_strength("d");
 		
-		PlayerMouseInput = get_viewport()->get_mouse_position();//posicion de mouse
 		PlayerMovementInput = Vector3(h, 0, v);//para obtener el input y luego mover
-
+		
+		
 		isWalking = (h != 0 || v != 0);//si es distinto de cero me estoy moviendo
+
 //		anim.SetBool("isWalking", isWalking);//activo animacion caminar
 
 		//if (isWalking && !isJumping && !feetSteps->is_playing())//si estoy caminando y no estoy saltando y no se esta reproduciendo el sonido
@@ -124,7 +129,8 @@ namespace godot
 		//}
 
 		CheckDeathTime();//tiene que ver con el tiempo, capas modifico por tiemr
-
+		
+		
 		
 	}
 
@@ -140,14 +146,30 @@ namespace godot
 		MovePlayerCamera();//muevo la camera
 	}
 
-	void PlayerMovement::_on_AreaDetectarSuelo_area_entered(Area* area)
+	//input event de Godot
+	void PlayerMovement::_input(const Ref<InputEvent> event)
 	{
-		if (area->is_in_group("Suelo"))
+		//forma con mouse position
+		//PlayerMouseInput = get_viewport()->get_mouse_position() ;//posicion de mouse
+		//PlayerMouseInput.x -= (get_viewport()->get_visible_rect().get_size().x / 2);
+		//PlayerMouseInput.y -= (get_viewport()->get_visible_rect().get_size().y / 2);
+		//Godot::print(String::num_real(get_viewport()->get_mouse_position(). y));
+		//Godot::print(String::num_real(get_viewport()->get_visible_rect().get_size().x));
+		
+		//forma con input mouse event motion
+		if ( event->is_class("inputeventmousemotion") )//si el evento esta en la clase inputeventmousemotion
 		{
-			isJumping = false;
+			Godot::print("moviendo el mouse");
+			InputEventMouseMotion *mouseMove = cast_to<InputEventMouseMotion>(*event);
+			
+			PlayerMouseInput.x += mouseMove->get_relative().x;
+			PlayerMouseInput.y += mouseMove->get_relative().y;
+			Godot::print(String::num_real( mouseMove->get_relative().x ));
+			Godot::print(String::num_real( mouseMove->get_relative().y ));
+			
 		}
+		
 	}
-
 	
 	void PlayerMovement::MovePlayer()
 	{
@@ -210,6 +232,30 @@ namespace godot
 	{
 
 	}
+
+
+	void PlayerMovement::_on_AreaDetectarSuelo_area_entered(Area* area)
+	{
+		if (area->is_in_group("Suelo"))
+		{
+			isJumping = false;
+		}
+
+		if (area->is_in_group("BotArea"))
+		{
+			canMove = false;
+		}
+
+	}
+
+	void PlayerMovement::_on_AreaDetectarSuelo_area_exited(Area* area)
+	{
+		if (area->is_in_group("BotArea"))
+		{
+			canMove = true;
+		}
+	}
+
 
 } /* namespace godot */
 

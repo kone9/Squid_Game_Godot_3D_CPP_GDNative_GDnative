@@ -43,15 +43,13 @@ font_data = ExtResource( 5 )
 
 [node name="GameManager" type="Node" parent="." groups=["GameManager"]]
 script = ExtResource( 3 )
-totalBots = 100
+totalBots = 50
 Bot = ExtResource( 2 )
-bots_Intellicence = 150
 
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( -0.300706, -0.40237, 0.864681, 0, 0.906644, 0.421896, -0.953717, 0.126867, -0.272634, 76.8071, 9.32008, -64.5489 )
-current = true
+transform = Transform( 0.988362, -0.094604, 0.119128, 0, 0.783104, 0.621891, -0.152123, -0.614654, 0.773989, 13.4025, 30.8394, 15.9207 )
 far = 300.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]

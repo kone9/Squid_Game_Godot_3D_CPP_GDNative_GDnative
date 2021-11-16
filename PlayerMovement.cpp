@@ -148,27 +148,18 @@ namespace godot
 	//input event de Godot
 	void PlayerMovement::_input(const Ref<InputEvent> event)
 	{
-		Godot::print(event->get_class());
-		
 		//forma con mouse position
-		PlayerMouseInput = get_viewport()->get_mouse_position() ;//posicion de mouse
-		PlayerMouseInput.x -= (get_viewport()->get_visible_rect().get_size().x / 2);
-		PlayerMouseInput.y -= (get_viewport()->get_visible_rect().get_size().y / 2);
-		Godot::print(String::num_real(get_viewport()->get_mouse_position(). y));
-		Godot::print(String::num_real(get_viewport()->get_visible_rect().get_size().x));
+		//PlayerMouseInput = get_viewport()->get_mouse_position();//posicion de mouse 
+		//PlayerMouseInput.x -= (get_viewport()->get_visible_rect().get_size().x / 2);//para que quede centrado
+		//PlayerMouseInput.y -= (get_viewport()->get_visible_rect().get_size().y / 2);//para que quede centrado
 		
-		//forma con input mouse event motion
-		//if ( event->is_class("InputEventMouseMotion") )//COMPRUEBA EL TIPO DE INSTANCIA "si el evento esta en la clase inputeventmousemotion"
-		//{
-		//	Godot::print("moviendo el mouse");
-		//	InputEventMouseMotion *mouseMove = cast_to<InputEventMouseMotion>(*event);
-		//	
-		//	PlayerMouseInput.x += mouseMove->get_relative().x;
-		//	PlayerMouseInput.y += mouseMove->get_relative().y;
-		//	Godot::print(String::num_real( mouseMove->get_relative().x ));
-		//	Godot::print(String::num_real( mouseMove->get_relative().y ));
-		//	
-		//}
+		//forma con input mouse event motion, Si agrego print funciona lento, OJO!
+		//Godot::print(event->get_class());
+		if ( event->is_class("InputEventMouseMotion") )//COMPRUEBA EL TIPO DE INSTANCIA "si el evento esta en la clase inputeventmousemotion"
+		{
+			InputEventMouseMotion *mouseMove = cast_to<InputEventMouseMotion>(*event);
+			PlayerMouseInput += mouseMove->get_relative();
+		}
 		
 	}
 	

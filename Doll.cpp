@@ -1,6 +1,7 @@
 #include "Doll.h"
 #include <RigidBody.hpp>
 #include <SceneTree.hpp>
+#include "BotAI.h"
 
 namespace godot
 {
@@ -60,7 +61,14 @@ namespace godot
 				{
 					//Godot::print(bot->get_name());//imprimo el nombre
 					//Godot::print(String::num_real( bot->get_linear_velocity().z) );//imprimo el nombre
-					bot->queue_free();//lo elimino
+					//bot->queue_free();//lo elimino
+					if (!cast_to<BotAI>(bot)->is_dead)//si el bot no esta muerto
+					{
+						cast_to<BotAI>(bot)->is_dead = true;//este bot esta muerto
+						gameManager->bots_to_remove.append(bot);//agrego a la lista de bots a eliminar
+						Godot::print( String::num_int64 ( gameManager->bots_to_remove.size() ) );
+					}
+					
 				}
 			}
 

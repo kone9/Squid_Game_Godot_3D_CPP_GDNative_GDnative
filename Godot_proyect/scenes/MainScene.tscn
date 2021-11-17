@@ -43,7 +43,7 @@ font_data = ExtResource( 5 )
 
 [node name="GameManager" type="Node" parent="." groups=["GameManager"]]
 script = ExtResource( 3 )
-totalBots = 30
+totalBots = 50
 Bot = ExtResource( 2 )
 
 [node name="Light_and_camera" type="Spatial" parent="."]
@@ -105,8 +105,6 @@ material/0 = null
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 1.50715, -79.24 )
-PlayerMovement = 5.0
-Sensitivity = 1.0
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0

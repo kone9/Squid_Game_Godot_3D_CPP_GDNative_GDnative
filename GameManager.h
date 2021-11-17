@@ -16,6 +16,10 @@
 #include <Tween.hpp>
 #include <ColorRect.hpp>
 
+//#include <cstdlib>
+//#include <iostream>
+#include <queue>
+
 namespace godot
 {
 	class GameManager : public Node
@@ -34,7 +38,9 @@ namespace godot
         //variables
         public: 
             int bots_Intellicence;
-    
+            Array bots_to_remove; //bots a eliminar que son detectados por el raycast COLA DE RIGIDBODY
+            
+
         private:
             RandomNumberGenerator *random;
             ColorRect* headTimeFinishColorRect;

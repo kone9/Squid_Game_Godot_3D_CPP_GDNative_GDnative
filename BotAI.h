@@ -28,6 +28,9 @@ namespace godot
 			void _process(real_t delta);
             void _physics_process(const real_t delta);
         
+        public:
+            bool is_dead;
+
         private:
             RandomNumberGenerator *random;
             Node* gameManager;

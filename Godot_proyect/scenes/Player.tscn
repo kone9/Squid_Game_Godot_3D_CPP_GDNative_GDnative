@@ -20,8 +20,6 @@ physics_material_override = SubResource( 1 )
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource( 1 )
-PlayerMovement = 3.0
-Sensitivity = 2.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.473606, 0 )

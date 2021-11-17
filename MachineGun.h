@@ -5,6 +5,9 @@
 #include <Timer.hpp>
 #include <AudioStreamPlayer3D.hpp>
 #include <RigidBody.hpp>
+#include <Node.hpp>
+#include "GameManager.h"
+#include <RandomNumberGenerator.hpp>
 
 
 namespace godot
@@ -25,12 +28,14 @@ namespace godot
 	public:
 		RigidBody* bot_to_kill;
 		AudioStreamPlayer3D* Machine_Gun_Sound;
+		GameManager* gameManager;
 		bool is_shooting;//si esta disparando o no
 
 		void shoot(Vector3 look_at_bot);
 
 	private:
 		Timer* Timer_shoot;
+		RandomNumberGenerator* random;
 
 	//senials
 	private:

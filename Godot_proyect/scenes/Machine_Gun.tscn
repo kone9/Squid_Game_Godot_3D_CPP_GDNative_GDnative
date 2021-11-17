@@ -31,7 +31,7 @@ material/0 = null
 
 [node name="Machine_Gun_Sound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 1 )
-unit_db = 30.0
+unit_db = 40.0
 bus = "shootSound"
 
 [node name="Timer_shoot" type="Timer" parent="."]

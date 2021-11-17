@@ -81,6 +81,7 @@ namespace godot
 		else
 		{
 			is_shooting = false;
+			bot_to_kill = nullptr;
 		}
 	}
 

@@ -77,6 +77,7 @@ namespace godot
             MeshInstance* doll_head;//referencia a la cabeza de la muñeca
             Tween* doll_Tween;//referencia al tween que se encuentra en la escena de doll
             Timer* Timer_Rotate_head;
+            Timer* Timer_active_raycast_detection;
 
             public:
                 //static bool headTime;
@@ -98,6 +99,7 @@ namespace godot
                     void _on_timer_Count_Down_timeout();
                     void _on_Timer_Rotate_head_timeout();
                     void _on_dollSing_finished();
+                    void _on_Timer_active_raycast_detection_timeout();
 
 	};
 }

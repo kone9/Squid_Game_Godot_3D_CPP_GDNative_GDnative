@@ -46,6 +46,7 @@ namespace godot
 
 		headTimeFinishColorRect = nullptr;
 		bots_Intellicence = 300;
+		Timer_active_raycast_detection = nullptr;
 	}
 
 	GameManager::~GameManager()
@@ -77,6 +78,7 @@ namespace godot
 		register_method("_on_timer_Count_Down_timeout", &GameManager::_on_timer_Count_Down_timeout);
 		register_method("_on_Timer_Rotate_head_timeout", &GameManager::_on_Timer_Rotate_head_timeout);
 		register_method("_on_dollSing_finished", &GameManager::_on_dollSing_finished);
+		register_method("_on_Timer_active_raycast_detection_timeout", &GameManager::_on_Timer_active_raycast_detection_timeout);
 
 		register_signal<GameManager>("can_Walk", godot::Dictionary());
 
@@ -104,6 +106,7 @@ namespace godot
 		dollHeadOff = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollHeadOff")[0];
 		dollSingX2 = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollSingX2")[0];
 		Timer_Rotate_head = (Timer*)get_tree()->get_nodes_in_group("Timer_Rotate_head")[0];
+		Timer_active_raycast_detection = (Timer*)get_tree()->get_nodes_in_group("Timer_active_raycast_detection")[0];
 
 		headTimeFinishColorRect = (ColorRect*)get_tree()->get_nodes_in_group("headTimeFinishColorRect")[0];
 
@@ -240,7 +243,27 @@ namespace godot
 		Godot::print("termino el tiempo");
 	}
 
-	//si este timer no termino muere
+	//para rotar la cabeza cuando y ejecutar varias acciones con el raycast entre otros
+	void GameManager::_on_dollSing_finished()
+	{
+		RotHead(180,1);//rota 180 grados en 1 segundo
+		Timer_active_raycast_detection->set_wait_time(1);//el tiempo de espera es igual al de la rotación de la cabeza
+		Timer_active_raycast_detection->start();
+		
+		headTimeFinishColorRect->set_frame_color(Color(1, 0, 0));
+		int randomTime = random->randi_range(6,10);//tiempo entre 6 y 9 segundos para rotar cabeza
+		Timer_Rotate_head->set_wait_time(randomTime);//inicio el timer rotar cabeza
+		Timer_Rotate_head->start();//activo timer que si se mueven mueren
+		dollHeadOff->play();//sonido cabeza
+	}
+
+	//cuando paso el tiempo de timer, osea cuando roto la cabeza activo los raycast de deteccion
+	void GameManager::_on_Timer_active_raycast_detection_timeout()
+	{
+		headTimeFinish = true;
+	}
+
+	//Para volver a la cabeza a su posicion normal y asi pueden volver a moverse. si este timer no termino muere
 	void GameManager::_on_Timer_Rotate_head_timeout()
 	{
 		//Godot::print("tendria que VOLVER la cabeza");
@@ -248,11 +271,11 @@ namespace godot
 		RotHead(-180, 0.5);
 		dollHeadOn->play();//sonido cabeza
 		int random_dollSing = random->randi_range(0, 1);
-		
+
 		headTimeFinishColorRect->set_frame_color(Color(0, 1, 0));
-		
+
 		emit_signal("can_Walk");//emite la señal que se puede volver a caminar
-		
+
 		if (random_dollSing == 0)
 		{
 			dollSing->play();//activo sonido, cuando termina da vuelta la cabeza
@@ -261,19 +284,6 @@ namespace godot
 		{
 			dollSingX2->play();//activo sonido, cuando termina da vuelta la cabeza
 		}
-	}
-
-	void GameManager::_on_dollSing_finished()
-	{
-		//Godot::print("tendria que ROTAR la cabeza");
-		RotHead(180,1);
-		headTimeFinish = true;
-		headTimeFinishColorRect->set_frame_color(Color(1, 0, 0));
-		int randomTime = random->randi_range(6,10);
-		Timer_Rotate_head->set_wait_time(randomTime);
-		Timer_Rotate_head->start();//activo timer que si se mueven mueren
-		dollHeadOff->play();//sonido cabeza
-		Vector3 hola = Vector3(0, 0, 0);
 	}
 
 

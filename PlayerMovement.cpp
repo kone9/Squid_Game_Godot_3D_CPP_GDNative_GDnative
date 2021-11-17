@@ -83,7 +83,7 @@ namespace godot
 		register_method("CheckDeathTime", &PlayerMovement::CheckDeathTime);
 
 		//Variables para ver en el editor
-		register_property<PlayerMovement, float>("PlayerMovement", &PlayerMovement::Speed, 1);
+		register_property<PlayerMovement, float>("PlayerMovement", &PlayerMovement::Speed, 5);
 		register_property<PlayerMovement, float>("Sensitivity", &PlayerMovement::Sensitivity, 1);
 		register_property<PlayerMovement, float>("Jumpforce", &PlayerMovement::Jumpforce, 1);
 
@@ -148,19 +148,18 @@ namespace godot
 	//input event de Godot
 	void PlayerMovement::_input(const Ref<InputEvent> event)
 	{
-		//forma con mouse position
-		//PlayerMouseInput = get_viewport()->get_mouse_position();//posicion de mouse 
-		//PlayerMouseInput.x -= (get_viewport()->get_visible_rect().get_size().x / 2);//para que quede centrado
-		//PlayerMouseInput.y -= (get_viewport()->get_visible_rect().get_size().y / 2);//para que quede centrado
-		
-		//forma con input mouse event motion, Si agrego print funciona lento, OJO!
+		//forma con input mouse event motion, Si agrego muchos print funciona lento, OJO!
 		//Godot::print(event->get_class());
 		if ( event->is_class("InputEventMouseMotion") )//COMPRUEBA EL TIPO DE INSTANCIA "si el evento esta en la clase inputeventmousemotion"
 		{
 			InputEventMouseMotion *mouseMove = cast_to<InputEventMouseMotion>(*event);
 			PlayerMouseInput += mouseMove->get_relative();
 		}
-		
+
+		//forma con mouse position
+		//PlayerMouseInput = get_viewport()->get_mouse_position();//posicion de mouse 
+		//PlayerMouseInput.x -= (get_viewport()->get_visible_rect().get_size().x / 2);//para que quede centrado
+		//PlayerMouseInput.y -= (get_viewport()->get_visible_rect().get_size().y / 2);//para que quede centrado
 	}
 	
 	void PlayerMovement::MovePlayer()

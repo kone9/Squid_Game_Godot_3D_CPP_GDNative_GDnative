@@ -66,8 +66,9 @@ namespace godot
 					{
 						cast_to<BotAI>(bot)->is_dead = true;//este bot esta muerto
 						gameManager->bots_to_remove.append(bot);//agrego a la lista de bots a eliminar
-						Godot::print( String::num_int64 ( gameManager->bots_to_remove.size() ) );
 					}
+
+					Godot::print( String::num_int64 ( gameManager->bots_to_remove.size() ) );
 					
 				}
 			}

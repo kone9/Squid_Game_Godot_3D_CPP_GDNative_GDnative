@@ -167,6 +167,7 @@
     <ClInclude Include="Doll.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="MachineGun.h" />
     <ClInclude Include="PlayerMovement.h" />
     <ClInclude Include="PruebaVisualStudioDebug.h" />
     <ClInclude Include="resource.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="Doll.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GodotLibrary.cpp" />
+    <ClCompile Include="MachineGun.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
     <ClCompile Include="PruebaVisualStudioDebug.cpp" />
   </ItemGroup>

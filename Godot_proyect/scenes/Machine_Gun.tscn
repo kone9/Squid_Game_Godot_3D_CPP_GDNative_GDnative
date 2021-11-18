@@ -37,4 +37,6 @@ bus = "shootSound"
 [node name="Timer_shoot" type="Timer" parent="."]
 one_shot = true
 
+[node name="Tween_shoot" type="Tween" parent="."]
+
 [connection signal="timeout" from="Timer_shoot" to="." method="_on_Timer_shoot_timeout"]

@@ -14,6 +14,7 @@ namespace godot
 		is_shooting = false;
 		gameManager = nullptr;
 		random = nullptr;
+		Tween_shoot = nullptr;
 	}
 
 	MachineGun::~MachineGun()
@@ -37,6 +38,8 @@ namespace godot
 	{
 		Timer_shoot = get_node<Timer>("Timer_shoot");
 		Machine_Gun_Sound = get_node<AudioStreamPlayer3D>("Machine_Gun_Sound");
+		Tween_shoot = get_node<Tween>("Tween_shoot");
+
 		gameManager = (GameManager*)get_tree()->get_nodes_in_group("GameManager")[0];
 		random = RandomNumberGenerator::_new();
 		random->randomize();
@@ -51,16 +54,42 @@ namespace godot
 				if (!is_shooting)//sino estoy disparando
 				{
 					bot_to_kill = (RigidBody*)gameManager->bots_to_remove.pop_back();//guardo el último elemento del arerglo
-					shoot(bot_to_kill->get_transform().origin);//útilizo su posición para disparar
+					shoot();//útilizo su posición para disparar
 				}
+			}
+			if (bot_to_kill != nullptr && gameManager->headTimeFinish)
+			{
+				//look_at(bot_to_kill->get_transform().origin, Vector3::UP);//miro al bot
+				//Transform newLookAt = get_global_transform().looking_at(bot_to_kill->get_global_transform().origin, Vector3::ZERO);
+				
+				//obtener el vector hacia el rigidbody
+				Vector3 v = bot_to_kill->get_global_transform().origin - get_global_transform().origin;
+
+				//obtener el angulo hacia el rigidbody
+				float angle = get_global_transform().basis.z.angle_to(v);
+				float r = get_global_transform().basis.z.angle_to( get_rotation() );
+
+				//obtener la rotacion de este frame
+				Vector3 angle_delta = get_rotation_degrees() * delta;
+
+				//obtener la rotacion completa hacia el rigidbody
+				angle = godot::Math::lerp_angle(r, angle, 1);
+
+				//clamp para que no se pase la posicion
+				angle = godot::Math::clamp(angle, r - angle_delta, r + angle_delta);
+
+				//cambio la rotacion en el angulo nuevo
+				set_rotation_degrees( angle );
+
 			}
 		}
 	}
 
-	void MachineGun::shoot(Vector3 look_at_bot)
+
+	void MachineGun::shoot()
 	{
-		is_shooting = true;
 		//look_at(look_at_bot, Vector3::UP);//miro al bot
+		is_shooting = true;
 		float shoot_delay_random = random->randf_range(0.5, 2);
 		Timer_shoot->set_wait_time(shoot_delay_random);
 		Timer_shoot->start();//para activar shoot
@@ -71,7 +100,7 @@ namespace godot
 	{
 		if (gameManager->headTimeFinish)//si la cabeza esta dada vuelta
 		{
-			look_at(bot_to_kill->get_transform().origin, Vector3::UP);//miro al bot
+			//look_at(bot_to_kill->get_transform().origin, Vector3::UP);//miro al bot
 			Machine_Gun_Sound->play();
 			is_shooting = false;
 

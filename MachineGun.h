@@ -8,6 +8,7 @@
 #include <Node.hpp>
 #include "GameManager.h"
 #include <RandomNumberGenerator.hpp>
+#include <Tween.hpp>
 
 
 namespace godot
@@ -31,11 +32,12 @@ namespace godot
 		GameManager* gameManager;
 		bool is_shooting;//si esta disparando o no
 
-		void shoot(Vector3 look_at_bot);
+		void shoot();
 
 	private:
 		Timer* Timer_shoot;
 		RandomNumberGenerator* random;
+		Tween* Tween_shoot;
 
 	//senials
 	private:

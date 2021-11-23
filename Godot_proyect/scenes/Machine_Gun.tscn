@@ -39,4 +39,11 @@ one_shot = true
 
 [node name="Tween_shoot" type="Tween" parent="."]
 
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.1 )
+enabled = true
+cast_to = Vector3( 0, 0, -300 )
+debug_shape_custom_color = Color( 0, 0.976471, 1, 1 )
+debug_shape_thickness = 5.0
+
 [connection signal="timeout" from="Timer_shoot" to="." method="_on_Timer_shoot_timeout"]

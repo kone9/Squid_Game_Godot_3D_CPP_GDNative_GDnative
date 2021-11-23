@@ -31,6 +31,9 @@ namespace godot
 		AudioStreamPlayer3D* Machine_Gun_Sound;
 		GameManager* gameManager;
 		bool is_shooting;//si esta disparando o no
+		Transform initial_Transform;//initial transform of this Node
+		real_t value; //to use with delta time and rotate the rifle
+
 
 		void shoot();
 

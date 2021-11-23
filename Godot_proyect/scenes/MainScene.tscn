@@ -50,7 +50,8 @@ bots_Intellicence = 100
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
-transform = Transform( 0.988362, -0.094604, 0.119128, 0, 0.783104, 0.621891, -0.152123, -0.614654, 0.773989, 13.4025, 30.8394, 15.9207 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.62324, 117.939, -12.6717 )
+current = true
 far = 300.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
@@ -196,25 +197,31 @@ transform = Transform( -3.25841e-07, 0, 2, 0, 2, 0, -2, 0, -3.25841e-07, 0, 4.24
 
 [node name="Ojos_RayCast" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 30.0
 
 [node name="Ojos_RayCast2" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 40.0
 
 [node name="Ojos_RayCast3" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 50.0
 
 [node name="Ojos_RayCast4" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+debug_shape_thickness = 1.0
 
 [node name="Ojos_RayCast5" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 150.0
 
 [node name="Ojos_RayCast6" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763756 )
+debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 200.0
 
 [connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]

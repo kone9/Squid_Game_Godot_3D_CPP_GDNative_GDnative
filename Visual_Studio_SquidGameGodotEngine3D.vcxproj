@@ -85,7 +85,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>.\Godot_proyect\GDnative_Plugin_DLL\win64VisualStudioCompiler</OutDir>
-    <IncludePath>D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\include\gen;D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\include\core;D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\include;D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\godot-headers;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\src;D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\src\gen;D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\src\core;D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\include;D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\include\gen;D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\include\core;D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\godot-headers;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Visual Studio Proyectos\Visual_Studio_SquidGameGodotEngine3D\godot-cpp\bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

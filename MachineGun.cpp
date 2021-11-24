@@ -17,6 +17,7 @@ namespace godot
 		Tween_shoot = nullptr;
 		value = 0;
 		initial_Transform = Transform::IDENTITY; //The identity basis, with no rotation or scaling applied.
+		rotation_speed = 1;
 
 	}
 
@@ -31,6 +32,8 @@ namespace godot
 
 		//senials
 		register_method("_on_Timer_shoot_timeout", &MachineGun::_on_Timer_shoot_timeout);
+
+		register_property<MachineGun, real_t>("rotation_speed", &MachineGun::rotation_speed, 1);
 	}
 
 	void MachineGun::_init()
@@ -83,43 +86,48 @@ namespace godot
 			{
 				//look_at(bot_to_kill->get_transform().origin, Vector3::UP);//miro al bot
 
+
+
 				/*Transform look = get_global_transform().looking_at(bot_to_kill->get_global_transform().origin, Vector3::UP);
 				set_rotation_degrees(look.basis.z * delta);*/
 				
 				//////////////////////
 				////obtener el vector hacia el rigidbody
-				//Vector3 vector_direction = bot_to_kill->get_global_transform().origin - get_global_transform().origin;
+				Vector3 vector_direction = bot_to_kill->get_global_transform().origin - get_global_transform().origin;
 
-				////obtener el angulo hacia el rigidbody
-				//float angle_z = get_global_transform().basis.z.angle_to(vector_direction);//angulo en el eje z hacia el bot
-				//float angle_y = get_global_transform().basis.y.angle_to(vector_direction);//angulo en el eje z hacia el bot
-				//float r = get_global_transform().basis.z.angle_to( get_rotation() );
-				////vector3::slerp(vector3::zero, );
-				//
-				//////obtener la rotacion de este frame
-				//Vector3 angle_delta = get_rotation_degrees();
+				//get angle to the vector
+				float angle_z = get_global_transform().basis.z.angle_to(vector_direction);//angulo en el eje z hacia el bot
+				float angle_y = get_global_transform().basis.y.angle_to(vector_direction);//angulo en el eje z hacia el bot
+				float rotation_z = get_rotation_degrees().z;
+				float rotation_y = get_rotation_degrees().y;
+							
+				//get rotation allowed the frame
+				real_t angle_delta = rotation_speed * delta;
 
-				//////obtener la rotacion completa hacia el rigidbody
-				//angle = godot::Math::lerp_angle(r, angle, 1);
+				//////get complete rotation to ship
+				angle_z = godot::Math::lerp_angle(rotation_z, angle_z, 1);
+				angle_y = godot::Math::lerp_angle(rotation_y, angle_y, 1);
 
 				////clamp para que no se pase la posicion
-				//angle = godot::Math::clamp(angle, r - angle_delta, r + angle_delta);
+				angle_z = godot::Math::clamp(angle_z, rotation_z - angle_delta, rotation_z + angle_delta);
+				angle_y = godot::Math::clamp(angle_y, rotation_z - angle_delta, rotation_y + angle_delta);
 
 				////cambio la rotacion en el angulo nuevo
-				//set_rotation_degrees( angle );
+				set_rotation_degrees( Vector3(0, angle_y, angle_z) );
 
-				Transform t = get_transform();
-				//Transform t = get_global_transform();//get the global position
-				Vector3 lookDir = bot_to_kill->get_transform().origin - t.origin;//get the vector towards that object
-				Transform rotTransform = t.looking_at(lookDir, Vector3::UP );
-				//Quat thisRotation = Quat(t.basis).slerp( rotTransform.basis, value * 0.1 );//Assuming that the matrix is a proper rotation matrix, slerp performs a spherical-linear interpolation with another rotation matrix.
-				Quat thisRotation = Quat(t.basis).slerp( rotTransform.basis, value );//Assuming that the matrix is a proper rotation matrix, slerp performs a spherical-linear interpolation with another rotation matrix.
-				value += delta;
-				if (value > 1)
-				{
-					value = 1;
-				}
-				set_transform( Transform(thisRotation, t.origin) );//set transform with rotation
+				/////////////////////////////////////////////////////////////
+				//Transform t = get_global_transform();
+				////Transform t = get_global_transform();//get the global position
+				//Vector3 lookDir = bot_to_kill->get_global_transform().origin - t.origin;//get the vector towards that object
+				//Transform rotTransform = t.looking_at(lookDir, Vector3::UP );
+				////Quat thisRotation = Quat(t.basis).slerp( rotTransform.basis, value * 0.1 );//Assuming that the matrix is a proper rotation matrix, slerp performs a spherical-linear interpolation with another rotation matrix.
+				//Quat thisRotation = Quat(t.basis).slerp( rotTransform.basis, value );//Assuming that the matrix is a proper rotation matrix, slerp performs a spherical-linear interpolation with another rotation matrix.
+				//value += delta;
+				//if (value > 1)
+				//{
+				//	value = 1;
+				//}
+				//set_transform( Transform(thisRotation, t.origin) );//set transform with rotation
 
 			}
 		}

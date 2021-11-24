@@ -33,6 +33,7 @@ namespace godot
 		bool is_shooting;//si esta disparando o no
 		Transform initial_Transform;//initial transform of this Node
 		real_t value; //to use with delta time and rotate the rifle
+		real_t rotation_speed;
 
 
 		void shoot();

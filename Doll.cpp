@@ -54,23 +54,22 @@ namespace godot
 		{
 			force_raycast_update();
 			rotate_raycast(delta);//roto el raycast constantemente
+
 			if (is_colliding())//si colisiona el raycast
 			{
 				RigidBody* bot = cast_to<RigidBody>(get_collider());//obtengo el nodo rigibody colisionado
+				
 				if (bot->get_linear_velocity().z != 0 || bot->get_linear_velocity().x != 0)//si su lineal velocity en el eje z es distion de cero
 				{
-					//Godot::print(bot->get_name());//imprimo el nombre
-					//Godot::print(String::num_real( bot->get_linear_velocity().z) );//imprimo el nombre
-					//bot->queue_free();//lo elimino
 					if (!cast_to<BotAI>(bot)->is_dead)//si el bot no esta muerto
 					{
 						cast_to<BotAI>(bot)->is_dead = true;//este bot esta muerto
 						gameManager->bots_to_remove.append(bot);//agrego a la lista de bots a eliminar
+						/*Godot::print( String::num_int64( gameManager->bots_to_remove.size() ) );*/
 					}
-
-					//Godot::print( String::num_int64 ( gameManager->bots_to_remove.size() ) );
 					
 				}
+
 			}
 
 		}

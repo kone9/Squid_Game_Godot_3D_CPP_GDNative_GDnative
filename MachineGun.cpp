@@ -17,7 +17,7 @@ namespace godot
 		Tween_shoot = nullptr;
 		value = 0;
 		initial_Transform = Transform::IDENTITY; //The identity basis, with no rotation or scaling applied.
-		rotation_speed = 4;
+		rotation_speed = 6;
 
 	}
 
@@ -33,7 +33,7 @@ namespace godot
 		//senials
 		register_method("_on_Timer_shoot_timeout", &MachineGun::_on_Timer_shoot_timeout);
 
-		register_property<MachineGun, real_t>("rotation_speed", &MachineGun::rotation_speed, 4);
+		register_property<MachineGun, real_t>("rotation_speed", &MachineGun::rotation_speed, 6);
 	}
 
 	void MachineGun::_init()
@@ -68,9 +68,8 @@ namespace godot
 			//	value = 0;
 			//}
 			//set_transform(Transform(thisRotation, t.origin));
-			
-			
-			set_rotation_degrees(Vector3::ZERO);
+
+			//set_rotation_degrees(Vector3::ZERO);
 		}
 		if (gameManager->headTimeFinish)//si la cabeza esta dada vuelta
 		{
@@ -85,41 +84,12 @@ namespace godot
 			if (bot_to_kill != nullptr && gameManager->headTimeFinish)
 			{
 				//look_at(bot_to_kill->get_transform().origin, Vector3::UP);//miro al bot
-				//
-				//Vector3 vector_direction = bot_to_kill->get_global_transform().origin - get_global_transform().origin;
-				//float angle_x = get_global_transform().basis.x.angle_to(vector_direction );//angulo en el eje z hacia el bot
-				//
-				//Godot::print(String::num_real(get_rotation_degrees().x));
-				//Godot::print(String::num_real(angle_x));
 
-
-				///////////Forma de rotar 1 no funciona///////////
-				////obtener el vector hacia el rigidbody
-				//Vector3 vector_direction = bot_to_kill->get_global_transform().origin - get_global_transform().origin;
-				////get angle to the vector
-				//float angle_x = get_global_transform().basis.x.angle_to(vector_direction);//angulo en el eje z hacia el bot
-				//float angle_y = get_global_transform().basis.y.angle_to(vector_direction);//angulo en el eje z hacia el bot
-				//float rotation_x = get_rotation_degrees().x;
-				//float rotation_y = get_rotation_degrees().y;
-				////Godot::print(String::num_real(angle_z));
-				////get rotation allowed the frame
-				//real_t angle_delta = rotation_speed * delta;
-				////////get complete rotation to ship
-				//angle_x = godot::Math::lerp_angle(rotation_x, angle_x, 1);
-				//angle_y = godot::Math::lerp_angle(rotation_y, angle_y, 1);
-				//////clamp para que no se pase la posicion
-				//angle_x = godot::Math::clamp(angle_x, rotation_x - angle_delta, rotation_x + angle_delta);
-				//angle_y = godot::Math::clamp(angle_y, rotation_x - angle_delta, rotation_y + angle_delta);
-				//////cambio la rotacion en el angulo nuevo
-				//set_rotation_degrees( Vector3(angle_x, angle_y, 0) );
-
-				///////////////////Forma para rotar 2 no funciona//////////////////////////////////////////
-				Transform t = get_global_transform();
+				Transform t = get_global_transform();//get global transform
 
 				Vector3 lookDir = bot_to_kill->get_global_transform().origin - t.origin;//get the vector towards that object
 			
-				Transform rotTransform = t.looking_at(get_global_transform().origin + lookDir, Vector3::UP );
-				Godot::print(rotTransform.basis.x);
+				Transform rotTransform = t.looking_at( t.origin + lookDir, Vector3::UP );//rotation direction with vector  + global position this machine gun
 
 				Quat thisRotation = Quat(t.basis).slerp( rotTransform.basis, delta * rotation_speed);//Assuming that the matrix is a proper rotation matrix, slerp performs a spherical-linear interpolation with another rotation matrix.
 				value += delta;
@@ -127,7 +97,7 @@ namespace godot
 				{
 					value = 1;
 				}
-				set_transform( Transform(thisRotation, t.origin) );//set transform with rotation
+				set_transform( Transform(thisRotation, t.origin) );//set transform with rotation slerp
 
 			}
 		}

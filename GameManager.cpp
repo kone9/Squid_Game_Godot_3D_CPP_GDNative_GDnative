@@ -261,6 +261,14 @@ namespace godot
 	void GameManager::_on_Timer_active_raycast_detection_timeout()
 	{
 		headTimeFinish = true;
+		if (bots_to_remove.empty())
+		{
+			Godot::print("la lista de objetos a remover esta vacia");
+		}
+		else
+		{
+			Godot::print("la lista de objetos a NO esta vacia");
+		}
 	}
 
 	//Para volver a la cabeza a su posicion normal y asi pueden volver a moverse. si este timer no termino muere
@@ -268,7 +276,7 @@ namespace godot
 	{
 		//Godot::print("tendria que VOLVER la cabeza");
 		headTimeFinish = false;//cuando termina el tiempo puede moverse, sino no pueden moverse
-		//bots_to_remove.clear();//Clears the array. This is equivalent to using resize with a size of 0.
+		bots_to_remove.clear();//Clears the array. This is equivalent to using resize with a size of 0.
 		RotHead(-180, 0.5);
 		dollHeadOn->play();//sonido cabeza
 		int random_dollSing = random->randi_range(0, 1);

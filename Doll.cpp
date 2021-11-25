@@ -59,11 +59,12 @@ namespace godot
 			{
 				RigidBody* bot = cast_to<RigidBody>(get_collider());//obtengo el nodo rigibody colisionado
 				
+				
 				if (bot->get_linear_velocity().z != 0 || bot->get_linear_velocity().x != 0)//si su lineal velocity en el eje z es distion de cero
 				{
-					if (!cast_to<BotAI>(bot)->is_dead)//si el bot no esta muerto
+					if (!cast_to<BotAI>(bot)->is_to_die)//if bot NOT is to day
 					{
-						cast_to<BotAI>(bot)->is_dead = true;//este bot esta muerto
+						cast_to<BotAI>(bot)->is_to_die = true;
 						gameManager->bots_to_remove.append(bot);//agrego a la lista de bots a eliminar
 						/*Godot::print( String::num_int64( gameManager->bots_to_remove.size() ) );*/
 					}

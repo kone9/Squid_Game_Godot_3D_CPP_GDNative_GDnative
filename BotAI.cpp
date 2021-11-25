@@ -33,7 +33,7 @@ namespace godot
 		TimerDeadthAnimation = nullptr;
 		deathSound = nullptr;
 		is_collided_with_another_bot = false;
-		is_dead = false;
+		is_to_die = false;
 
 	}
 

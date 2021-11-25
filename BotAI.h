@@ -29,7 +29,7 @@ namespace godot
             void _physics_process(const real_t delta);
         
         public:
-            bool is_dead;
+            bool is_to_die;
 
         private:
             RandomNumberGenerator *random;
@@ -61,9 +61,10 @@ namespace godot
             bool AIChecked;//para saber si la IA esta verificada
             bool isStopped;//si esta detenido
             bool isInDeathZone;//si esta en la zona de morir
-            bool isDying;//si esta mueriendo
             float intelligence;//la inteligencia de este bot
 
+        bool isDying;//si esta muerto
+        
         //Metodos
         private:
             void Move(const real_t delta);

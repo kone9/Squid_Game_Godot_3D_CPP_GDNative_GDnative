@@ -9,6 +9,7 @@
 #include "GameManager.h"
 #include <RandomNumberGenerator.hpp>
 #include <Tween.hpp>
+#include <AnimationPlayer.hpp>
 
 
 namespace godot
@@ -42,6 +43,7 @@ namespace godot
 		Timer* Timer_shoot;
 		RandomNumberGenerator* random;
 		Tween* Tween_shoot;
+		AnimationPlayer* animationPlayer;
 
 	//senials
 	private:

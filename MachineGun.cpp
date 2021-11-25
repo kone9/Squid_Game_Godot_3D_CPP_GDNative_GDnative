@@ -4,6 +4,7 @@
 #include <RigidBody.hpp>
 
 
+
 namespace godot
 {
 	MachineGun::MachineGun()
@@ -15,6 +16,7 @@ namespace godot
 		gameManager = nullptr;
 		random = nullptr;
 		Tween_shoot = nullptr;
+		animationPlayer = nullptr;
 		value = 0;
 		initial_Transform = Transform::IDENTITY; //The identity basis, with no rotation or scaling applied.
 		rotation_speed = 6;
@@ -45,6 +47,7 @@ namespace godot
 		Timer_shoot = get_node<Timer>("Timer_shoot");
 		Machine_Gun_Sound = get_node<AudioStreamPlayer3D>("Machine_Gun_Sound");
 		Tween_shoot = get_node<Tween>("Tween_shoot");
+		animationPlayer = get_node<AnimationPlayer>("AnimationPlayer");
 
 		gameManager = (GameManager*)get_tree()->get_nodes_in_group("GameManager")[0];
 		random = RandomNumberGenerator::_new();
@@ -108,28 +111,48 @@ namespace godot
 	{
 		//look_at(look_at_bot, Vector3::UP);//miro al bot
 		is_shooting = true;
-		float shoot_delay_random = random->randf_range(0.5, 2);
+		
+		float shoot_delay_random = random->randf_range(0.2, 0.3);
 		Timer_shoot->set_wait_time(shoot_delay_random);
 		Timer_shoot->start();//para activar shoot
 	}
 
-	//disparo cuando termina el delay
 	void MachineGun::_on_Timer_shoot_timeout()
 	{
 		if (gameManager->headTimeFinish)//si la cabeza esta dada vuelta
 		{
 			//look_at(bot_to_kill->get_transform().origin, Vector3::UP);//miro al bot
 			Machine_Gun_Sound->play();
-			is_shooting = false;
+			animationPlayer->play("shoot");
 
 			bot_to_kill->queue_free();
 			bot_to_kill = nullptr;
 		}
-		else
+		else//si la cabeza no esta dada vuelta
 		{
-			is_shooting = false;
 			bot_to_kill = nullptr;
 		}
+		is_shooting = false;
 	}
+
+	//disparo cuando termina el delay
+	//void MachineGun::_on_Timer_shoot_timeout()
+	//{
+	//	if (gameManager->headTimeFinish)//si la cabeza esta dada vuelta
+	//	{
+	//		//look_at(bot_to_kill->get_transform().origin, Vector3::UP);//miro al bot
+	//		Machine_Gun_Sound->play();
+	//		animationPlayer->play("shoot");
+	//		is_shooting = false;
+
+	//		bot_to_kill->queue_free();
+	//		bot_to_kill = nullptr;
+	//	}
+	//	else//si la cabeza no esta dada vuelta
+	//	{
+	//		is_shooting = false;
+	//		bot_to_kill = nullptr;
+	//	}
+	//}
 
 }

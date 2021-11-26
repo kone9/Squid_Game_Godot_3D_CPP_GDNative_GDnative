@@ -2,6 +2,7 @@
 #include <RigidBody.hpp>
 #include <SceneTree.hpp>
 #include "BotAI.h"
+#include "PlayerMovement.h"
 
 namespace godot
 {
@@ -58,17 +59,28 @@ namespace godot
 			if (is_colliding())//si colisiona el raycast
 			{
 				RigidBody* bot = cast_to<RigidBody>(get_collider());//obtengo el nodo rigibody colisionado
-				
-				//tengo que agregar un grupo para cada tipo de objeto colisionado
+
 				if (bot->get_linear_velocity().z != 0 || bot->get_linear_velocity().x != 0)//si su lineal velocity en el eje z es distion de cero
 				{
-					if (!cast_to<BotAI>(bot)->is_to_die)//if bot NOT is to day
+					if ( cast_to<Node>(bot)->is_in_group("Bot") )//if it is a bot 
 					{
-						cast_to<BotAI>(bot)->is_to_die = true;
-						gameManager->bots_to_remove.append(bot);//agrego a la lista de bots a eliminar
-						/*Godot::print( String::num_int64( gameManager->bots_to_remove.size() ) );*/
+						if (!cast_to<BotAI>(bot)->is_to_die)//if bot NOT is to day
+						{
+							cast_to<BotAI>(bot)->is_to_die = true;
+							gameManager->bots_to_remove.append(bot);//agrego a la lista de bots a eliminar
+							/*Godot::print( String::num_int64( gameManager->bots_to_remove.size() ) );*/
+						}
 					}
-					
+					if (cast_to<Node>(bot)->is_in_group("Player"))//if it is a Player 
+					{
+						if (!cast_to<PlayerMovement>(bot)->isDying)//if bot NOT is to day
+						{
+							cast_to<PlayerMovement>(bot)->isDying = true;
+							gameManager->bots_to_remove.append(bot);//agrego a la lista de bots a eliminar
+							/*Godot::print( String::num_int64( gameManager->bots_to_remove.size() ) );*/
+						}
+					}
+
 				}
 
 			}

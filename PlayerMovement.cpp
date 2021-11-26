@@ -37,13 +37,13 @@ namespace godot
 		//Rigidbody PlayerBody; NO ES NECESARIO REFERENCIA A EL MISMO ACA NO HAY COMPONENTES SINO NODOS
 
 		//variable para ver en el editor
-		Speed = 0;
+		Speed = 5;
 
 		//variable para ver en el editor
-		Sensitivity = 0;
+		Sensitivity = 1;
 
 		//variable para ver en el editor
-		Jumpforce = 0;
+		Jumpforce = 1;
 
 		//variable para ver en el editor
 		feetSteps = nullptr;
@@ -59,8 +59,6 @@ namespace godot
 		areaDetectarSuelo = nullptr;
 
 		canMove = true;
-
-		is_to_die = false;
 	}
 
 	PlayerMovement::~PlayerMovement()

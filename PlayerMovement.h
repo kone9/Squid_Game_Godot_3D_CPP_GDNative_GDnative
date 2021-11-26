@@ -35,7 +35,7 @@ namespace godot
 		void _input(const Ref<InputEvent> event);
 	
 	public:
-		bool is_to_die;//if to die character
+		bool isDying;//esta muriendo
 
 	//senials
 	private:
@@ -62,7 +62,6 @@ namespace godot
 		bool isJumping;//si esta saltando
 		bool isWalking;//si esta caminando
 		bool isMoving;//si esta movimiendose
-		bool isDying;//esta muriendo
 		bool isInDeathZone;//esta en zona de muerto
 
 		//variable para ver en el editor colisicon

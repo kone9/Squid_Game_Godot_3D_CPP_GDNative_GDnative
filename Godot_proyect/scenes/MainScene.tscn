@@ -116,9 +116,6 @@ material/0 = null
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 3.13357, -78.3743 )
-PlayerMovement = 6.0
-Sensitivity = 1.1
-Jumpforce = 2.0
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0

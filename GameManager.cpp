@@ -277,13 +277,13 @@ namespace godot
 	{
 		//Godot::print("tendria que VOLVER la cabeza");
 		headTimeFinish = false;//cuando termina el tiempo puede moverse, sino no pueden moverse
-		for (int i = 0; i < bots_to_remove.size() -1; i++)
+		for (int i = 0; i < bots_to_remove.size() -1; i++)// I go through the list of bots to eliminate
 		{
-			cast_to<BotAI>(bots_to_remove[i])->is_to_die = false;
+			cast_to<BotAI>(bots_to_remove[i])->is_to_die = false;// this bot will not be removed
 		}
 		bots_to_remove.clear();//Clears the array. This is equivalent to using resize with a size of 0.
 		RotHead(-180, 0.5);
-		dollHeadOn->play();//sonido cabeza
+		dollHeadOn->play();//head sound
 		int random_dollSing = random->randi_range(0, 1);
 
 		headTimeFinishColorRect->set_frame_color(Color(0, 1, 0));

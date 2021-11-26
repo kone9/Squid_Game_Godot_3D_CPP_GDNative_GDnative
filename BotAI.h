@@ -35,7 +35,6 @@ namespace godot
             RandomNumberGenerator *random;
             Node* gameManager;
             Timer* TimerDeadthAnimation;
-            AudioStreamPlayer3D* deathSound;
             bool is_collided_with_another_bot;
 
         private:

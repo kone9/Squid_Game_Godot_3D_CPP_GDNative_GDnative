@@ -45,12 +45,13 @@ font_data = ExtResource( 5 )
 script = ExtResource( 3 )
 totalBots = 100
 Bot = ExtResource( 2 )
-bots_Intellicence = 120
+bots_Intellicence = 100
 
 [node name="Light_and_camera" type="Spatial" parent="."]
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
 transform = Transform( 0.649444, -0.365748, 0.66667, 0, 0.876726, 0.480989, -0.760408, -0.312376, 0.569385, 75.6373, 57.1076, 72.3185 )
+current = true
 far = 300.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]

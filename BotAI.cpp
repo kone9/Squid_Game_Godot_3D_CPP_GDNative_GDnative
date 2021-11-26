@@ -31,7 +31,6 @@ namespace godot
 		random = nullptr;
 		gameManager = nullptr;
 		TimerDeadthAnimation = nullptr;
-		deathSound = nullptr;
 		is_collided_with_another_bot = false;
 		is_to_die = false;
 
@@ -92,7 +91,6 @@ namespace godot
 		//deathZone = GameObject.Find("DeathZone").transform;
 		//deathZone = get_tree()->get_nodes_in_group("DeathZone")[0];
 
-		deathSound = get_node<AudioStreamPlayer3D>("deathSound");
 		
 		TimerDeadthAnimation = get_node<Timer>("TimerDeadthAnimation");
 

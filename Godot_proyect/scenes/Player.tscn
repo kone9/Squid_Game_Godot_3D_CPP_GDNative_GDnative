@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/GDnative/PlayerMovement.gdns" type="Script" id=1]
+[ext_resource path="res://sound/Skil Saw Hit on Body.mp3" type="AudioStream" id=2]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -33,7 +34,6 @@ material/0 = null
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 3, -7 )
-current = true
 far = 200.0
 
 [node name="AreaDetectarSuelo" type="Area" parent="."]
@@ -42,6 +42,11 @@ collision_layer = 3
 [node name="CollisionShape" type="CollisionShape" parent="AreaDetectarSuelo"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0739011, 0 )
 shape = SubResource( 5 )
+
+[node name="Sound_Dead" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 2 )
+unit_size = 40.0
+bus = "Sound_Dead"
 
 [connection signal="area_entered" from="AreaDetectarSuelo" to="." method="_on_AreaDetectarSuelo_area_entered"]
 [connection signal="area_exited" from="AreaDetectarSuelo" to="." method="_on_AreaDetectarSuelo_area_exited"]

@@ -4,6 +4,7 @@
 #include <RigidBody.hpp>
 #include "BotAI.h"
 #include "PlayerMovement.h"
+#include <AudioStreamPlayer3D.hpp>
 
 namespace godot
 {
@@ -127,11 +128,13 @@ namespace godot
 
 			if (cast_to<Node>(bot_to_kill)->is_in_group("Bot"))// is a bot
 			{
+				cast_to<Node>(bot_to_kill)->get_node<AudioStreamPlayer3D>("Sound_Dead")->play();
 				bot_to_kill->queue_free();//temporarily delete
 			}
 
 			if (cast_to<Node>(bot_to_kill)->is_in_group("Player"))//is a player
 			{
+				cast_to<Node>(bot_to_kill)->get_node<AudioStreamPlayer3D>("Sound_Dead")->play();
 				cast_to<PlayerMovement>(bot_to_kill)->isDying = true;
 				//bot_to_kill->queue_free();//temporarily delete
 			}

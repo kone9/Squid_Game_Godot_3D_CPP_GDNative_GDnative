@@ -59,6 +59,8 @@ namespace godot
 		areaDetectarSuelo = nullptr;
 
 		canMove = true;
+
+		is_to_die = false;
 	}
 
 	PlayerMovement::~PlayerMovement()
@@ -147,16 +149,16 @@ namespace godot
 	{
 		//forma con input mouse event motion, Si agrego muchos print funciona lento, OJO!
 		//Godot::print(event->get_class());
-		if ( event->is_class("InputEventMouseMotion") )//COMPRUEBA EL TIPO DE INSTANCIA "si el evento esta en la clase inputeventmousemotion"
-		{
-			InputEventMouseMotion *mouseMove = cast_to<InputEventMouseMotion>(*event);
-			PlayerMouseInput += mouseMove->get_relative();
-		}
+		//if ( event->is_class("InputEventMouseMotion") )//COMPRUEBA EL TIPO DE INSTANCIA "si el evento esta en la clase inputeventmousemotion"
+		//{
+		//	InputEventMouseMotion *mouseMove = cast_to<InputEventMouseMotion>(*event);
+		//	PlayerMouseInput += mouseMove->get_relative();
+		//}
 
 		//forma con mouse position
-		//PlayerMouseInput = get_viewport()->get_mouse_position();//posicion de mouse 
-		//PlayerMouseInput.x -= (get_viewport()->get_visible_rect().get_size().x / 2);//para que quede centrado
-		//PlayerMouseInput.y -= (get_viewport()->get_visible_rect().get_size().y / 2);//para que quede centrado
+		PlayerMouseInput = get_viewport()->get_mouse_position();//posicion de mouse 
+		PlayerMouseInput.x -= (get_viewport()->get_visible_rect().get_size().x / 2);//para que quede centrado
+		PlayerMouseInput.y -= (get_viewport()->get_visible_rect().get_size().y / 2);//para que quede centrado
 	}
 	
 	void PlayerMovement::MovePlayer()

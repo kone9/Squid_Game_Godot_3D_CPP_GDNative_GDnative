@@ -33,6 +33,9 @@ namespace godot
 		void _process(const real_t delta);
 		void _integrate_forces(const PhysicsDirectBodyState* state);
 		void _input(const Ref<InputEvent> event);
+	
+	public:
+		bool is_to_die;//if to die character
 
 	//senials
 	private:

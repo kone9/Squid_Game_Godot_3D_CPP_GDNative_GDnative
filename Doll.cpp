@@ -59,7 +59,7 @@ namespace godot
 			{
 				RigidBody* bot = cast_to<RigidBody>(get_collider());//obtengo el nodo rigibody colisionado
 				
-				
+				//tengo que agregar un grupo para cada tipo de objeto colisionado
 				if (bot->get_linear_velocity().z != 0 || bot->get_linear_velocity().x != 0)//si su lineal velocity en el eje z es distion de cero
 				{
 					if (!cast_to<BotAI>(bot)->is_to_die)//if bot NOT is to day

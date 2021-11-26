@@ -51,7 +51,6 @@ bots_Intellicence = 120
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
 transform = Transform( 0.768843, 0.234355, -0.594944, 0, 0.930417, 0.366501, 0.639437, -0.281782, 0.715344, -71.4715, 46.8554, 71.9109 )
-current = true
 far = 300.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
@@ -116,7 +115,10 @@ material/0 = null
 [node name="bots_instance_tree" type="Spatial" parent="." groups=["bots_instance_tree"]]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 1.91357, -78.3743 )
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 3.13357, -78.3743 )
+PlayerMovement = 6.0
+Sensitivity = 1.1
+Jumpforce = 2.0
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0

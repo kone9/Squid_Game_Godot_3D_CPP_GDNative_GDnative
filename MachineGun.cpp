@@ -3,7 +3,7 @@
 #include <SceneTree.hpp>
 #include <RigidBody.hpp>
 #include "BotAI.h"
-
+#include "PlayerMovement.h"
 
 namespace godot
 {
@@ -125,14 +125,31 @@ namespace godot
 			Machine_Gun_Sound->play();
 			animationPlayer->play("shoot");
 
-			bot_to_kill->queue_free();
+			if (cast_to<Node>(bot_to_kill)->is_in_group("Bot"))// is a bot
+			{
+				bot_to_kill->queue_free();//temporarily delete
+			}
+
+			if (cast_to<Node>(bot_to_kill)->is_in_group("Player"))//is a player
+			{
+				cast_to<PlayerMovement>(bot_to_kill)->isDying = true;
+				//bot_to_kill->queue_free();//temporarily delete
+			}
+
 			bot_to_kill = nullptr;
 		}
 		else//si la cabeza no esta dada vuelta
 		{
 			if (bot_to_kill != nullptr)
 			{
-				cast_to<BotAI>(bot_to_kill)->is_to_die = false;
+				if (cast_to<Node>(bot_to_kill)->is_in_group("Bot"))// is a bot
+				{
+					cast_to<BotAI>(bot_to_kill)->is_to_die = false;
+				}
+				if (cast_to<Node>(bot_to_kill)->is_in_group("Player"))//is a player
+				{
+					cast_to<PlayerMovement>(bot_to_kill)->isDying = false;
+				}
 				bot_to_kill = nullptr;
 			}
 		}

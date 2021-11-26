@@ -68,14 +68,12 @@ namespace godot
 						{
 							cast_to<BotAI>(bot)->is_to_die = true;
 							gameManager->bots_to_remove.append(bot);//agrego a la lista de bots a eliminar
-							/*Godot::print( String::num_int64( gameManager->bots_to_remove.size() ) );*/
 						}
 					}
 					if (cast_to<Node>(bot)->is_in_group("Player"))//if it is a Player 
 					{
-						if (!cast_to<PlayerMovement>(bot)->isDying)//if bot NOT is to day
+						if (!cast_to<PlayerMovement>(bot)->isDying)//if player NOT is to dead
 						{
-							cast_to<PlayerMovement>(bot)->isDying = true;
 							gameManager->bots_to_remove.append(bot);//agrego a la lista de bots a eliminar
 							/*Godot::print( String::num_int64( gameManager->bots_to_remove.size() ) );*/
 						}

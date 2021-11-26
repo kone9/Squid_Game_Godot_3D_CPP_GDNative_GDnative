@@ -132,6 +132,7 @@ namespace godot
 
 	void PlayerMovement::_physics_process(const real_t delta)
 	{
+		if (isDying) { return; }
 		MovePlayer();//muevo el personaje
 		CheckMoving();//verifiva si se mueve, si salta o camina se esta moviendo
 	}
@@ -147,22 +148,21 @@ namespace godot
 	{
 		//forma con input mouse event motion, Si agrego muchos print funciona lento, OJO!
 		//Godot::print(event->get_class());
-		//if ( event->is_class("InputEventMouseMotion") )//COMPRUEBA EL TIPO DE INSTANCIA "si el evento esta en la clase inputeventmousemotion"
-		//{
-		//	InputEventMouseMotion *mouseMove = cast_to<InputEventMouseMotion>(*event);
-		//	PlayerMouseInput += mouseMove->get_relative();
-		//}
+		if ( event->is_class("InputEventMouseMotion") )//COMPRUEBA EL TIPO DE INSTANCIA "si el evento esta en la clase inputeventmousemotion"
+		{
+			InputEventMouseMotion *mouseMove = cast_to<InputEventMouseMotion>(*event);
+			PlayerMouseInput += mouseMove->get_relative();
+		}
 
 		//forma con mouse position
-		PlayerMouseInput = get_viewport()->get_mouse_position();//posicion de mouse 
-		PlayerMouseInput.x -= (get_viewport()->get_visible_rect().get_size().x / 2);//para que quede centrado
-		PlayerMouseInput.y -= (get_viewport()->get_visible_rect().get_size().y / 2);//para que quede centrado
+		//PlayerMouseInput = get_viewport()->get_mouse_position();//posicion de mouse 
+		//PlayerMouseInput.x -= (get_viewport()->get_visible_rect().get_size().x / 2);//para que quede centrado
+		//PlayerMouseInput.y -= (get_viewport()->get_visible_rect().get_size().y / 2);//para que quede centrado
 	}
 	
 	void PlayerMovement::MovePlayer()
 	{
 		//		Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
-		
 		Vector3 move_vector_Horizontal = get_transform().basis.x * PlayerMovementInput.normalized().x * Speed;
 		Vector3 move_vector_vertical = get_transform().basis.z * PlayerMovementInput.normalized().z * Speed;
 		Vector3 MoveVector = move_vector_vertical + move_vector_Horizontal;//tiene que ser vector forward posiblemente aca tenga un error

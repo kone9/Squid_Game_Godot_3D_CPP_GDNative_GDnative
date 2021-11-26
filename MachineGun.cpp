@@ -2,7 +2,7 @@
 #include "BotAI.h"
 #include <SceneTree.hpp>
 #include <RigidBody.hpp>
-
+#include "BotAI.h"
 
 
 namespace godot
@@ -130,7 +130,11 @@ namespace godot
 		}
 		else//si la cabeza no esta dada vuelta
 		{
-			bot_to_kill = nullptr;
+			if (bot_to_kill != nullptr)
+			{
+				cast_to<BotAI>(bot_to_kill)->is_to_die = false;
+				bot_to_kill = nullptr;
+			}
 		}
 		is_shooting = false;
 	}

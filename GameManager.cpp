@@ -4,6 +4,7 @@
 #include <CollisionShape.hpp>
 #include <Shape.hpp>
 #include <BoxShape.hpp>
+#include "BotAI.h"
 
 namespace godot 
 {
@@ -276,6 +277,10 @@ namespace godot
 	{
 		//Godot::print("tendria que VOLVER la cabeza");
 		headTimeFinish = false;//cuando termina el tiempo puede moverse, sino no pueden moverse
+		for (int i = 0; i < bots_to_remove.size() -1; i++)
+		{
+			cast_to<BotAI>(bots_to_remove[i])->is_to_die = false;
+		}
 		bots_to_remove.clear();//Clears the array. This is equivalent to using resize with a size of 0.
 		RotHead(-180, 0.5);
 		dollHeadOn->play();//sonido cabeza

@@ -88,25 +88,28 @@ namespace godot
 			if (bot_to_kill != nullptr && gameManager->headTimeFinish)
 			{
 				//look_at(bot_to_kill->get_transform().origin, Vector3::UP);//miro al bot
-
-				Transform t = get_global_transform();//get global transform
-
-				Vector3 lookDir = bot_to_kill->get_global_transform().origin - t.origin;//get the vector towards that object
-			
-				Transform rotTransform = t.looking_at( t.origin + lookDir, Vector3::UP );//rotation direction with vector  + global position this machine gun
-
-				Quat thisRotation = Quat(t.basis).slerp( rotTransform.basis, delta * rotation_speed);//Assuming that the matrix is a proper rotation matrix, slerp performs a spherical-linear interpolation with another rotation matrix.
-				value += delta;
-				if (value > 1)
-				{
-					value = 1;
-				}
-				set_transform( Transform(thisRotation, t.origin) );//set transform with rotation slerp
-
+				look_at_with_rotate_smooth(delta);
 			}
 		}
 	}
 
+	//look at with smooth using vector looking at movel with quaternions rotation
+	void MachineGun::look_at_with_rotate_smooth(real_t delta)
+	{
+		Transform t = get_global_transform();//get global transform
+
+		Vector3 lookDir = bot_to_kill->get_global_transform().origin - t.origin;//get the vector towards that object
+
+		Transform rotTransform = t.looking_at(t.origin + lookDir, Vector3::UP);//rotation direction with vector  + global position this machine gun
+
+		Quat thisRotation = Quat(t.basis).slerp(rotTransform.basis, delta * rotation_speed);//Assuming that the matrix is a proper rotation matrix, slerp performs a spherical-linear interpolation with another rotation matrix.
+		value += delta;
+		if (value > 1)
+		{
+			value = 1;
+		}
+		set_transform(Transform(thisRotation, t.origin));//set transform with rotation slerp
+	}
 
 	void MachineGun::shoot()
 	{
@@ -158,6 +161,8 @@ namespace godot
 		}
 		is_shooting = false;
 	}
+
+	
 
 	//disparo cuando termina el delay
 	//void MachineGun::_on_Timer_shoot_timeout()

@@ -9,8 +9,8 @@
 [ext_resource path="res://sound/dollHeadOn.mp3" type="AudioStream" id=7]
 [ext_resource path="res://sound/dollHeadOff.mp3" type="AudioStream" id=8]
 [ext_resource path="res://sound/dollSingX2.mp3" type="AudioStream" id=9]
+[ext_resource path="res://scenes/Machine_Gun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Eyes_RayCast.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/multiple_machines_GUNS.tscn" type="PackedScene" id=12]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 80, 0.2, 80 )
@@ -45,7 +45,6 @@ font_data = ExtResource( 5 )
 script = ExtResource( 3 )
 totalBots = 100
 Bot = ExtResource( 2 )
-bots_Intellicence = 100
 
 [node name="Light_and_camera" type="Spatial" parent="."]
 
@@ -116,7 +115,7 @@ material/0 = null
 [node name="bots_instance_tree" type="Spatial" parent="." groups=["bots_instance_tree"]]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 3.13357, -78.3743 )
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 2.03357, -80.3243 )
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -187,7 +186,7 @@ transform = Transform( -3.25841e-07, 0, 2, 0, 2, 0, -2, 0, -3.25841e-07, 0, 4.24
 
 [node name="Ojos_RayCast" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
-speed_rot_raycast_lateral = 20.0
+speed_rot_raycast_lateral = 30.0
 
 [node name="Ojos_RayCast2" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
@@ -197,21 +196,21 @@ speed_rot_raycast_lateral = 40.0
 [node name="Ojos_RayCast3" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
 debug_shape_thickness = 1.0
-speed_rot_raycast_lateral = 60.0
+speed_rot_raycast_lateral = 50.0
 
 [node name="Ojos_RayCast4" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
 debug_shape_thickness = 1.0
-speed_rot_raycast_lateral = 80.0
+speed_rot_raycast_lateral = 60.0
 
 [node name="Ojos_RayCast5" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
 debug_shape_thickness = 1.0
+speed_rot_raycast_lateral = 70.0
 
 [node name="Ojos_RayCast6" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
 debug_shape_thickness = 1.0
-speed_rot_raycast_lateral = 120.0
 
 [node name="Ojos_RayCast7" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
@@ -221,9 +220,12 @@ speed_rot_raycast_lateral = 150.0
 [node name="Ojos_RayCast8" parent="Doll" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
 debug_shape_thickness = 1.0
-speed_rot_raycast_lateral = 180.0
+speed_rot_raycast_lateral = 200.0
 
-[node name="multiple_machines_GUNS" parent="." instance=ExtResource( 12 )]
+[node name="multiple_machines_GUNS" type="Spatial" parent="."]
+
+[node name="Machine_Gun" parent="multiple_machines_GUNS" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 37.17, 76.232 )
 
 [connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]
 [connection signal="timeout" from="Timers/Timer_Rotate_head" to="GameManager" method="_on_Timer_Rotate_head_timeout"]

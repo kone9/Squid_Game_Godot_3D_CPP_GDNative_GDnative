@@ -45,9 +45,13 @@ namespace godot
 		Tween* Tween_shoot;
 		AnimationPlayer* animationPlayer;
 
+	private:
+		void look_at_with_rotate_smooth(real_t delta);
+	
 	//senials
 	private:
 		void _on_Timer_shoot_timeout();
+
 
 
 

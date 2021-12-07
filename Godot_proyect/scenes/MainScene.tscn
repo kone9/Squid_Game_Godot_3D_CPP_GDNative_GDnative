@@ -115,7 +115,7 @@ material/0 = null
 [node name="bots_instance_tree" type="Spatial" parent="." groups=["bots_instance_tree"]]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 2.03357, -80.3243 )
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 2.03357, 9.12569 )
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -182,50 +182,50 @@ stream = ExtResource( 8 )
 stream = ExtResource( 7 )
 
 [node name="Doll" parent="." instance=ExtResource( 4 )]
-transform = Transform( -3.25841e-07, 0, 2, 0, 2, 0, -2, 0, -3.25841e-07, 0, 4.24, 55.58 )
+transform = Transform( -1.35107e-06, 0, 4, 0, 4, 0, -4, 0, -1.35107e-06, 0, 7.7, 55.58 )
 
 [node name="Ojos_RayCast" parent="Doll" instance=ExtResource( 11 )]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
+transform = Transform( -2.18557e-08, -0.5, -8.74229e-08, 0.5, -2.18557e-08, 0, -3.82138e-15, -8.74229e-08, 0.5, 0.484796, -1.58417, -0.0381878 )
 speed_rot_raycast_lateral = 30.0
 
 [node name="Ojos_RayCast2" parent="Doll" instance=ExtResource( 11 )]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
+transform = Transform( -2.18557e-08, -0.5, -8.74229e-08, 0.5, -2.18557e-08, 0, -3.82138e-15, -8.74229e-08, 0.5, 0.484796, -1.58417, -0.0381878 )
 debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 40.0
 
 [node name="Ojos_RayCast3" parent="Doll" instance=ExtResource( 11 )]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
+transform = Transform( -2.18557e-08, -0.5, -8.74229e-08, 0.5, -2.18557e-08, 0, -3.82138e-15, -8.74229e-08, 0.5, 0.484796, -1.58417, -0.0381878 )
 debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 50.0
 
 [node name="Ojos_RayCast4" parent="Doll" instance=ExtResource( 11 )]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
+transform = Transform( -2.18557e-08, -0.5, -8.74229e-08, 0.5, -2.18557e-08, 0, -3.82138e-15, -8.74229e-08, 0.5, 0.484796, -1.58417, -0.0381878 )
 debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 60.0
 
 [node name="Ojos_RayCast5" parent="Doll" instance=ExtResource( 11 )]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
+transform = Transform( -2.18557e-08, -0.5, -8.74229e-08, 0.5, -2.18557e-08, 0, -3.82138e-15, -8.74229e-08, 0.5, 0.484796, -1.58417, -0.0381878 )
 debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 70.0
 
 [node name="Ojos_RayCast6" parent="Doll" instance=ExtResource( 11 )]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
+transform = Transform( -2.18557e-08, -0.5, -8.74229e-08, 0.5, -2.18557e-08, 0, -3.82138e-15, -8.74229e-08, 0.5, 0.484796, -1.58417, -0.0381878 )
 debug_shape_thickness = 1.0
 
 [node name="Ojos_RayCast7" parent="Doll" instance=ExtResource( 11 )]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
+transform = Transform( -2.18557e-08, -0.5, -8.74229e-08, 0.5, -2.18557e-08, 0, -3.82138e-15, -8.74229e-08, 0.5, 0.484796, -1.58417, -0.0381878 )
 debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 150.0
 
 [node name="Ojos_RayCast8" parent="Doll" instance=ExtResource( 11 )]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.969591, -1.43835, -0.0763758 )
+transform = Transform( -2.18557e-08, -0.5, -8.74229e-08, 0.5, -2.18557e-08, 0, -3.82138e-15, -8.74229e-08, 0.5, 0.484796, -1.58417, -0.0381878 )
 debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 200.0
 
 [node name="multiple_machines_GUNS" type="Spatial" parent="."]
 
 [node name="Machine_Gun" parent="multiple_machines_GUNS" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 37.17, 76.232 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 55.01, 76.232 )
 
 [connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]
 [connection signal="timeout" from="Timers/Timer_Rotate_head" to="GameManager" method="_on_Timer_Rotate_head_timeout"]

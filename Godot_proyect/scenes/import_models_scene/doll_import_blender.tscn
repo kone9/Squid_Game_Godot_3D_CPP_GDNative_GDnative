@@ -4,6 +4,6 @@
 
 [node name="doll" instance=ExtResource( 1 )]
 
-[node name="DirectionalLight" type="DirectionalLight" parent="." index="13"]
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="11"]
 light_energy = 0.5
 shadow_enabled = true

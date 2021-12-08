@@ -108,10 +108,13 @@ namespace godot
 
 	void BotAI::_physics_process(const real_t delta)
 	{
-		if (!isDying)//sino esta muriendo
+		if (cast_to<GameManager>(gameManager)->finish_Intro)
 		{
-			Move(delta);
-			//CheckDeathTime();
+			if (!isDying)//sino esta muriendo
+			{
+				Move(delta);
+				//CheckDeathTime();
+			}
 		}
 	}
 

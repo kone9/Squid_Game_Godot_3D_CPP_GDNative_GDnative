@@ -15,6 +15,7 @@
 #include <MeshInstance.hpp>
 #include <Tween.hpp>
 #include <ColorRect.hpp>
+#include <AnimationPlayer.hpp>
 
 //#include <cstdlib>
 //#include <iostream>
@@ -39,9 +40,12 @@ namespace godot
         public: 
             int bots_Intellicence;
             Array bots_to_remove; //bots a eliminar que son detectados por el raycast COLA DE RIGIDBODY
+            bool finish_Intro;//if finish intro go game
             
 
         private:
+            AnimationPlayer* AnimationPlayerGlobal;
+
             RandomNumberGenerator *random;
             ColorRect* headTimeFinishColorRect;
 
@@ -106,6 +110,7 @@ namespace godot
                     void _on_Timer_Rotate_head_timeout();
                     void _on_dollSing_finished();
                     void _on_Timer_active_raycast_detection_timeout();
+                    void _on_AnimationPlayerGlobal_animation_finished(String anim_name);
 
 	};
 }

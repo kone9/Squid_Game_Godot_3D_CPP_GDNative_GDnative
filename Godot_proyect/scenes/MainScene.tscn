@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
@@ -38,6 +38,47 @@ size = Vector3( 160, 80, 2 )
 size = 32
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Doll:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -180, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "doll_init"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Doll:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -180, 0 ), Vector3( 0, -360, 0 ) ]
+}
+tracks/1/type = "animation"
+tracks/1/path = NodePath("Doll/doll/AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": PoolStringArray( "levantar_brazo" ),
+"times": PoolRealArray( 5.4 )
+}
 
 [node name="MainScene" type="Spatial"]
 
@@ -182,7 +223,7 @@ stream = ExtResource( 8 )
 stream = ExtResource( 7 )
 
 [node name="Doll" parent="." instance=ExtResource( 4 )]
-transform = Transform( -4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, 0, 7.7, 55.58 )
+transform = Transform( -4, 0, -6.03983e-07, 0, 4, 0, 6.03983e-07, 0, -4, 0, 7.7, 55.58 )
 
 [node name="multiple_machines_GUNS" type="Spatial" parent="."]
 
@@ -230,8 +271,14 @@ transform = Transform( -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 2.11758e-21, -2
 debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 200.0
 
+[node name="AnimationPlayerGlobal" type="AnimationPlayer" parent="." groups=["AnimationPlayerGlobal"]]
+autoplay = "doll_init"
+anims/RESET = SubResource( 9 )
+anims/doll_init = SubResource( 10 )
+
 [connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]
 [connection signal="timeout" from="Timers/Timer_Rotate_head" to="GameManager" method="_on_Timer_Rotate_head_timeout"]
 [connection signal="timeout" from="Timers/Timer_active_raycast_detection" to="GameManager" method="_on_Timer_active_raycast_detection_timeout"]
 [connection signal="finished" from="audio/dollSing" to="GameManager" method="_on_dollSing_finished"]
 [connection signal="finished" from="audio/dollSingX2" to="GameManager" method="_on_dollSing_finished"]
+[connection signal="animation_finished" from="AnimationPlayerGlobal" to="GameManager" method="_on_AnimationPlayerGlobal_animation_finished"]

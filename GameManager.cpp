@@ -48,6 +48,8 @@ namespace godot
 		headTimeFinishColorRect = nullptr;
 		bots_Intellicence = 300;
 		Timer_active_raycast_detection = nullptr;
+		AnimationPlayerGlobal = nullptr;
+		finish_Intro = false;
 	}
 
 	GameManager::~GameManager()
@@ -80,6 +82,7 @@ namespace godot
 		register_method("_on_Timer_Rotate_head_timeout", &GameManager::_on_Timer_Rotate_head_timeout);
 		register_method("_on_dollSing_finished", &GameManager::_on_dollSing_finished);
 		register_method("_on_Timer_active_raycast_detection_timeout", &GameManager::_on_Timer_active_raycast_detection_timeout);
+		register_method("_on_AnimationPlayerGlobal_animation_finished", &GameManager::_on_AnimationPlayerGlobal_animation_finished);
 
 		register_signal<GameManager>("can_Walk", godot::Dictionary());
 
@@ -108,11 +111,12 @@ namespace godot
 		dollSingX2 = (AudioStreamPlayer*)get_tree()->get_nodes_in_group("dollSingX2")[0];
 		Timer_Rotate_head = (Timer*)get_tree()->get_nodes_in_group("Timer_Rotate_head")[0];
 		Timer_active_raycast_detection = (Timer*)get_tree()->get_nodes_in_group("Timer_active_raycast_detection")[0];
+		AnimationPlayerGlobal = (AnimationPlayer*)get_tree()->get_nodes_in_group("AnimationPlayerGlobal")[0];
 
 		headTimeFinishColorRect = (ColorRect*)get_tree()->get_nodes_in_group("headTimeFinishColorRect")[0];
 
 		
-		dollSing->play();//inicio con sonido de voz
+		
 
 		SpawnBots();
 		headTime = false;
@@ -270,6 +274,13 @@ namespace godot
 		{
 			Godot::print("la lista de objetos a NO esta vacia");
 		}
+	}
+
+	//when the initial presentation animation ends
+	void GameManager::_on_AnimationPlayerGlobal_animation_finished(String anim_name)
+	{
+		finish_Intro = true;
+		dollSing->play();//inicio con sonido de voz
 	}
 
 	//Para volver a la cabeza a su posicion normal y asi pueden volver a moverse. si este timer no termino muere

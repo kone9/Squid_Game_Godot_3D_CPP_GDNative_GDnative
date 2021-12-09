@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/initial_sound_and_effect.mp3-e864b4718c53af9ee0346f28e810c877.mp3str"
+
+[deps]
+
+source_file="res://sound/initial_sound_and_effect.mp3"
+dest_files=[ "res://.import/initial_sound_and_effect.mp3-e864b4718c53af9ee0346f28e810c877.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

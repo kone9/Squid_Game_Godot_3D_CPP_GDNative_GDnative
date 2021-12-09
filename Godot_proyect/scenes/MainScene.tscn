@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://sound/dollSingX2.mp3" type="AudioStream" id=9]
 [ext_resource path="res://scenes/Machine_Gun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Eyes_RayCast.tscn" type="PackedScene" id=11]
+[ext_resource path="res://sound/initial_sound_and_effect.mp3" type="AudioStream" id=12]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 80, 0.2, 80 )
@@ -56,7 +57,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=10]
 resource_name = "doll_init"
-length = 10.0
+length = 76.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Doll:rotation_degrees")
 tracks/0/interp = 1
@@ -64,7 +65,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 5 ),
+"times": PoolRealArray( 24.8, 29.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, -180, 0 ), Vector3( 0, -360, 0 ) ]
@@ -77,7 +78,21 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "clips": PoolStringArray( "levantar_brazo" ),
-"times": PoolRealArray( 5.4 )
+"times": PoolRealArray( 31.3 )
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("audio/initial_sound_and_effect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 12 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [node name="MainScene" type="Spatial"]
@@ -222,8 +237,11 @@ stream = ExtResource( 8 )
 [node name="dollHeadOn" type="AudioStreamPlayer" parent="audio" groups=["dollHeadOn"]]
 stream = ExtResource( 7 )
 
+[node name="initial_sound_and_effect" type="AudioStreamPlayer" parent="audio" groups=["dollHeadOn"]]
+stream = ExtResource( 12 )
+
 [node name="Doll" parent="." instance=ExtResource( 4 )]
-transform = Transform( -4, 0, -6.03983e-07, 0, 4, 0, 6.03983e-07, 0, -4, 0, 7.7, 55.58 )
+transform = Transform( -4, 0, 3.49691e-07, 0, 4, 0, -3.49691e-07, 0, -4, 0, 7.7, 55.58 )
 
 [node name="multiple_machines_GUNS" type="Spatial" parent="."]
 

@@ -34,6 +34,7 @@ material/0 = null
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 3, -7 )
+current = true
 far = 200.0
 
 [node name="AreaDetectarSuelo" type="Area" parent="."]

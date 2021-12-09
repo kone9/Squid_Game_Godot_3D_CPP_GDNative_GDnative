@@ -9,9 +9,9 @@
 [ext_resource path="res://sound/dollHeadOn.mp3" type="AudioStream" id=7]
 [ext_resource path="res://sound/dollHeadOff.mp3" type="AudioStream" id=8]
 [ext_resource path="res://sound/dollSingX2.mp3" type="AudioStream" id=9]
-[ext_resource path="res://scenes/Machine_Gun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Eyes_RayCast.tscn" type="PackedScene" id=11]
 [ext_resource path="res://sound/initial_sound_and_effect.mp3" type="AudioStream" id=12]
+[ext_resource path="res://scenes/multiple_machines_GUNS.tscn" type="PackedScene" id=13]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 80, 0.2, 80 )
@@ -54,6 +54,174 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector3( 0, -180, 0 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Cameras_and_effect_initial_animaton/ColorbackgroundInitial:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.109804, 0.109804, 0.109804, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Cameras_and_effect_initial_animaton/Camera:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Cameras_and_effect_initial_animaton/Camera:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -4.85, 4.52, -53.87 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Cameras_and_effect_initial_animaton/Camera3:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -45.927, 6.5185, 34.769 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Cameras_and_effect_initial_animaton/Camera3:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 5.25004, 146.25, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Cameras_and_effect_initial_animaton/Camera3:current")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Cameras_and_effect_initial_animaton/Camera2:current")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Cameras_and_effect_initial_animaton/Camera2:translation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Cameras_and_effect_initial_animaton/Camera2:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 6.50005, 16.4997, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Cameras_and_effect_initial_animaton/Camera4:current")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Cameras_and_effect_initial_animaton/Camera5:current")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Cameras_and_effect_initial_animaton/Camera6:current")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Cameras_and_effect_initial_animaton/Camera7:current")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Cameras_and_effect_initial_animaton/Camera8:current")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "doll_init"
@@ -65,10 +233,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 24.8, 29.8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 24.8, 29.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, -180, 0 ), Vector3( 0, -360, 0 ) ]
+"values": [ Vector3( 0, -180, 0 ), Vector3( 0, -180, 0 ), Vector3( 0, -360, 0 ) ]
 }
 tracks/1/type = "animation"
 tracks/1/path = NodePath("Doll/doll/AnimationPlayer")
@@ -94,6 +262,174 @@ tracks/2/keys = {
 } ],
 "times": PoolRealArray( 0 )
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Cameras_and_effect_initial_animaton/ColorbackgroundInitial:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.109804, 0.109804, 0.109804, 1 ), Color( 0.109804, 0.109804, 0.109804, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Cameras_and_effect_initial_animaton/Camera:current")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Cameras_and_effect_initial_animaton/Camera:translation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( -0.1, 3.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -4.85, 4.52, -53.87 ), Vector3( -0.0300007, 4.52, -53.87 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Cameras_and_effect_initial_animaton/Camera3:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 6, 11.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -45.927, 6.5185, 34.769 ), Vector3( -11.2152, 55.9011, 21.4396 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Cameras_and_effect_initial_animaton/Camera3:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 6, 11.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 5.25004, 146.25, 0 ), Vector3( 10, 185, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Cameras_and_effect_initial_animaton/Camera3:current")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 6, 11.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Cameras_and_effect_initial_animaton/Camera2:current")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 3.8, 6, 11.2, 13.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ false, true, false, true, false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Cameras_and_effect_initial_animaton/Camera2:translation")
+tracks/10/interp = 0
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 6, 10.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2.256, 2.743, -59.479 ), Vector3( -2.256, 2.743, -59.479 ), Vector3( -3.23331, 2.81588, -60.0765 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Cameras_and_effect_initial_animaton/Camera2:rotation_degrees")
+tracks/11/interp = 0
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 6, 10.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 6.50005, 16.4997, 0 ), Vector3( 1.75005, -8.00029, 0 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Cameras_and_effect_initial_animaton/Camera4:current")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 13.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Cameras_and_effect_initial_animaton/Camera5:current")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 14.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Cameras_and_effect_initial_animaton/Camera6:current")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 14.8, 15.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Cameras_and_effect_initial_animaton/Camera7:current")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 15.8, 17.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Cameras_and_effect_initial_animaton/Camera8:current")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 17.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="MainScene" type="Spatial"]
 
@@ -106,7 +442,6 @@ Bot = ExtResource( 2 )
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
 transform = Transform( 0.649444, -0.365748, 0.66667, 0, 0.876726, 0.480989, -0.760408, -0.312376, 0.569385, 75.6373, 57.1076, 72.3185 )
-current = true
 far = 300.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
@@ -140,7 +475,7 @@ mesh = SubResource( 4 )
 material/0 = null
 
 [node name="TargetSpawn" type="Area" parent="Map" groups=["TargetSpawn"]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -66.4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -68.78 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/TargetSpawn"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3 )
@@ -171,7 +506,10 @@ material/0 = null
 [node name="bots_instance_tree" type="Spatial" parent="." groups=["bots_instance_tree"]]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.91071e-07, 2.03357, 9.12569 )
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2.99, 1.47357, -62.1743 )
+
+[node name="Bot" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.58, 1.33, -62.32 )
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -243,10 +581,8 @@ stream = ExtResource( 12 )
 [node name="Doll" parent="." instance=ExtResource( 4 )]
 transform = Transform( -4, 0, 3.49691e-07, 0, 4, 0, -3.49691e-07, 0, -4, 0, 7.7, 55.58 )
 
-[node name="multiple_machines_GUNS" type="Spatial" parent="."]
-
-[node name="Machine_Gun" parent="multiple_machines_GUNS" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 55.01, 76.232 )
+[node name="multiple_machines_GUNS2" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
 
 [node name="multiple_raycast" type="Spatial" parent="."]
 transform = Transform( -1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, 0, 7.7, 55.58 )
@@ -288,6 +624,47 @@ speed_rot_raycast_lateral = 150.0
 transform = Transform( -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 2.11758e-21, -2.11758e-21, 9.25625e-29, 0.5, 0, -1.49, 0 )
 debug_shape_thickness = 1.0
 speed_rot_raycast_lateral = 200.0
+
+[node name="Cameras_and_effect_initial_animaton" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -4.85, 4.52, -53.87 )
+current = true
+
+[node name="Camera2" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( 0.958821, 0.0321512, 0.282185, 0, 0.993572, -0.113204, -0.28401, 0.108543, 0.952658, 0, 0, 0 )
+current = true
+
+[node name="Camera3" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( -0.83147, 0.0508359, 0.553239, 0, 0.995805, -0.0915023, -0.55557, -0.0760814, -0.827982, -45.927, 6.5185, 34.769 )
+
+[node name="Camera4" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( 0.936673, -0.0638204, -0.344342, 0, 0.983255, -0.182236, 0.350207, 0.170696, 0.920988, -30.487, 3.56451, -56.7616 )
+
+[node name="Camera5" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( 0.779881, -0.0409371, 0.624587, 0, 0.997859, 0.0654023, -0.625927, -0.051006, 0.778212, 59.5094, 6.94096, -55.1706 )
+current = true
+
+[node name="Camera6" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( 0.838673, 0.0450999, -0.542766, 0, 0.996566, 0.0828074, 0.544636, -0.0694482, 0.835792, -3.77699, 2.84982, -59.85 )
+current = true
+
+[node name="Camera7" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( 0.86383, -0.149392, 0.481124, 0, 0.95502, 0.296541, -0.503784, -0.256161, 0.824975, 0.717728, 3.15607, -59.3818 )
+current = true
+
+[node name="Camera8" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( -0.999534, 0.00119859, 0.0305056, 0, 0.999229, -0.0392605, -0.0305291, -0.0392422, -0.998763, -0.130759, 4.77111, -74.7274 )
+current = true
+far = 1000.0
+
+[node name="ColorbackgroundInitial" type="ColorRect" parent="Cameras_and_effect_initial_animaton"]
+margin_right = 519.0
+margin_bottom = 301.0
+color = Color( 0.109804, 0.109804, 0.109804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayerGlobal" type="AnimationPlayer" parent="." groups=["AnimationPlayerGlobal"]]
 autoplay = "doll_init"

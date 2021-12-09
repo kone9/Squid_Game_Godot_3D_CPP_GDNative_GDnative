@@ -222,13 +222,133 @@ tracks/14/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/15/type = "value"
+tracks/15/path = NodePath("Cameras_and_effect_initial_animaton/Camera9:current")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Cameras_and_effect_initial_animaton/Camera10:current")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Cameras_and_effect_initial_animaton/Camera9:translation")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 12.067, 33.344 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Cameras_and_effect_initial_animaton/Camera11:current")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Cameras_and_effect_initial_animaton/Camera12:current")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Cameras_and_effect_initial_animaton/Camera13:current")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Cameras_and_effect_initial_animaton/Camera14:current")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Cameras_and_effect_initial_animaton/Camera15:current")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Cameras_and_effect_initial_animaton/Camera16:current")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Cameras_and_effect_initial_animaton/Camera17:current")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "doll_init"
 length = 76.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Doll:rotation_degrees")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -425,7 +545,127 @@ tracks/16/loop_wrap = true
 tracks/16/imported = false
 tracks/16/enabled = true
 tracks/16/keys = {
-"times": PoolRealArray( 0, 17.2 ),
+"times": PoolRealArray( 0, 17.2, 19.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Cameras_and_effect_initial_animaton/Camera9:current")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 19.6, 21.6839 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Cameras_and_effect_initial_animaton/Camera10:current")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 21.6839, 23.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Cameras_and_effect_initial_animaton/Camera9:translation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 18.9, 20.6, 22 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 12, 33.344 ), Vector3( 0, 12.1, 33.344 ), Vector3( 0, 12, 33.344 ) ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Cameras_and_effect_initial_animaton/Camera11:current")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0, 23.6, 28.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Cameras_and_effect_initial_animaton/Camera12:current")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0, 28.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Cameras_and_effect_initial_animaton/Camera13:current")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0, 31, 34 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Cameras_and_effect_initial_animaton/Camera14:current")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0, 34, 35.3026 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Cameras_and_effect_initial_animaton/Camera15:current")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0, 35.3026, 38 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Cameras_and_effect_initial_animaton/Camera16:current")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0, 38, 39.818 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/26/type = "value"
+tracks/26/path = NodePath("Cameras_and_effect_initial_animaton/Camera17:current")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
+"times": PoolRealArray( 0, 39.82 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -630,31 +870,81 @@ speed_rot_raycast_lateral = 200.0
 [node name="Camera" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -4.85, 4.52, -53.87 )
 current = true
+far = 1000.0
 
 [node name="Camera2" type="Camera" parent="Cameras_and_effect_initial_animaton"]
-transform = Transform( 0.958821, 0.0321512, 0.282185, 0, 0.993572, -0.113204, -0.28401, 0.108543, 0.952658, 0, 0, 0 )
+transform = Transform( 0.958821, 0.0321511, 0.282185, 0, 0.993572, -0.113204, -0.28401, 0.108542, 0.952658, 0, 0, 0 )
 current = true
+far = 1000.0
 
 [node name="Camera3" type="Camera" parent="Cameras_and_effect_initial_animaton"]
-transform = Transform( -0.83147, 0.0508359, 0.553239, 0, 0.995805, -0.0915023, -0.55557, -0.0760814, -0.827982, -45.927, 6.5185, 34.769 )
+transform = Transform( -0.83147, 0.050836, 0.55324, 0, 0.995805, -0.0915023, -0.55557, -0.0760814, -0.827982, -45.927, 6.5185, 34.769 )
+far = 1000.0
 
 [node name="Camera4" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.936673, -0.0638204, -0.344342, 0, 0.983255, -0.182236, 0.350207, 0.170696, 0.920988, -30.487, 3.56451, -56.7616 )
+far = 1000.0
 
 [node name="Camera5" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.779881, -0.0409371, 0.624587, 0, 0.997859, 0.0654023, -0.625927, -0.051006, 0.778212, 59.5094, 6.94096, -55.1706 )
 current = true
+far = 1000.0
 
 [node name="Camera6" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.838673, 0.0450999, -0.542766, 0, 0.996566, 0.0828074, 0.544636, -0.0694482, 0.835792, -3.77699, 2.84982, -59.85 )
 current = true
+far = 1000.0
 
 [node name="Camera7" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.86383, -0.149392, 0.481124, 0, 0.95502, 0.296541, -0.503784, -0.256161, 0.824975, 0.717728, 3.15607, -59.3818 )
 current = true
+far = 1000.0
 
 [node name="Camera8" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( -0.999534, 0.00119859, 0.0305056, 0, 0.999229, -0.0392605, -0.0305291, -0.0392422, -0.998763, -0.130759, 4.77111, -74.7274 )
+current = true
+far = 1000.0
+
+[node name="Camera9" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( -1, -1.26181e-09, -8.74137e-08, 0, 0.999896, -0.0144334, 8.74228e-08, -0.0144334, -0.999896, 0, 12.067, 33.344 )
+current = true
+far = 1000.0
+
+[node name="Camera10" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( 0.880893, 0.146262, -0.450149, 0, 0.951057, 0.309016, 0.473315, -0.27221, 0.83778, -3.00124, 2.5323, -58.9874 )
+far = 1000.0
+
+[node name="Camera11" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 17.61, 43.993 )
+current = true
+far = 1000.0
+
+[node name="Camera12" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( -0.728375, 0.273215, 0.628349, 0, 0.91706, -0.39875, -0.685178, -0.290439, -0.667964, 9.48486, 6.86265, 44.6679 )
+current = true
+far = 1000.0
+
+[node name="Camera13" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( 0.309016, -0.0911542, 0.946678, 0, 0.995396, 0.0958451, -0.951057, -0.0296177, 0.307593, 8.48276, 10.6549, 56.9645 )
+current = true
+far = 1000.0
+
+[node name="Camera14" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( 0.999048, -0.00437022, -0.0434005, 0, 0.994968, -0.100189, 0.04362, 0.100093, 0.994021, -3.01493, 2.77611, -59.9496 )
+far = 1000.0
+
+[node name="Camera15" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( -0.999762, 0.00737077, 0.0205292, 0, 0.941176, -0.337917, -0.0218123, -0.337837, -0.940952, 0.177998, 2.63343, 34.3679 )
+current = true
+far = 1000.0
+
+[node name="Camera16" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( -0.577158, -0.684885, 0.44477, 0, 0.54464, 0.83867, -0.816632, 0.484045, -0.314343, 19.0064, 43.9246, 43.1443 )
+current = true
+far = 1000.0
+
+[node name="Camera17" type="Camera" parent="Cameras_and_effect_initial_animaton"]
+transform = Transform( -0.999762, 0.00303721, -0.021611, 0, 0.990268, 0.139173, 0.0218234, 0.139139, -0.990032, 0.224198, 4.18129, -81.0468 )
 current = true
 far = 1000.0
 

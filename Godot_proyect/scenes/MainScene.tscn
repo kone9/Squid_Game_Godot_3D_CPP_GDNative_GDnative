@@ -9,9 +9,9 @@
 [ext_resource path="res://sound/dollHeadOn.mp3" type="AudioStream" id=7]
 [ext_resource path="res://sound/dollHeadOff.mp3" type="AudioStream" id=8]
 [ext_resource path="res://sound/dollSingX2.mp3" type="AudioStream" id=9]
+[ext_resource path="res://scenes/Machine_Gun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Eyes_RayCast.tscn" type="PackedScene" id=11]
 [ext_resource path="res://sound/initial_sound_and_effect.mp3" type="AudioStream" id=12]
-[ext_resource path="res://scenes/multiple_machines_GUNS.tscn" type="PackedScene" id=13]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 80, 0.2, 80 )
@@ -484,7 +484,7 @@ tracks/35/keys = {
 
 [sub_resource type="Animation" id=10]
 resource_name = "doll_init"
-length = 76.0
+length = 78.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Doll:rotation_degrees")
 tracks/0/interp = 2
@@ -1091,9 +1091,6 @@ stream = ExtResource( 12 )
 [node name="Doll" parent="." instance=ExtResource( 4 )]
 transform = Transform( -4, 0, 3.49691e-07, 0, 4, 0, -3.49691e-07, 0, -4, 0, 7.7, 55.58 )
 
-[node name="multiple_machines_GUNS2" parent="." instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
-
 [node name="multiple_raycast" type="Spatial" parent="."]
 transform = Transform( -1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, 0, 7.7, 55.58 )
 
@@ -1138,12 +1135,13 @@ speed_rot_raycast_lateral = 200.0
 [node name="Cameras_and_effect_initial_animaton" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="Cameras_and_effect_initial_animaton"]
-transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -4.72641, 4.52, -53.87 )
+transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -4.85, 4.52, -53.87 )
 current = true
 far = 1000.0
 
 [node name="Camera2" type="Camera" parent="Cameras_and_effect_initial_animaton"]
-transform = Transform( 0.958821, 0.0321511, 0.282185, 0, 0.993572, -0.113204, -0.28401, 0.108542, 0.952658, -2.256, 2.743, -59.479 )
+transform = Transform( 0.958821, 0.0321511, 0.282185, 0, 0.993572, -0.113204, -0.28401, 0.108542, 0.952658, 0, 0, 0 )
+current = true
 far = 1000.0
 
 [node name="Camera3" type="Camera" parent="Cameras_and_effect_initial_animaton"]
@@ -1156,22 +1154,27 @@ far = 1000.0
 
 [node name="Camera5" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.779881, -0.0409371, 0.624587, 0, 0.997859, 0.0654023, -0.625927, -0.051006, 0.778212, 59.5094, 6.94096, -55.1706 )
+current = true
 far = 1000.0
 
 [node name="Camera6" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.838673, 0.0450999, -0.542766, 0, 0.996566, 0.0828074, 0.544636, -0.0694482, 0.835792, -3.77699, 2.84982, -59.85 )
+current = true
 far = 1000.0
 
 [node name="Camera7" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.86383, -0.149392, 0.481124, 0, 0.95502, 0.296541, -0.503784, -0.256161, 0.824975, 0.717728, 3.15607, -59.3818 )
+current = true
 far = 1000.0
 
 [node name="Camera8" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( -0.999534, 0.00119859, 0.0305056, 0, 0.999229, -0.0392605, -0.0305291, -0.0392422, -0.998763, -0.130759, 4.77111, -74.7274 )
+current = true
 far = 1000.0
 
 [node name="Camera9" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( -1, -1.26181e-09, -8.74137e-08, 0, 0.999896, -0.0144334, 8.74228e-08, -0.0144334, -0.999896, 0, 12.067, 33.344 )
+current = true
 far = 1000.0
 
 [node name="Camera10" type="Camera" parent="Cameras_and_effect_initial_animaton"]
@@ -1180,14 +1183,17 @@ far = 1000.0
 
 [node name="Camera11" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 17.61, 43.993 )
+current = true
 far = 1000.0
 
 [node name="Camera12" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( -0.728375, 0.273215, 0.628349, 0, 0.91706, -0.39875, -0.685178, -0.290439, -0.667964, 9.48486, 6.86265, 44.6679 )
+current = true
 far = 1000.0
 
 [node name="Camera13" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.309016, -0.0911542, 0.946678, 0, 0.995396, 0.0958451, -0.951057, -0.0296177, 0.307593, 8.48276, 10.6549, 56.9645 )
+current = true
 far = 1000.0
 
 [node name="Camera14" type="Camera" parent="Cameras_and_effect_initial_animaton"]
@@ -1196,22 +1202,27 @@ far = 1000.0
 
 [node name="Camera15" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( -0.999762, 0.00737077, 0.0205292, 0, 0.941176, -0.337917, -0.0218123, -0.337837, -0.940952, 0.177998, 2.63343, 34.3679 )
+current = true
 far = 1000.0
 
 [node name="Camera16" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( -0.577158, -0.684885, 0.44477, 0, 0.54464, 0.83867, -0.816632, 0.484045, -0.314343, 19.0064, 43.9246, 43.1443 )
+current = true
 far = 1000.0
 
 [node name="Camera17" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( -0.999762, 0.00303721, -0.021611, 0, 0.990268, 0.139173, 0.0218234, 0.139139, -0.990032, 0.224198, 4.18129, -81.0468 )
+current = true
 far = 1000.0
 
 [node name="Camera18" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.868156, -0.0776368, 0.490181, 0, 0.987688, 0.156434, -0.496291, -0.135809, 0.857468, 45.1974, 2.53677, -60.7477 )
+current = true
 far = 1000.0
 
 [node name="Camera19" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( -0.941203, -0.00884352, 0.337725, 0, 0.999657, 0.0261766, -0.337841, 0.0246375, -0.940881, 59.1608, 10.9628, -84.4427 )
+current = true
 far = 1000.0
 
 [node name="Camera20" type="Camera" parent="Cameras_and_effect_initial_animaton"]
@@ -1220,18 +1231,22 @@ far = 1000.0
 
 [node name="Camera21" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.857099, -0.120259, 0.500919, 0, 0.97237, 0.233444, -0.515152, -0.200085, 0.833417, 0.142807, 3.17127, -59.8051 )
+current = true
 far = 1000.0
 
 [node name="Camera22" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.887081, 0.101877, -0.450232, 0, 0.975343, 0.220697, 0.461615, -0.195776, 0.865207, -2.4619, 3.21949, -58.8182 )
+current = true
 far = 1000.0
 
 [node name="Camera23" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.876655, -0.0690368, 0.476141, 0, 0.989652, 0.143492, -0.48112, -0.125793, 0.867583, 0.0790939, 2.64322, -59.7372 )
+current = true
 far = 1000.0
 
 [node name="Camera24" type="Camera" parent="Cameras_and_effect_initial_animaton"]
 transform = Transform( 0.960284, -0.017034, 0.278504, 0, 0.998135, 0.0610485, -0.279025, -0.0586239, 0.958493, 3.06641, 19.1666, 64.0885 )
+current = true
 far = 1000.0
 
 [node name="Camera25" type="Camera" parent="Cameras_and_effect_initial_animaton"]
@@ -1255,6 +1270,12 @@ __meta__ = {
 autoplay = "doll_init"
 anims/RESET = SubResource( 9 )
 anims/doll_init = SubResource( 10 )
+
+[node name="Machine_Gun" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.28, 56.19, 75.23 )
+
+[node name="Machine_Gun2" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.34, 56.19, 75.23 )
 
 [connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]
 [connection signal="timeout" from="Timers/Timer_Rotate_head" to="GameManager" method="_on_Timer_Rotate_head_timeout"]

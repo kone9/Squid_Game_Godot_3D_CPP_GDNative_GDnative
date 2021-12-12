@@ -1014,12 +1014,18 @@ material/0 = null
 
 [node name="Bot" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.58, 1.33, -62.32 )
+minSpeed = 0.39
+maxSpeed = 0.4
+use_global_intelligence = false
+bot_intelligence = 20
 
 [node name="Bot2" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44.98, 1.29623, -62.66 )
 
 [node name="Bot3" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42.24, 1.29623, -62.66 )
+use_global_intelligence = false
+bot_intelligence = 500
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0

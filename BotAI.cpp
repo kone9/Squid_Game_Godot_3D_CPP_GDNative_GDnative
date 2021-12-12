@@ -33,6 +33,8 @@ namespace godot
 		TimerDeadthAnimation = nullptr;
 		is_collided_with_another_bot = false;
 		is_to_die = false;
+		use_global_intelligence = true;
+		bot_intelligence = 100;
 
 	}
 
@@ -59,6 +61,9 @@ namespace godot
 		//para ver variables en editor
 		register_property<BotAI, float>("minSpeed", &BotAI::minSpeed, 0.1);
 		register_property<BotAI, float>("maxSpeed", &BotAI::maxSpeed, 1.0);
+		register_property<BotAI, float>("maxSpeed", &BotAI::maxSpeed, 1.0);
+		register_property<BotAI, bool>("use_global_intelligence", &BotAI::use_global_intelligence, true);
+		register_property<BotAI, int>("bot_intelligence", &BotAI::bot_intelligence, 100);
 
 		//senials
 		register_method("_on_BotArea_area_entered", &BotAI::_on_BotArea_area_entered);
@@ -83,7 +88,17 @@ namespace godot
 		//speed -= Random.Range(0f, 1f);
 		speed = random->randf_range((real_t)minSpeed, (real_t)maxSpeed);//velocidad del bot
 		//intelligence = Random.Range(0f, 100f);
-		intelligence = random->randf_range((real_t)0, (real_t)cast_to<GameManager>(gameManager)->bots_Intellicence);//la inteligencia es aleatoria del 1 al 100
+		
+		//If you use global intelligence or that of the bot, it is because of the bots that are on the scene and are not instantiated
+		if (use_global_intelligence)
+		{
+			intelligence = random->randf_range((real_t)0, (real_t)cast_to<GameManager>(gameManager)->bots_Intellicence);//la inteligencia es aleatoria del 1 al 100
+			bot_intelligence = cast_to<GameManager>(gameManager)->bots_Intellicence;
+		}
+		else
+		{
+			intelligence = random->randf_range((real_t)0, (real_t)bot_intelligence);//la inteligencia es aleatoria del 1 al 100
+		}
 		
 		//TargetEnd = GameObject.Find("TargetEnd").transform;
 		TargetEnd = get_tree()->get_nodes_in_group("TargetEnd")[0];

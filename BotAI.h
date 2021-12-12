@@ -37,6 +37,9 @@ namespace godot
             Timer* TimerDeadthAnimation;
             bool is_collided_with_another_bot;
 
+            bool use_global_intelligence;
+            int bot_intelligence;
+
         private:
             Position3D *TargetEnd;//posicion final
 

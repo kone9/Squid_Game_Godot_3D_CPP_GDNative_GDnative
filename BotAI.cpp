@@ -35,6 +35,7 @@ namespace godot
 		is_to_die = false;
 		use_global_intelligence = true;
 		bot_intelligence = 100;
+		i_am_the_banana = false;
 
 	}
 
@@ -64,6 +65,7 @@ namespace godot
 		register_property<BotAI, float>("maxSpeed", &BotAI::maxSpeed, 1.0);
 		register_property<BotAI, bool>("use_global_intelligence", &BotAI::use_global_intelligence, true);
 		register_property<BotAI, int>("bot_intelligence", &BotAI::bot_intelligence, 100);
+		register_property<BotAI, bool>("i_am_the_banana", &BotAI::i_am_the_banana, false);
 
 		//senials
 		register_method("_on_BotArea_area_entered", &BotAI::_on_BotArea_area_entered);
@@ -123,7 +125,15 @@ namespace godot
 
 	void BotAI::_physics_process(const real_t delta)
 	{
-		if (cast_to<GameManager>(gameManager)->finish_Intro)
+		if (i_am_the_banana)
+		{
+			if (!isDying)//sino esta muriendo
+			{
+				Move(delta);
+				//CheckDeathTime();
+			}
+		}
+		if (cast_to<GameManager>(gameManager)->finish_Intro && cast_to<GameManager>(gameManager)->the_banana_died)
 		{
 			if (!isDying)//sino esta muriendo
 			{

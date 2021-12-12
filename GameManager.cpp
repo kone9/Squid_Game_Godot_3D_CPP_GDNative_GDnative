@@ -50,6 +50,7 @@ namespace godot
 		Timer_active_raycast_detection = nullptr;
 		AnimationPlayerGlobal = nullptr;
 		finish_Intro = false;
+		the_banana_died = false;
 	}
 
 	GameManager::~GameManager()

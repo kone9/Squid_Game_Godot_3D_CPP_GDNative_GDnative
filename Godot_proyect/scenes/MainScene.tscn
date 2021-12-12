@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://scenes/Machine_Gun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Eyes_RayCast.tscn" type="PackedScene" id=11]
 [ext_resource path="res://sound/initial_sound_and_effect.mp3" type="AudioStream" id=12]
+[ext_resource path="res://sound/Skil Saw Hit on Body.mp3" type="AudioStream" id=13]
+[ext_resource path="res://scripts/GDnative/BotAI.gdns" type="Script" id=14]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 80, 0.2, 80 )
@@ -41,6 +43,17 @@ albedo_color = Color( 0, 0.780392, 0.415686, 1 )
 [sub_resource type="CubeMesh" id=12]
 material = SubResource( 11 )
 size = Vector3( 24, 8, 2 )
+
+[sub_resource type="CapsuleShape" id=13]
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_color = Color( 0, 0.764706, 1, 1 )
+
+[sub_resource type="PrismMesh" id=15]
+material = SubResource( 14 )
+
+[sub_resource type="BoxShape" id=16]
+extents = Vector3( 1.1, 1.1, 1.1 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 32
@@ -932,9 +945,6 @@ tracks/36/keys = {
 
 [node name="MainScene" type="Spatial"]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2.99, 1.47357, -62.1743 )
-
 [node name="GameManager" type="Node" parent="." groups=["GameManager"]]
 script = ExtResource( 3 )
 totalBots = 100
@@ -944,12 +954,16 @@ Bot = ExtResource( 2 )
 
 [node name="Camera2" type="Camera" parent="Light_and_camera"]
 transform = Transform( 0.649444, -0.365748, 0.66667, 0, 0.876726, 0.480989, -0.760408, -0.312376, 0.569385, 75.6373, 57.1076, 72.3185 )
+current = true
 far = 300.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Light_and_camera"]
 transform = Transform( 1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 46.19, 0 )
 light_energy = 0.3
 shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2.99, 1.47357, -62.1743 )
 
 [node name="Map" type="Spatial" parent="."]
 
@@ -1012,12 +1026,44 @@ material/0 = null
 
 [node name="bots_instance_tree" type="Spatial" parent="." groups=["bots_instance_tree"]]
 
-[node name="Bot" parent="." instance=ExtResource( 2 )]
+[node name="Bot_banana" type="RigidBody" parent="." groups=["Bot", "Bot_banana"]]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.58, 1.33, -62.32 )
+collision_layer = 3
+collision_mask = 3
+contacts_reported = 5
+contact_monitor = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource( 14 )
 minSpeed = 0.39
 maxSpeed = 0.4
 use_global_intelligence = false
 bot_intelligence = 20
+
+[node name="CollisionShape" type="CollisionShape" parent="Bot_banana"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.46, 0 )
+shape = SubResource( 13 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Bot_banana"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 15 )
+material/0 = null
+
+[node name="BotArea" type="Area" parent="Bot_banana" groups=["BotArea"]]
+collision_layer = 3
+
+[node name="CollisionShape2" type="CollisionShape" parent="Bot_banana/BotArea"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 16 )
+
+[node name="TimerDeadthAnimation" type="Timer" parent="Bot_banana"]
+one_shot = true
+
+[node name="Sound_Dead" type="AudioStreamPlayer3D" parent="Bot_banana"]
+stream = ExtResource( 13 )
+unit_size = 30.0
+bus = "Sound_Dead"
 
 [node name="Bot2" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44.98, 1.29623, -62.66 )
@@ -1283,6 +1329,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.28, 56.19, 75.23 )
 [node name="Machine_Gun2" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.34, 56.19, 75.23 )
 
+[connection signal="area_entered" from="Bot_banana/BotArea" to="Bot_banana" method="_on_BotArea_area_entered"]
+[connection signal="area_exited" from="Bot_banana/BotArea" to="Bot_banana" method="_on_BotArea_area_exited"]
+[connection signal="timeout" from="Bot_banana/TimerDeadthAnimation" to="Bot_banana" method="_on_TimerDeadthAnimation_timeout"]
 [connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]
 [connection signal="timeout" from="Timers/Timer_Rotate_head" to="GameManager" method="_on_Timer_Rotate_head_timeout"]
 [connection signal="timeout" from="Timers/Timer_active_raycast_detection" to="GameManager" method="_on_Timer_active_raycast_detection_timeout"]

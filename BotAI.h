@@ -38,6 +38,7 @@ namespace godot
             bool is_collided_with_another_bot;
 
             bool use_global_intelligence;
+            bool i_am_the_banana;
             int bot_intelligence;
 
         private:

@@ -131,6 +131,7 @@ namespace godot
 			{
 				Move(delta);
 				//CheckDeathTime();
+
 			}
 		}
 		if (cast_to<GameManager>(gameManager)->finish_Intro && cast_to<GameManager>(gameManager)->the_banana_died)

@@ -43,6 +43,7 @@ namespace godot
             Array bots_to_remove; //bots a eliminar que son detectados por el raycast COLA DE RIGIDBODY
             bool finish_Intro;//if finish intro go game
             bool the_banana_died;//if finish the banana died
+            int round;
 
         private:
             AnimationPlayer* AnimationPlayerGlobal;

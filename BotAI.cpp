@@ -134,7 +134,7 @@ namespace godot
 
 			}
 		}
-		if (cast_to<GameManager>(gameManager)->finish_Intro && cast_to<GameManager>(gameManager)->the_banana_died)
+		if (cast_to<GameManager>(gameManager)->finish_Intro && cast_to<GameManager>(gameManager)->the_banana_died && cast_to<GameManager>(gameManager)->round > 1)
 		{
 			if (!isDying)//sino esta muriendo
 			{

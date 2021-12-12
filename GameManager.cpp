@@ -53,6 +53,8 @@ namespace godot
 		finish_Intro = false;
 		the_banana_died = false;
 		input = nullptr;
+		round = 0;
+
 	}
 
 	GameManager::~GameManager()
@@ -251,6 +253,8 @@ namespace godot
 			Tween::TransitionType::TRANS_LINEAR,
 			Tween::EaseType::EASE_OUT
 		);
+
+		round += 1;
 
 		if (!doll_Tween->is_active())//lo voy a ejecutar solo cuando no este activo
 		{

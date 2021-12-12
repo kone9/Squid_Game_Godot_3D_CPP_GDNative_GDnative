@@ -125,7 +125,7 @@ namespace godot
 
 	void BotAI::_physics_process(const real_t delta)
 	{
-		if (i_am_the_banana)
+		if (cast_to<GameManager>(gameManager)->finish_Intro && i_am_the_banana)
 		{
 			if (!isDying)//sino esta muriendo
 			{

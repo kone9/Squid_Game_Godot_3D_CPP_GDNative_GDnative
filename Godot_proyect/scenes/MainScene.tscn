@@ -1040,6 +1040,7 @@ minSpeed = 0.39
 maxSpeed = 0.4
 use_global_intelligence = false
 bot_intelligence = 20
+i_am_the_banana = true
 
 [node name="CollisionShape" type="CollisionShape" parent="Bot_banana"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.46, 0 )

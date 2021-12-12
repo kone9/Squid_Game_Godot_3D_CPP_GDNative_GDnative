@@ -16,6 +16,7 @@
 #include <Tween.hpp>
 #include <ColorRect.hpp>
 #include <AnimationPlayer.hpp>
+#include <Input.hpp>
 
 //#include <cstdlib>
 //#include <iostream>
@@ -45,6 +46,7 @@ namespace godot
 
         private:
             AnimationPlayer* AnimationPlayerGlobal;
+            Input* input;
 
             RandomNumberGenerator *random;
             ColorRect* headTimeFinishColorRect;

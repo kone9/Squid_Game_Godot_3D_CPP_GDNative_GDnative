@@ -131,6 +131,11 @@ namespace godot
 
 			if (cast_to<Node>(bot_to_kill)->is_in_group("Bot"))// is a bot
 			{
+				if (cast_to<Node>(bot_to_kill)->is_in_group("Bot_banana"))//to warn that the banana bot is dead and all the others can move
+				{
+					gameManager->the_banana_died = true;
+				}
+
 				cast_to<Node>(bot_to_kill)->get_node<AudioStreamPlayer3D>("Sound_Dead")->play();
 				bot_to_kill->queue_free();//temporarily delete
 			}
@@ -150,12 +155,9 @@ namespace godot
 			{
 				if (cast_to<Node>(bot_to_kill)->is_in_group("Bot"))// is a bot
 				{
-					if ( cast_to<Node>(bot_to_kill)->is_in_group("Bot_banana") )//to warn that the banana bot is dead and all the others can move
-					{
-						gameManager->the_banana_died = true;
-					}
 					cast_to<BotAI>(bot_to_kill)->is_to_die = false;
 				}
+
 				if (cast_to<Node>(bot_to_kill)->is_in_group("Player"))//is a player
 				{
 					cast_to<PlayerMovement>(bot_to_kill)->isDying = false;

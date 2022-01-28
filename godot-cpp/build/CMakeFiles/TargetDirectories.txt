@@ -1,0 +1,3 @@
+D:/Visual Studio Proyectos/Visual_Studio_SquidGameGodotEngine3D/godot-cpp/build/CMakeFiles/godot-cpp.dir
+D:/Visual Studio Proyectos/Visual_Studio_SquidGameGodotEngine3D/godot-cpp/build/CMakeFiles/edit_cache.dir
+D:/Visual Studio Proyectos/Visual_Studio_SquidGameGodotEngine3D/godot-cpp/build/CMakeFiles/rebuild_cache.dir

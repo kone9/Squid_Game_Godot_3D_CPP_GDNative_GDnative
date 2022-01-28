@@ -32,7 +32,7 @@ transform = Transform( 1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.742
 mesh = SubResource( 4 )
 material/0 = null
 
-[node name="Camera" type="Camera" parent="."]
+[node name="Camera" type="Camera" parent="." groups=["PlayerCamera"]]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 3, -7 )
 current = true
 far = 200.0

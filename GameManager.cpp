@@ -142,7 +142,7 @@ namespace godot
 				finish_Intro = true;
 				dollSing->play();//inicio con sonido de voz
 				//temporary: to test the global camera by pressing enter
-				cast_to<Camera>(get_tree()->get_nodes_in_group("CameraLejana")[0])->set_current(true);
+				cast_to<Camera>(get_tree()->get_nodes_in_group("PlayerCamera")[0])->set_current(true);
 			}
 		}
 	}

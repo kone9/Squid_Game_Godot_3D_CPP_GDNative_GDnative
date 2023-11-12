@@ -1,1 +1,1 @@
-# Proyecto Godot Engine C++ GDnative Juego del tipo calamar con Visual Studio
+# Juego del tipo calamar con Godot Engine 3.5 C++ GDnative 

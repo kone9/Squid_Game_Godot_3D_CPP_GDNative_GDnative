@@ -114,20 +114,20 @@ namespace godot
 
 		AnimationTree *animation_tree = get_node<AnimationTree>("AnimationTreeBot");
 
-		if (animation_tree) {
-        // Accede al AnimationNodeStateMachine
-        // AnimationNodeStateMachine *state_machine = animation_tree->get("parameters/StateMachine");  // Ajusta la ruta según tu configuración
+	// 	if (animation_tree) {
+    //     // Accede al AnimationNodeStateMachine
+    //     AnimationNodeStateMachine *state_machine = animation_tree->get("parameters/StateMachine");  // Ajusta la ruta según tu configuración
 
-        // if (state_machine) {
-        //     // Obtén la instancia de AnimationNodeStateMachinePlayback desde el AnimationTreePlayer
-        //     AnimationNodeStateMachinePlayback *playback = animation_tree->get_node("parameters/StateMachine")->get_current_node_playback();
+    //     if (state_machine) {
+    //         // Obtén la instancia de AnimationNodeStateMachinePlayback desde el AnimationTreePlayer
+    //         AnimationNodeStateMachinePlayback *playback = animation_tree->get_node("parameters/StateMachine")->get_current_node_playback();
 
-        //     if (playback) {
-        //         // Realiza operaciones con AnimationNodeStateMachinePlayback
-        //         playback->travel("nombre_del_estado");  // Reemplaza "nombre_del_estado" con el nombre real del estado
-        //     }
-        // }
-    }
+    //         if (playback) {
+    //             // Realiza operaciones con AnimationNodeStateMachinePlayback
+    //             playback->travel("nombre_del_estado");  // Reemplaza "nombre_del_estado" con el nombre real del estado
+    //         }
+    //     }
+    // }
 		
 
 	}

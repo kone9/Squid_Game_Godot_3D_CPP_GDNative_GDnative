@@ -87,7 +87,7 @@ namespace godot
             //para ver en el editor
             Area* SpawnArea;//posicion para spawnear
 
-            MeshInstance* doll_head;//referencia a la cabeza de la muñeca
+            MeshInstance* doll_head;//referencia a la cabeza de la muï¿½eca
             Tween* doll_Tween;//referencia al tween que se encuentra en la escena de doll
             Timer* Timer_Rotate_head;
             Timer* Timer_active_raycast_detection;

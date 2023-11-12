@@ -1,0 +1,46 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Ariel Godot GDNative",
+      "type": "godot",
+      "request": "launch",
+      "project": "${workspaceFolder}/Godot_proyect/project.godot",
+      "program": "/home/ariel/GodotEngine/Godot_3/Godot_v3.5.3-stable/Godot_v3.5.3-stable_x11.64",
+      "args": ["--path", "."],
+      "stopOnEntry": false,
+      "serverAddress": "",
+      "preLaunchTask": "GODOT_BUILD_GDnative_C++_DLL_DEBUG_Linux",
+      "outFiles": [],
+      "runtimeExecutable": null,
+      "runtimeArgs": ["--no-window"],
+      "env": {},
+      "sourceMaps": false,
+      "cwd": "${workspaceFolder}",
+      "stopOnEntry": false,
+      "port": 5000,
+      "breakOnStart": false,
+      "debugAll": true
+    },
+    {
+      "name": "Ariel Godot Editor",
+      "type": "godot",
+      "request": "launch",
+      "project": "/home/ariel/Documentos/GodotProyects/Godot_3_Proyect/Visual_Studio_SquidGameGodotEngine3D/Godot_proyect/project.godot",
+      "program": "/home/ariel/GodotEngine/Godot_3/Godot_v3.5.3-stable/Godot_v3.5.3-stable_x11.64",
+      "args": ["--path", "."],
+      "stopOnEntry": false,
+      "serverAddress": "",
+      "outFiles": [],
+      "runtimeExecutable": null,
+      "runtimeArgs": ["--no-window", "--editor"],
+      "env": {},
+      "sourceMaps": false,
+      "cwd": "${workspaceFolder}",
+      "stopOnEntry": false,
+      "port": 5000,
+      "breakOnStart": false,
+      "debugAll": true
+    }
+  ]
+}

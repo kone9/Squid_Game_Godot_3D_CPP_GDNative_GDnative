@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://sound/initial_sound_and_effect.mp3" type="AudioStream" id=12]
 [ext_resource path="res://sound/Skil Saw Hit on Body.mp3" type="AudioStream" id=13]
 [ext_resource path="res://scripts/GDnative/BotAI.gdns" type="Script" id=14]
+[ext_resource path="res://scripts/GDnative/PruebaVisualStudioDebug.gdns" type="Script" id=15]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 80, 0.2, 80 )
@@ -947,8 +948,6 @@ tracks/36/keys = {
 
 [node name="GameManager" type="Node" parent="." groups=["GameManager"]]
 script = ExtResource( 3 )
-totalBots = 100
-Bot = ExtResource( 2 )
 
 [node name="Light_and_camera" type="Spatial" parent="."]
 
@@ -978,7 +977,6 @@ shape = SubResource( 1 )
 
 [node name="Suelo" type="MeshInstance" parent="Map/Suelo" groups=["Suelo"]]
 mesh = SubResource( 2 )
-material/0 = null
 
 [node name="Area" type="Area" parent="Map/Suelo" groups=["Suelo"]]
 
@@ -988,7 +986,6 @@ shape = SubResource( 1 )
 [node name="linea2" type="MeshInstance" parent="Map"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 52.2 )
 mesh = SubResource( 4 )
-material/0 = null
 
 [node name="TargetSpawn" type="Area" parent="Map" groups=["TargetSpawn"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -68.78 )
@@ -1007,22 +1004,18 @@ shape = SubResource( 6 )
 [node name="pared_atras" type="MeshInstance" parent="Map"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.17, 77.49 )
 mesh = SubResource( 7 )
-material/0 = null
 
 [node name="pared_izquierda" type="MeshInstance" parent="Map"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -80.82, 36.17, -1.38 )
 mesh = SubResource( 7 )
-material/0 = null
 
 [node name="pared_derecha" type="MeshInstance" parent="Map"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 80.8, 36.17, -1.38 )
 mesh = SubResource( 7 )
-material/0 = null
 
 [node name="tablero" type="MeshInstance" parent="Map"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 56.7463, 76.79 )
 mesh = SubResource( 12 )
-material/0 = null
 
 [node name="bots_instance_tree" type="Spatial" parent="." groups=["bots_instance_tree"]]
 
@@ -1036,11 +1029,6 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource( 14 )
-minSpeed = 0.39
-maxSpeed = 0.4
-use_global_intelligence = false
-bot_intelligence = 20
-i_am_the_banana = true
 
 [node name="CollisionShape" type="CollisionShape" parent="Bot_banana"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.46, 0 )
@@ -1049,7 +1037,6 @@ shape = SubResource( 13 )
 [node name="MeshInstance" type="MeshInstance" parent="Bot_banana"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 15 )
-material/0 = null
 
 [node name="BotArea" type="Area" parent="Bot_banana" groups=["BotArea"]]
 collision_layer = 3
@@ -1071,8 +1058,6 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44.98, 
 
 [node name="Bot3" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42.24, 1.29623, -62.66 )
-use_global_intelligence = false
-bot_intelligence = 500
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -1149,41 +1134,34 @@ transform = Transform( -1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, 0, 7.7,
 
 [node name="Ojos_RayCast" parent="multiple_raycast" instance=ExtResource( 11 )]
 transform = Transform( -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 2.11758e-21, -2.11758e-21, 9.25625e-29, 0.5, 0, -1.49, 0 )
-speed_rot_raycast_lateral = 30.0
 
 [node name="Ojos_RayCast2" parent="multiple_raycast" instance=ExtResource( 11 )]
 transform = Transform( -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 2.11758e-21, -2.11758e-21, 9.25625e-29, 0.5, 0, -1.49, 0 )
-debug_shape_thickness = 1.0
-speed_rot_raycast_lateral = 40.0
+debug_shape_thickness = 1
 
 [node name="Ojos_RayCast3" parent="multiple_raycast" instance=ExtResource( 11 )]
 transform = Transform( -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 2.11758e-21, -2.11758e-21, 9.25625e-29, 0.5, 0, -1.49, 0 )
-debug_shape_thickness = 1.0
-speed_rot_raycast_lateral = 50.0
+debug_shape_thickness = 1
 
 [node name="Ojos_RayCast4" parent="multiple_raycast" instance=ExtResource( 11 )]
 transform = Transform( -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 2.11758e-21, -2.11758e-21, 9.25625e-29, 0.5, 0, -1.49, 0 )
-debug_shape_thickness = 1.0
-speed_rot_raycast_lateral = 60.0
+debug_shape_thickness = 1
 
 [node name="Ojos_RayCast5" parent="multiple_raycast" instance=ExtResource( 11 )]
 transform = Transform( -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 2.11758e-21, -2.11758e-21, 9.25625e-29, 0.5, 0, -1.49, 0 )
-debug_shape_thickness = 1.0
-speed_rot_raycast_lateral = 70.0
+debug_shape_thickness = 1
 
 [node name="Ojos_RayCast6" parent="multiple_raycast" instance=ExtResource( 11 )]
 transform = Transform( -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 2.11758e-21, -2.11758e-21, 9.25625e-29, 0.5, 0, -1.49, 0 )
-debug_shape_thickness = 1.0
+debug_shape_thickness = 1
 
 [node name="Ojos_RayCast7" parent="multiple_raycast" instance=ExtResource( 11 )]
 transform = Transform( -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 2.11758e-21, -2.11758e-21, 9.25625e-29, 0.5, 0, -1.49, 0 )
-debug_shape_thickness = 1.0
-speed_rot_raycast_lateral = 150.0
+debug_shape_thickness = 1
 
 [node name="Ojos_RayCast8" parent="multiple_raycast" instance=ExtResource( 11 )]
 transform = Transform( -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 2.11758e-21, -2.11758e-21, 9.25625e-29, 0.5, 0, -1.49, 0 )
-debug_shape_thickness = 1.0
-speed_rot_raycast_lateral = 200.0
+debug_shape_thickness = 1
 
 [node name="Cameras_and_effect_initial_animaton" type="Spatial" parent="."]
 
@@ -1329,6 +1307,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.28, 56.19, 75.23 )
 
 [node name="Machine_Gun2" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.34, 56.19, 75.23 )
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource( 15 )
 
 [connection signal="area_entered" from="Bot_banana/BotArea" to="Bot_banana" method="_on_BotArea_area_entered"]
 [connection signal="area_exited" from="Bot_banana/BotArea" to="Bot_banana" method="_on_BotArea_area_exited"]

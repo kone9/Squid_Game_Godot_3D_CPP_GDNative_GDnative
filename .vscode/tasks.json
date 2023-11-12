@@ -1,0 +1,47 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "type": "shell",
+        "label": "GODOT_BUILD_GDnative_C++_DLL_DEBUG_Linux",
+        "command": "scons",
+        "args": ["platform=linux", "target=debug"],
+        "problemMatcher": {
+          "base": "$gcc",
+          "fileLocation": ["relative", "${workspaceFolder}"],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(error|warning):\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+          }
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "silent",
+          "focus": false,
+          "panel": "shared",
+          "showReuseMessage": false,
+          "clear": true,
+          "echo": true,
+          "errors": "always",
+          "warnings": "always",
+          "info": "always",
+          "statusBar": {
+            "text": "$(globe) Godot Project: Godot_Project",
+            "color": "red"
+          }
+        },
+        "options": {
+          "env": {
+            "VSCODE_TASK_UID": "GODOT_BUILD_SUCCESS_MESSAGE"
+          }
+        }
+      }
+    ]
+  }

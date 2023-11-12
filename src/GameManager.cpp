@@ -7,6 +7,8 @@
 #include "BotAI.h"
 #include <Camera.hpp>
 
+
+
 namespace godot 
 {
 	GameManager::GameManager()
@@ -31,7 +33,7 @@ namespace godot
 
 		totalBots = 1;
 
-		Bot = nullptr;
+		//Bot = nullptr;
 
 		SpawnArea = nullptr;
 
@@ -103,7 +105,7 @@ namespace godot
 		random = RandomNumberGenerator::_new();
 		random->randomize();
 		
-		Head = (MeshInstance*)get_tree()->get_nodes_in_group("doll_head")[0];//obtengo la cabeza de la muñeca
+		Head = (MeshInstance*)get_tree()->get_nodes_in_group("doll_head")[0];//obtengo la cabeza de la muï¿½eca
 		SpawnArea = (Area*)get_tree()->get_nodes_in_group("TargetSpawn")[0];//obtengo el nodo 3D
 		bots_instance_tree = (Spatial*)get_tree()->get_nodes_in_group("bots_instance_tree")[0];//obtengo el nodo padre donde instancio los bots
 		timeText = (Label*)get_tree()->get_nodes_in_group("timeText")[0];
@@ -186,7 +188,7 @@ namespace godot
 		);
 		
 		////Vector3 randomCoordinate = origin + randomRange;
-		Vector3 randomCoordinate = origin + randomRange;//posicion de origen más posicion aleatoria en el dentro del rectangulo de instancia
+		Vector3 randomCoordinate = origin + randomRange;//posicion de origen mï¿½s posicion aleatoria en el dentro del rectangulo de instancia
 		//return randomCoordinate;
 		return randomCoordinate;
 	}
@@ -271,7 +273,7 @@ namespace godot
 	void GameManager::_on_dollSing_finished()
 	{
 		RotHead(180,1);//rota 180 grados en 1 segundo
-		Timer_active_raycast_detection->set_wait_time(1);//el tiempo de espera es igual al de la rotación de la cabeza
+		Timer_active_raycast_detection->set_wait_time(1);//el tiempo de espera es igual al de la rotaciï¿½n de la cabeza
 		Timer_active_raycast_detection->start();
 		
 		headTimeFinishColorRect->set_frame_color(Color(1, 0, 0));
@@ -318,7 +320,7 @@ namespace godot
 
 		headTimeFinishColorRect->set_frame_color(Color(0, 1, 0));
 
-		emit_signal("can_Walk");//emite la señal que se puede volver a caminar
+		emit_signal("can_Walk");//emite la seï¿½al que se puede volver a caminar
 
 		if (random_dollSing == 0)
 		{

@@ -1,3 +1,4 @@
 {
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "godot_tools.editor_path": "/home/ariel/Documentos/GodotProyects/Godot_3_Proyect/SquidGameGodotEngine3D/Godot_proyect/project.godot"
 }

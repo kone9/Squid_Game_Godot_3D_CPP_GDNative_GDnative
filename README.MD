@@ -1,1 +1,1 @@
-# Juego del tipo calamar con Godot Engine 3.5 C++ GDnative 
+# Juego del tipo calamar con Godot Engine 4.X C++ GDExtension

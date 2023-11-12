@@ -1,9 +1,0 @@
-/* Cambiar a verde cuando la compilación es exitosa */
-.statusbar-item[aria-label="Select a Godot project"] {
-    background-color: green !important;
-}
-
-/* Cambiar a rojo cuando la compilación falla */
-.statusbar-item[aria-label="Select a Godot project"].error {
-    background-color: red !important;
-}

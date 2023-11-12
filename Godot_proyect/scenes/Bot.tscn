@@ -1903,6 +1903,7 @@ states/idle/position = Vector2( 216, 223 )
 states/walk/node = SubResource( 22 )
 states/walk/position = Vector2( 725, 223 )
 transitions = [ "idle", "walk", SubResource( 23 ), "walk", "idle", SubResource( 24 ) ]
+graph_offset = Vector2( -92, 38 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
@@ -1916,11 +1917,6 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource( 1 )
-minSpeed = null
-maxSpeed = null
-use_global_intelligence = null
-bot_intelligence = null
-i_am_the_banana = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.46, 0 )

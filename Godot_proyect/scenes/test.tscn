@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
 
@@ -7,8 +7,6 @@ extents = Vector3( 80, 0.2, 80 )
 
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 160, 0.2, 160 )
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
 [node name="test" type="Spatial"]
 
@@ -29,10 +27,5 @@ shape = SubResource( 1 )
 [node name="Bot" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.999653, 0, 0.0263515, 0, 1, 0, -0.0263515, 0, 0.999653, -12.3093, 1.30463, -3.84251 )
 
-[node name="AnimationTreeBot" parent="Bot" index="6"]
-parameters/playback = SubResource( 3 )
-
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.985252, 0.0859363, -0.147963, 0, 0.864732, 0.502234, 0.171108, -0.494827, 0.851979, -13.1797, 4.18183, 2.31651 )
-
-[editable path="Bot"]

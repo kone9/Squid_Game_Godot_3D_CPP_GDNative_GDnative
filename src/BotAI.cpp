@@ -112,7 +112,7 @@ namespace godot
 		// AnimationNodeStateMachine *state_machine = animation_tree->get_node("parameters/StateMachine");
 		
 
-		AnimationTree *animation_tree = get_node<AnimationTree>("AnimationTreeBot");
+		//AnimationTree *animation_tree = get_node<AnimationTree>("AnimationTreeBot");
 
 	// 	if (animation_tree) {
     //     // Accede al AnimationNodeStateMachine

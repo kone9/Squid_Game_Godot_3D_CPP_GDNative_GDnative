@@ -83,6 +83,7 @@ namespace godot
 		register_property<GameManager, int>("totalBots", &GameManager::totalBots, 1);
 		register_property<GameManager, Ref<PackedScene> >("Bot", &GameManager::Bot, nullptr);//propiedad packet scene para que se vea en el editor
 		register_property<GameManager, int>("bots_Intellicence", &GameManager::bots_Intellicence, 300);
+		register_property<GameManager, bool>("finish_Intro", &GameManager::finish_Intro, false);
 
 		//senials
 		register_method("_on_timer_Count_Down_timeout", &GameManager::_on_timer_Count_Down_timeout);
@@ -138,14 +139,16 @@ namespace godot
 		
 		if (AnimationPlayerGlobal->is_playing())
 		{
-			if (input->is_action_just_pressed("enter"))
-			{
-				AnimationPlayerGlobal->stop();
-				finish_Intro = true;
-				dollSing->play();//inicio con sonido de voz
-				//temporary: to test the global camera by pressing enter
-				cast_to<Camera>(get_tree()->get_nodes_in_group("PlayerCamera")[0])->set_current(true);
-			}
+
+			// Godot::print("ejecutando animacion");
+			// if (input->is_action_just_pressed("enter"))
+			// {
+			// 	AnimationPlayerGlobal->stop();
+			// 	finish_Intro = true;
+			// 	dollSing->play();//inicio con sonido de voz
+			// 	//temporary: to test the global camera by pressing enter
+			// 	cast_to<Camera>(get_tree()->get_nodes_in_group("PlayerCamera")[0])->set_current(true);
+			// }
 		}
 	}
 	

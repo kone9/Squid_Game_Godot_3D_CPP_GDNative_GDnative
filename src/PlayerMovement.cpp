@@ -162,24 +162,22 @@ namespace godot
 	
 	void PlayerMovement::MovePlayer()
 	{
-		//		Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
 		Vector3 move_vector_Horizontal = get_transform().basis.x * PlayerMovementInput.normalized().x * Speed;
 		Vector3 move_vector_vertical = get_transform().basis.z * PlayerMovementInput.normalized().z * Speed;
 		Vector3 MoveVector = move_vector_vertical + move_vector_Horizontal;//tiene que ser vector forward posiblemente aca tenga un error
 
-//		PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
 		set_linear_velocity(Vector3(MoveVector.x, -3, MoveVector.z));
 		
-		//if (Input.GetKeyDown(KeyCode.Space))
-		if (input->is_action_just_pressed("click_izquierdo"))//para saltar
-		{
-			if (!isJumping)//sino estoy saltando
-			{
-				Godot::print("tendria que saltar");
-				//PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
-				CheckJumping();
-			}
-		}
+
+		// if (input->is_action_just_pressed("click_izquierdo"))//para saltar
+		// {
+		// 	if (!isJumping)//sino estoy saltando
+		// 	{
+		// 		Godot::print("tendria que saltar");
+		// 		//PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
+		// 		CheckJumping();
+		// 	}
+		// }
 	}
 
 	void PlayerMovement::MovePlayerCamera()

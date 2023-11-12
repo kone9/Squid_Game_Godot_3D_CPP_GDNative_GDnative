@@ -1,7 +1,6 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Bot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/GDnative/GameManager.gdns" type="Script" id=3]
 [ext_resource path="res://scenes/Doll.tscn" type="PackedScene" id=4]
 [ext_resource path="res://font/Retro Arcade Terror.ttf" type="DynamicFontData" id=5]
@@ -12,27 +11,24 @@
 [ext_resource path="res://scenes/Machine_Gun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Eyes_RayCast.tscn" type="PackedScene" id=11]
 [ext_resource path="res://sound/initial_sound_and_effect.mp3" type="AudioStream" id=12]
-[ext_resource path="res://sound/Skil Saw Hit on Body.mp3" type="AudioStream" id=13]
-[ext_resource path="res://scripts/GDnative/BotAI.gdns" type="Script" id=14]
-[ext_resource path="res://scripts/GDnative/PruebaVisualStudioDebug.gdns" type="Script" id=15]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape" id=17]
 extents = Vector3( 80, 0.2, 80 )
 
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 160, 0.2, 160 )
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=18]
 albedo_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="CubeMesh" id=4]
-material = SubResource( 3 )
+[sub_resource type="CubeMesh" id=19]
+material = SubResource( 18 )
 size = Vector3( 160, 0.1, 1 )
 
-[sub_resource type="BoxShape" id=5]
+[sub_resource type="BoxShape" id=20]
 extents = Vector3( 70, 1, 5.85 )
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=21]
 extents = Vector3( 81.91, 25.2, 68.33 )
 
 [sub_resource type="CubeMesh" id=7]
@@ -44,17 +40,6 @@ albedo_color = Color( 0, 0.780392, 0.415686, 1 )
 [sub_resource type="CubeMesh" id=12]
 material = SubResource( 11 )
 size = Vector3( 24, 8, 2 )
-
-[sub_resource type="CapsuleShape" id=13]
-
-[sub_resource type="SpatialMaterial" id=14]
-albedo_color = Color( 0, 0.764706, 1, 1 )
-
-[sub_resource type="PrismMesh" id=15]
-material = SubResource( 14 )
-
-[sub_resource type="BoxShape" id=16]
-extents = Vector3( 1.1, 1.1, 1.1 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 32
@@ -818,10 +803,10 @@ tracks/26/loop_wrap = true
 tracks/26/imported = false
 tracks/26/enabled = true
 tracks/26/keys = {
-"times": PoolRealArray( 0, 39.82, 41.6959 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 39.82, 41.6959, 78 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ false, true, false ]
+"values": [ false, true, false, true ]
 }
 tracks/27/type = "value"
 tracks/27/path = NodePath("Cameras_and_effect_initial_animaton/Camera18:current")
@@ -948,6 +933,12 @@ tracks/36/keys = {
 
 [node name="GameManager" type="Node" parent="." groups=["GameManager"]]
 script = ExtResource( 3 )
+minutes = null
+headTimer = null
+totalBots = 20
+Bot = ExtResource( 1 )
+bots_Intellicence = null
+finish_Intro = null
 
 [node name="Light_and_camera" type="Spatial" parent="."]
 
@@ -961,9 +952,6 @@ transform = Transform( 1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107,
 light_energy = 0.3
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2.99, 1.47357, -62.1743 )
-
 [node name="Map" type="Spatial" parent="."]
 
 [node name="TargetEnd" type="Position3D" parent="Map" groups=["TargetEnd"]]
@@ -973,7 +961,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.76 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/Suelo"]
-shape = SubResource( 1 )
+shape = SubResource( 17 )
 
 [node name="Suelo" type="MeshInstance" parent="Map/Suelo" groups=["Suelo"]]
 mesh = SubResource( 2 )
@@ -981,25 +969,25 @@ mesh = SubResource( 2 )
 [node name="Area" type="Area" parent="Map/Suelo" groups=["Suelo"]]
 
 [node name="CollisionShape2" type="CollisionShape" parent="Map/Suelo/Area"]
-shape = SubResource( 1 )
+shape = SubResource( 17 )
 
 [node name="linea2" type="MeshInstance" parent="Map"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 52.2 )
-mesh = SubResource( 4 )
+mesh = SubResource( 19 )
 
 [node name="TargetSpawn" type="Area" parent="Map" groups=["TargetSpawn"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -68.78 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/TargetSpawn"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3 )
-shape = SubResource( 5 )
+shape = SubResource( 20 )
 
 [node name="DeathZone" type="Area" parent="Map" groups=["DeathZone"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.15 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/DeathZone"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.48, -1.88 )
-shape = SubResource( 6 )
+shape = SubResource( 21 )
 
 [node name="pared_atras" type="MeshInstance" parent="Map"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.17, 77.49 )
@@ -1013,58 +1001,19 @@ mesh = SubResource( 7 )
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 80.8, 36.17, -1.38 )
 mesh = SubResource( 7 )
 
+[node name="pared_derecha2" type="MeshInstance" parent="Map"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.236155, 36.17, -81.4802 )
+mesh = SubResource( 7 )
+
 [node name="tablero" type="MeshInstance" parent="Map"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 56.7463, 76.79 )
 mesh = SubResource( 12 )
 
 [node name="bots_instance_tree" type="Spatial" parent="." groups=["bots_instance_tree"]]
 
-[node name="Bot_banana" type="RigidBody" parent="." groups=["Bot", "Bot_banana"]]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.58, 1.33, -62.32 )
-collision_layer = 3
-collision_mask = 3
-contacts_reported = 5
-contact_monitor = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-script = ExtResource( 14 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Bot_banana"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.46, 0 )
-shape = SubResource( 13 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Bot_banana"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 15 )
-
-[node name="BotArea" type="Area" parent="Bot_banana" groups=["BotArea"]]
-collision_layer = 3
-
-[node name="CollisionShape2" type="CollisionShape" parent="Bot_banana/BotArea"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 16 )
-
-[node name="TimerDeadthAnimation" type="Timer" parent="Bot_banana"]
-one_shot = true
-
-[node name="Sound_Dead" type="AudioStreamPlayer3D" parent="Bot_banana"]
-stream = ExtResource( 13 )
-unit_size = 30.0
-bus = "Sound_Dead"
-
-[node name="Bot2" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44.98, 1.29623, -62.66 )
-
-[node name="Bot3" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42.24, 1.29623, -62.66 )
-
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="timeText" type="Label" parent="Control" groups=["timeText"]]
 anchor_left = 0.5
@@ -1304,16 +1253,12 @@ anims/doll_init = SubResource( 10 )
 
 [node name="Machine_Gun" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.28, 56.19, 75.23 )
+rotation_speed = null
 
 [node name="Machine_Gun2" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.34, 56.19, 75.23 )
+rotation_speed = null
 
-[node name="Node" type="Node" parent="."]
-script = ExtResource( 15 )
-
-[connection signal="area_entered" from="Bot_banana/BotArea" to="Bot_banana" method="_on_BotArea_area_entered"]
-[connection signal="area_exited" from="Bot_banana/BotArea" to="Bot_banana" method="_on_BotArea_area_exited"]
-[connection signal="timeout" from="Bot_banana/TimerDeadthAnimation" to="Bot_banana" method="_on_TimerDeadthAnimation_timeout"]
 [connection signal="timeout" from="Timers/timer_Count_Down" to="GameManager" method="_on_timer_Count_Down_timeout"]
 [connection signal="timeout" from="Timers/Timer_Rotate_head" to="GameManager" method="_on_Timer_Rotate_head_timeout"]
 [connection signal="timeout" from="Timers/Timer_active_raycast_detection" to="GameManager" method="_on_Timer_active_raycast_detection_timeout"]

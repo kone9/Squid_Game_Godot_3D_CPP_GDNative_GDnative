@@ -2,6 +2,9 @@
 #include <SceneTree.hpp>
 #include "GameManager.h"
 
+#include "AnimationNodeStateMachinePlayback.hpp"
+#include "AnimationNodeStateMachine.hpp"
+
 namespace godot
 {
 	//metodo constructor defino variables
@@ -82,37 +85,49 @@ namespace godot
 	//funcion ready de Godot
 	void BotAI::_ready()
 	{
-		random = RandomNumberGenerator::_new();
-		random->randomize();
-		gameManager = get_tree()->get_nodes_in_group("GameManager")[0];
-
-		//Godot::print("hola mundo soy un BOT");
-		//speed -= Random.Range(0f, 1f);
-		speed = random->randf_range((real_t)minSpeed, (real_t)maxSpeed);//velocidad del bot
-		//intelligence = Random.Range(0f, 100f);
+		// random = RandomNumberGenerator::_new();
+		// random->randomize();
 		
-		//If you use global intelligence or that of the bot, it is because of the bots that are on the scene and are not instantiated
-		if (use_global_intelligence)
-		{
-			intelligence = random->randf_range((real_t)0, (real_t)cast_to<GameManager>(gameManager)->bots_Intellicence);//la inteligencia es aleatoria del 1 al 100
-			bot_intelligence = cast_to<GameManager>(gameManager)->bots_Intellicence;
-		}
-		else
-		{
-			intelligence = random->randf_range((real_t)0, (real_t)bot_intelligence);//la inteligencia es aleatoria del 1 al 100
-		}
+
+		// speed = random->randf_range((real_t)minSpeed, (real_t)maxSpeed);//velocidad del bot
 		
-		//TargetEnd = GameObject.Find("TargetEnd").transform;
-		TargetEnd = get_tree()->get_nodes_in_group("TargetEnd")[0];
-
-		//deathZone = GameObject.Find("DeathZone").transform;
-		//deathZone = get_tree()->get_nodes_in_group("DeathZone")[0];
-
+		// //If you use global intelligence or that of the bot, it is because of the bots that are on the scene and are not instantiated
+		// if (use_global_intelligence)
+		// {
+		// 	intelligence = random->randf_range((real_t)0, (real_t)cast_to<GameManager>(gameManager)->bots_Intellicence);//la inteligencia es aleatoria del 1 al 100
+		// 	//bot_intelligence = cast_to<GameManager>(gameManager)->bots_Intellicence;
+		// }
+		// else
+		// {
+		// 	intelligence = random->randf_range((real_t)0, (real_t)bot_intelligence);//la inteligencia es aleatoria del 1 al 100
+		// }
 		
-		TimerDeadthAnimation = get_node<Timer>("TimerDeadthAnimation");
 
-		gameManager->connect("can_Walk", this, "ModifySpeedScroll");
+		// //TargetEnd = get_tree()->get_nodes_in_group("TargetEnd")[0];
 
+		// TimerDeadthAnimation = get_node<Timer>("TimerDeadthAnimation");
+	
+		
+		// if(anim == nullptr) return;
+		// AnimationNodeStateMachine *state_machine = animation_tree->get_node("parameters/StateMachine");
+		
+
+		AnimationTree *animation_tree = get_node<AnimationTree>("AnimationTreeBot");
+
+		if (animation_tree) {
+        // Accede al AnimationNodeStateMachine
+        // AnimationNodeStateMachine *state_machine = animation_tree->get("parameters/StateMachine");  // Ajusta la ruta según tu configuración
+
+        // if (state_machine) {
+        //     // Obtén la instancia de AnimationNodeStateMachinePlayback desde el AnimationTreePlayer
+        //     AnimationNodeStateMachinePlayback *playback = animation_tree->get_node("parameters/StateMachine")->get_current_node_playback();
+
+        //     if (playback) {
+        //         // Realiza operaciones con AnimationNodeStateMachinePlayback
+        //         playback->travel("nombre_del_estado");  // Reemplaza "nombre_del_estado" con el nombre real del estado
+        //     }
+        // }
+    }
 		
 
 	}
@@ -125,23 +140,15 @@ namespace godot
 
 	void BotAI::_physics_process(const real_t delta)
 	{
-		if (cast_to<GameManager>(gameManager)->finish_Intro && i_am_the_banana)
-		{
-			if (!isDying)//sino esta muriendo
-			{
-				Move(delta);
-				//CheckDeathTime();
-
-			}
-		}
-		if (cast_to<GameManager>(gameManager)->finish_Intro && cast_to<GameManager>(gameManager)->the_banana_died && cast_to<GameManager>(gameManager)->round > 1)
-		{
-			if (!isDying)//sino esta muriendo
-			{
-				Move(delta);
-				//CheckDeathTime();
-			}
-		}
+		Walk(delta);
+		// if (cast_to<GameManager>(gameManager)->finish_Intro)
+		// {
+		// 	if (!isDying)//sino esta muriendo
+		// 	{
+		// 		Move(delta);
+		// 		//CheckDeathTime();
+		// 	}
+		// }
 	}
 
 	//dependiendo la inteligencia va a caminar o no
@@ -150,9 +157,10 @@ namespace godot
 		//aca vienen varias condiciones ahora, es para probar
 		bool headTimeFinish = cast_to<GameManager>(gameManager)->headTimeFinish;
 		
+		
+
 		if (!headTimeFinish)//si la cabeza no se dio vuelta, osea puedo caminar
 		{
-			//AIChecked = false;//la IA no esta verificada
 			Walk(delta);// camina
 		}
 		else//si la cabeza se dio vuelta
@@ -171,41 +179,24 @@ namespace godot
 					Walk(delta);
 				}
 			}
-			
-			//if (!AIChecked)//sino verificque la inteligencia
-			//{
-			//	AIChecked = true;//verifique la inteligencia
-			//	//float probDead = Random.Range(0f, 100f);
-			//	float probDead = random->randf_range(0, 100);//probabilidad de morir
 
-			//	if (probDead < intelligence)//ACA VERIFICO LA INTELIGENCIA si la probabilidad de morir es menor a la inteligencia
-			//	{
-			//		Stop();//se detiene
-			//	}
-			//}
-			//else if (AIChecked && !isStopped)//verifique la intelgencia y no se esta moviendo
-			//{
-			//	Walk(delta);
-			//}
 		}
 	}
 
 	void BotAI::Walk(const real_t delta)
 	{	
-		//isWalking = true;
 		isWalking = true;
-		//isStopped = false;
 		isStopped = false;
-		//float step = speed * Time.deltaTime;
 		
-		//transform.position = Vector3.MoveTowards(transform.position, TargetEnd.position, step);
-		Vector3 move_vector_Horizontal = get_transform().basis.x * TargetEnd->get_translation().x;
-		Vector3 move_vector_vertical = get_transform().basis.z * TargetEnd->get_translation().z;
+		// Vector3 move_vector_Horizontal = get_transform().basis.x * TargetEnd->get_translation().x;
+		// Vector3 move_vector_vertical = get_transform().basis.z * TargetEnd->get_translation().z;
+		Vector3 move_vector_Horizontal = get_transform().basis.x;
+		Vector3 move_vector_vertical = get_transform().basis.z;
 		Vector3 MoveVector = -(move_vector_vertical + move_vector_Horizontal) * speed;//tiene que ser vector forward posiblemente aca tenga un error
 
-//		transform.position = Vector3.MoveTowards(transform.position, TargetEnd.position, step);
 		set_linear_velocity(Vector3(MoveVector.x, -3, MoveVector.z));
 		
+		//cast_to<AnimationNodeStateMachinePlayback>(anim)->travel("walk");
 		//animaciones
 		//anim.SetBool("isWalking", true);
 		//feetSteps.loop = true;
@@ -217,6 +208,7 @@ namespace godot
 		isWalking = false;
 		isStopped = true;
 		set_linear_velocity(Vector3( 0 , 0, 0));
+		//cast_to<AnimationNodeStateMachinePlayback>(anim)->travel("idle");
 		//animaciones
 		//anim.SetBool("isWalking", false);
 		//feetSteps.loop = false;

@@ -1,0 +1,16 @@
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+reloadable=false
+
+[entry]
+
+Windows.64="res://GDnative_Plugin_DLL/win64/Visual_Studio_SquidGameGodotEngine3D.dll"
+X11.64="res://GDnative_Plugin_DLL/x11/libgdexample.so"
+
+[dependencies]
+
+Windows.64=[  ]
+X11.64=[  ]

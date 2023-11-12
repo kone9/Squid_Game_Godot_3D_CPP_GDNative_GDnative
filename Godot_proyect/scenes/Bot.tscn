@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/GDnative/BotAI.gdns" type="Script" id=1]
 [ext_resource path="res://sound/Skil Saw Hit on Body.mp3" type="AudioStream" id=2]
@@ -292,7 +292,7 @@ bind/83/pose = Transform( -0.939308, -0.343075, -9.60067e-07, 0.343075, -0.93930
 
 [sub_resource type="Animation" id=3]
 resource_name = "Charger_Passive_Walk_0_Corpse_Skeleton001"
-length = 1.08333
+length = 1.1
 loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Corpse_Skeleton004/Skeleton:Bip001-R-Finger42")
@@ -1885,24 +1885,26 @@ material = SubResource( 8 )
 [sub_resource type="BoxShape" id=10]
 extents = Vector3( 1.1, 1.1, 1.1 )
 
-[sub_resource type="AnimationNodeAnimation" id=13]
-animation = "Charger_Passive_Walk_0_Corpse_Skeleton001"
-
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "Corpse_alert_idle_0_Corpse_Skeleton"
 
-[sub_resource type="AnimationNodeBlend2" id=14]
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "Charger_Passive_Walk_0_Corpse_Skeleton001"
 
-[sub_resource type="AnimationNodeBlendTree" id=12]
-graph_offset = Vector2( 28, 46.5 )
-nodes/Animation/node = SubResource( 11 )
-nodes/Animation/position = Vector2( -160, 100 )
-"nodes/Animation 2/node" = SubResource( 13 )
-"nodes/Animation 2/position" = Vector2( -280, 260 )
-nodes/Blend2/node = SubResource( 14 )
-nodes/Blend2/position = Vector2( 300, 80 )
-nodes/output/position = Vector2( 640, 80 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachine" id=25]
+states/idle/node = SubResource( 21 )
+states/idle/position = Vector2( 216, 223 )
+states/walk/node = SubResource( 22 )
+states/walk/position = Vector2( 725, 223 )
+transitions = [ "idle", "walk", SubResource( 23 ), "walk", "idle", SubResource( 24 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
 [node name="Bot" type="RigidBody" groups=["Bot"]]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.29623, 0 )
@@ -1914,8 +1916,11 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource( 1 )
-minSpeed = 0.15
-maxSpeed = 0.3
+minSpeed = null
+maxSpeed = null
+use_global_intelligence = null
+bot_intelligence = null
+i_am_the_banana = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.46, 0 )
@@ -2351,8 +2356,6 @@ bones/83/bound_children = [  ]
 [node name="Corpse_Sword004" type="MeshInstance" parent="Corpse/Corpse_Skeleton004/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
-material/0 = null
-material/1 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Corpse"]
 anims/Charger_Passive_Walk_0_Corpse_Skeleton001 = SubResource( 3 )
@@ -2364,7 +2367,6 @@ anims/Corpse_alert_idle_0_Corpse_Skeleton = SubResource( 6 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 visible = false
 mesh = SubResource( 9 )
-material/0 = null
 
 [node name="BotArea" type="Area" parent="." groups=["BotArea"]]
 collision_layer = 3
@@ -2381,11 +2383,11 @@ stream = ExtResource( 2 )
 unit_size = 30.0
 bus = "Sound_Dead"
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 12 )
+[node name="AnimationTreeBot" type="AnimationTree" parent="."]
+tree_root = SubResource( 25 )
 anim_player = NodePath("../Corpse/AnimationPlayer")
 active = true
-parameters/Blend2/blend_amount = 0.0
+parameters/playback = SubResource( 20 )
 
 [connection signal="area_entered" from="BotArea" to="." method="_on_BotArea_area_entered"]
 [connection signal="area_exited" from="BotArea" to="." method="_on_BotArea_area_exited"]

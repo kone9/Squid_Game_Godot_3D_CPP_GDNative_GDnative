@@ -30,15 +30,15 @@ namespace godot
 		Godot::print("cambiado texto en linux");
 		Godot::print("cambiado texto en linux");
 
-		Area* newArea = Area::_new();
+		//Area* newArea = Area::_new();
 
 		//if(!godot_is_instance_valid(newArea)) return;
-		add_child(newArea);
+		//add_child(newArea);
 		
-		if(godot_is_instance_valid(newArea))
-		{
-			Godot::print(newArea->get_name());
-		}
+		// if(godot_is_instance_valid(newArea))
+		// {
+		// 	Godot::print(newArea->get_name());
+		// }
 		// String texto {"AreaGDNative"};
 		// newArea->set_name("AreaGDNative");
 
